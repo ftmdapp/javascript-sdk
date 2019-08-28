@@ -95,14 +95,6 @@ class TokenManagement {
       value: value
     }
 
-    const signIssueMsg = {
-      from: senderAddress,
-      name: tokenName,
-      symbol,
-      total_supply: ""+totalSupply,
-      mintable,
-    }
-
     const signedTx = await this._bncClient._prepareTransaction(issueMsg, issueMsg, senderAddress)
     console.log(signedTx)
     return this._bncClient._broadcastDelegate(signedTx)
@@ -188,20 +180,18 @@ class TokenManagement {
     amount = new Big(amount)
     amount = Number(amount.mul(Math.pow(10, 8)).toString())
 
+    const value = {
+      from_address: fromAddress,
+      issue_id: symbol,
+      amount: ""+amount
+    }
+
     const burnMsg = {
-      from: crypto.decodeAddress(fromAddress),
-      symbol,
-      amount,
-      msgType: txType.BurnMsg
+      type: txType.BurnMsg,
+      value: value
     }
 
-    const burnSignMsg = {
-      amount: amount,
-      from: fromAddress,
-      symbol
-    }
-
-    const signedTx = await this._bncClient._prepareTransaction(burnMsg, burnSignMsg, fromAddress)
+    const signedTx = await this._bncClient._prepareTransaction(burnMsg, burnMsg, fromAddress)
     return this._bncClient._broadcastDelegate(signedTx)
   }
 
@@ -222,20 +212,20 @@ class TokenManagement {
     amount = new Big(amount)
     amount = Number(amount.mul(Math.pow(10, 8)).toString())
 
+    const value = {
+      from_address: fromAddress,
+      to_address: fromAddress,
+      issue_id: symbol,
+      amount: ""+amount,
+      decimals: "18"
+    }
+
     const mintMsg = {
-      from: crypto.decodeAddress(fromAddress),
-      symbol,
-      amount,
-      msgType: txType.MintMsg
+      type: txType.MintMsg,
+      value: value
     }
 
-    const mintSignMsg = {
-      amount: amount,
-      from: fromAddress,
-      symbol
-    }
-
-    const signedTx = await this._bncClient._prepareTransaction(mintMsg, mintSignMsg, fromAddress)
+    const signedTx = await this._bncClient._prepareTransaction(mintMsg, mintMsg, fromAddress)
     return this._bncClient._broadcastDelegate(signedTx)
   }
 }

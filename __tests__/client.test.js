@@ -95,7 +95,7 @@ it("recover account from bad mac keystore", async () => {
     client.recoverAccountFromKeystore(keystores.badMac, "12345qwert!S")
   }).toThrowError()
 })
-*/
+
 it("recover account from mneomnic", async () => {
   jest.setTimeout(50000)
   const client = await getClient(false)
@@ -105,7 +105,7 @@ it("recover account from mneomnic", async () => {
   expect(res.privateKey).toBeTruthy()
   console.log(res)
 })
-/*
+
 it("recover account from privatekey", async () => {
   jest.setTimeout(50000)
   const client = await getClient(false)
@@ -214,7 +214,7 @@ it("check number when transfer", async () => {
   } catch (err) {
     expect(err.message).toBe("amount should be less than 2^63")
   }
-})*/
+})
 
 it("issue token", async () => {
   const client = await getClient(true)
@@ -226,7 +226,7 @@ it("issue token", async () => {
   const res = await client.tokens.issue(addr, tokenName, symbol, totalSupply, true)
   console.log(res)
   expect(res.status).toBe(200)
-})
+})*/
 
 /*it("freeze token", async () => {
   const client = await getClient(true)
@@ -254,21 +254,23 @@ it("unfreeze token", async () => {
 it("burn token", async () => {
   const client = await getClient(true)
   const addr = "zar1hgm0p7khfk85zpz5v0j8wnej3a90w70979t4js"
-  const symbol = "XZJ-D9A"
+  const symbol = "coin174876e801"
   const amount = 10000
-  const { status } = await client.tokens.burn(addr, symbol, amount)
-  expect(status).toBe(200)
-})
+  const res = await client.tokens.burn(addr, symbol, amount)
+  console.log(res)
+  expect(res.status).toBe(200)
+})*/
 
 it("mint token", async () => {
   const client = await getClient(true)
   const addr = "zar1hgm0p7khfk85zpz5v0j8wnej3a90w70979t4js"
-  const symbol = "MINT-04F"
+  const symbol = "coin174876e801"
   const amount = 10000000
   const res = await client.tokens.mint(addr, symbol, amount)
+  console.log(res)
   expect(res.status).toBe(200)
 })
-
+/*
 it("submitListProposal", async () => {
   const client = await getClient(true)
   const addr = crypto.getAddressFromPrivateKey(client.privateKey)
