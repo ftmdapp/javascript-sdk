@@ -1,6 +1,6 @@
 {
   "name": "@zar-network/javascript-sdk",
-  "version": "2.14.7",
+  "version": "2.14.9",
   "license": "Apache-2.0",
   "main": "lib/index.js",
   "scripts": {

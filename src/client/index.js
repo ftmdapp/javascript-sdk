@@ -105,7 +105,7 @@ const calInputCoins = (inputs, coins) => {
 /**
  * The Zar Chain client.
  */
-export class BncClient {
+export class ZarClient {
   /**
    * @param {String} server Zar Chain public url
    * @param {Boolean} useAsyncBroadcast use async broadcast mode, faster but less guarantees (default off)
@@ -167,7 +167,7 @@ export class BncClient {
   /**
    * Use async broadcast mode. Broadcasts faster with less guarantees (default off)
    * @param {Boolean} useAsyncBroadcast
-   * @return {BncClient} this instance (for chaining)
+   * @return {ZarClient} this instance (for chaining)
    */
   useAsyncBroadcast(useAsyncBroadcast = true) {
     this._useAsyncBroadcast = useAsyncBroadcast
@@ -177,7 +177,7 @@ export class BncClient {
   /**
    * Sets the signing delegate (for wallet integrations).
    * @param {function} delegate
-   * @return {BncClient} this instance (for chaining)
+   * @return {ZarClient} this instance (for chaining)
    */
   setSigningDelegate(delegate) {
     if (typeof delegate !== "function") throw new Error("signing delegate must be a function")
@@ -188,7 +188,7 @@ export class BncClient {
   /**
    * Sets the broadcast delegate (for wallet integrations).
    * @param {function} delegate
-   * @return {BncClient} this instance (for chaining)
+   * @return {ZarClient} this instance (for chaining)
    */
   setBroadcastDelegate(delegate) {
     if (typeof delegate !== "function") throw new Error("broadcast delegate must be a function")
@@ -198,7 +198,7 @@ export class BncClient {
 
   /**
    * Applies the default signing delegate.
-   * @return {BncClient} this instance (for chaining)
+   * @return {ZarClient} this instance (for chaining)
    */
   useDefaultSigningDelegate() {
     this._signingDelegate = DefaultSigningDelegate
@@ -207,7 +207,7 @@ export class BncClient {
 
   /**
    * Applies the default broadcast delegate.
-   * @return {BncClient} this instance (for chaining)
+   * @return {ZarClient} this instance (for chaining)
    */
   useDefaultBroadcastDelegate() {
     this._broadcastDelegate = DefaultBroadcastDelegate
@@ -220,7 +220,7 @@ export class BncClient {
    * @param {function} preSignCb
    * @param {function} postSignCb
    * @param {function} errCb
-   * @return {BncClient} this instance (for chaining)
+   * @return {ZarClient} this instance (for chaining)
    */
   useLedgerSigningDelegate(ledgerApp, preSignCb, postSignCb, errCb, hdPath) {
     this._signingDelegate = LedgerSigningDelegate(ledgerApp, preSignCb, postSignCb, errCb, hdPath)
@@ -371,154 +371,6 @@ export class BncClient {
   }
 
   /**
-   * Cancel an order.
-   * @param {String} fromAddress
-   * @param {String} symbol the market pair
-   * @param {String} refid the order ID of the order to cancel
-   * @param {Number} sequence optional sequence
-   * @return {Promise} resolves with response (success or fail)
-   */
-  async cancelOrder(fromAddress, symbol, refid, sequence = null) {
-    const accCode = crypto.decodeAddress(fromAddress)
-
-    const msg = {
-      sender: accCode,
-      symbol: symbol,
-      refid: refid,
-      msgType: "CancelOrderMsg"
-    }
-
-    const signMsg = {
-      refid: refid,
-      sender: fromAddress,
-      symbol: symbol
-    }
-
-    const signedTx = await this._prepareTransaction(msg, signMsg, fromAddress, sequence, "")
-    return this._broadcastDelegate(signedTx)
-  }
-
-  /**
-   * Place an order.
-   * @param {String} address
-   * @param {String} symbol the market pair
-   * @param {Number} side (1-Buy, 2-Sell)
-   * @param {Number} price
-   * @param {Number} quantity
-   * @param {Number} sequence optional sequence
-   * @param {Number} timeinforce (1-GTC(Good Till Expire), 3-IOC(Immediate or Cancel))
-   * @return {Promise} resolves with response (success or fail)
-   */
-  async placeOrder(address = this.address, symbol, side, price, quantity, sequence = null, timeinforce = 1) {
-    if (!address) {
-      throw new Error("address should not be falsy")
-    }
-    if (!symbol) {
-      throw new Error("symbol should not be falsy")
-    }
-    if (side !== 1 && side !== 2) {
-      throw new Error("side can only be 1 or 2")
-    }
-    if (timeinforce !== 1 && timeinforce !== 3) {
-      throw new Error("timeinforce can only be 1 or 3")
-    }
-
-    const accCode = crypto.decodeAddress(address)
-
-    if (sequence !== 0 && !sequence) {
-      const data = await this._httpClient.request("get", `${api.getAccount}/${address}`)
-      sequence = data.result && data.result.sequence
-    }
-
-    const bigPrice = new Big(price)
-    const bigQuantity = new Big(quantity)
-
-    const placeOrderMsg = {
-      sender: accCode,
-      id: `${accCode.toString("hex")}-${sequence + 1}`.toUpperCase(),
-      symbol: symbol,
-      ordertype: 2,
-      side,
-      price: parseFloat(bigPrice.mul(BASENUMBER).toString(), 10),
-      quantity: parseFloat(bigQuantity.mul(BASENUMBER).toString(), 10),
-      timeinforce: timeinforce,
-      msgType: "NewOrderMsg",
-    }
-
-    const signMsg = {
-      id: placeOrderMsg.id,
-      ordertype: placeOrderMsg.ordertype,
-      price: placeOrderMsg.price,
-      quantity: placeOrderMsg.quantity,
-      sender: address,
-      side: placeOrderMsg.side,
-      symbol: placeOrderMsg.symbol,
-      timeinforce: timeinforce,
-    }
-
-    checkNumber(placeOrderMsg.price, "price")
-    checkNumber(placeOrderMsg.quantity, "quantity")
-
-    const signedTx = await this._prepareTransaction(placeOrderMsg, signMsg, address, sequence, "")
-    return this._broadcastDelegate(signedTx)
-  }
-
-  /**
-   * @param {String} address
-   * @param {Number} proposalId
-   * @param {String} baseAsset
-   * @param {String} quoteAsset
-   * @param {Number} initPrice
-   * @param {Number} sequence optional sequence
-   * @return {Promise} resolves with response (success or fail)
-   */
-  async list(address, proposalId, baseAsset, quoteAsset, initPrice, sequence = null) {
-    const accCode = crypto.decodeAddress(address)
-
-    if (!address) {
-      throw new Error("address should not be falsy")
-    }
-
-    if(proposalId <= 0){
-      throw new Error("proposal id should larger than 0")
-    }
-
-    if(initPrice <= 0){
-      throw new Error("price should larger than 0")
-    }
-
-    if (!baseAsset) {
-      throw new Error("baseAsset should not be falsy")
-    }
-
-    if (!quoteAsset) {
-      throw new Error("quoteAsset should not be falsy")
-    }
-
-    const init_price = Number(new Big(initPrice).mul(BASENUMBER).toString())
-
-    const listMsg = {
-      from: accCode,
-      proposal_id: proposalId,
-      base_asset_symbol: baseAsset,
-      quote_asset_symbol: quoteAsset,
-      init_price: init_price,
-      msgType: "ListMsg"
-    }
-
-    const signMsg = {
-      base_asset_symbol: baseAsset,
-      from: address,
-      init_price: init_price,
-      proposal_id: proposalId,
-      quote_asset_symbol: quoteAsset,
-    }
-
-    const signedTx = await this._prepareTransaction(listMsg, signMsg, address, sequence, "")
-    return this._broadcastDelegate(signedTx)
-  }
-
-  /**
    * Prepare a serialized raw transaction for sending to the blockchain.
    * @param {Object} msg the msg object
    * @param {Object} stdSignMsg the sign doc object used to generate a signature
@@ -622,22 +474,6 @@ export class BncClient {
       const data = await this.getAccount(address)
       return data.result.result.value.coins
     } catch (err) {
-      return []
-    }
-  }
-
-  /**
-   * get markets
-   * @param {Number} offset from beggining, default 0
-   * @param {Number} limit, max 1000 is default
-   * @return {Promise} resolves with http response
-   */
-  async getMarkets(limit = 1000, offset = 0) {
-    try {
-      const data = await this._httpClient.request("get", `${api.getMarkets}?limit=${limit}&offset=${offset}`)
-      return data
-    } catch (err) {
-      console.warn("getMarkets error", err)
       return []
     }
   }

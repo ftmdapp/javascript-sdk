@@ -48,11 +48,11 @@ class Gov {
   static instance
 
   /**
-   * @param {Object} bncClient
+   * @param {Object} ZarClient
    */
-  constructor(bncClient) {
+  constructor(ZarClient) {
     if (!Gov.instance) {
-      this._bncClient = bncClient
+      this._ZarClient = ZarClient
       Gov.instance = this
     }
 
@@ -133,8 +133,8 @@ class Gov {
       voting_period: votingPeriod.toString(),
     }
 
-    const signedTx = await this._bncClient._prepareTransaction(proposalMsg, signMsg, address)
-    return this._bncClient._broadcastDelegate(signedTx)
+    const signedTx = await this._ZarClient._prepareTransaction(proposalMsg, signMsg, address)
+    return this._ZarClient._broadcastDelegate(signedTx)
   }
 
   /**
@@ -177,8 +177,8 @@ class Gov {
       proposal_id: String(proposalId),
     }
 
-    const signedTx = await this._bncClient._prepareTransaction(depositMsg, signMsg, address)
-    return this._bncClient._broadcastDelegate(signedTx)
+    const signedTx = await this._ZarClient._prepareTransaction(depositMsg, signMsg, address)
+    return this._ZarClient._broadcastDelegate(signedTx)
   }
 
   /**
@@ -203,8 +203,8 @@ class Gov {
       voter,
     }
 
-    const signedTx = await this._bncClient._prepareTransaction(voteMsg, signMsg, voter)
-    return this._bncClient._broadcastDelegate(signedTx)
+    const signedTx = await this._ZarClient._prepareTransaction(voteMsg, signMsg, voter)
+    return this._ZarClient._broadcastDelegate(signedTx)
   }
 }
 

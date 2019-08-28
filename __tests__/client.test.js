@@ -1,4 +1,4 @@
-import BncClient from "../src"
+import ZarClient from "../src"
 import { checkNumber } from "../src/utils/validateHelper"
 import * as crypto from "../src/crypto"
 import Transaction from "../src/tx"
@@ -19,7 +19,7 @@ const keystores = {
 const targetAddress = "zar1hgm0p7khfk85zpz5v0j8wnej3a90w70979t4js"
 
 const getClient = async (useAwaitSetPrivateKey = true, doNotSetPrivateKey = false) => {
-  const client = new BncClient("http://34.244.179.123:1317")
+  const client = new ZarClient("http://34.244.179.123:1317")
   await client.initChain()
   const privateKey = crypto.getPrivateKeyFromMnemonic(mnemonic)
   if (!doNotSetPrivateKey) {
@@ -53,13 +53,13 @@ it("ensures that the number is less than 2^63", async () => {
 })
 // })
 
-// describe("BncClient test", async () => {
+// describe("ZarClient test", async () => {
 
 beforeEach(() => {
   jest.setTimeout(50000)
 })
 
-/*it("create account", async () => {
+it("create account", async () => {
   const client = await getClient(false)
   const res = client.createAccount()
   expect(res.address).toBeTruthy()
@@ -226,9 +226,9 @@ it("issue token", async () => {
   const res = await client.tokens.issue(addr, tokenName, symbol, totalSupply, true)
   console.log(res)
   expect(res.status).toBe(200)
-})*/
+})
 
-/*it("freeze token", async () => {
+it("freeze token", async () => {
   const client = await getClient(true)
   const addr = "zar1hgm0p7khfk85zpz5v0j8wnej3a90w70979t4js"
   const symbol = "XZJ-D9A"
@@ -270,62 +270,5 @@ it("mint token", async () => {
   console.log(res)
   expect(res.status).toBe(200)
 })
-
-it("submitListProposal", async () => {
-  const client = await getClient(true)
-  const addr = crypto.getAddressFromPrivateKey(client.privateKey)
-  const date = new Date()
-  const params = {
-    title: "list MINT-200",
-    description: "list MINT-200",
-    baseAsset: "MINT-200",
-    quoteAsset: "BNB",
-    initPrice: 1,
-    address: addr,
-    initialDeposit: 2000,
-    expireTime: date.setHours(date.getHours() + 1),
-    votingPeriod: 300
-  }
-
-  const res = await client.gov.submitListProposal(params)
-  console.log(res)
-  expect(res.status).toBe(200)
-  expect(res.result[0].code).toBe(0)
-})
-
-it("depositProposal", async () => {
-  const client = await getClient(true)
-  const addr = crypto.getAddressFromPrivateKey(client.privateKey)
-  const coins = [{
-    denom: "BNB",
-    amount: 1000
-  }]
-  const res = await client.gov.deposit(494, addr, coins)
-  console.log(res)
-  expect(res.status).toBe(200)
-  expect(res.result[0].code).toBe(0)
-})
-
-it("voteProposal", async () => {
-  const client = await getClient(true)
-  const addr = crypto.getAddressFromPrivateKey(client.privateKey)
-  const res = await client.gov.vote(494, addr, voteOption.OptionYes)
-  console.log(res)
-  expect(res.status).toBe(200)
-  expect(res.result[0].code).toBe(0)
-})
-
-it("list MINT", async ()=>{
-  const client = await getClient(true)
-  const addr = crypto.getAddressFromPrivateKey(client.privateKey)
-  try{
-    const res = await client.list(addr, 620, "MINT-200", "BNB", 1)
-    console.log(res)
-    expect(res.status).toBe(200)
-    expect(res.result[0].code).toBe(0)
-  }catch(err){
-    expect(err.message).toBe("trading pair exists")
-  }
-})*/
 
 // })

@@ -46,37 +46,33 @@
 
 * [client](#module_client)
     * _static_
-        * [.BncClient](#module_client.BncClient)
-            * [new exports.BncClient(server, useAsyncBroadcast, source)](#new_module_client.BncClient_new)
-            * [.initChain()](#module_client.BncClient+initChain) ⇒ <code>Promise</code>
-            * [.chooseNetwork(network)](#module_client.BncClient+chooseNetwork)
-            * [.setPrivateKey()](#module_client.BncClient+setPrivateKey) ⇒ <code>Promise</code>
-            * [.useAsyncBroadcast(useAsyncBroadcast)](#module_client.BncClient+useAsyncBroadcast) ⇒ <code>BncClient</code>
-            * [.setSigningDelegate(delegate)](#module_client.BncClient+setSigningDelegate) ⇒ <code>BncClient</code>
-            * [.setBroadcastDelegate(delegate)](#module_client.BncClient+setBroadcastDelegate) ⇒ <code>BncClient</code>
-            * [.useDefaultSigningDelegate()](#module_client.BncClient+useDefaultSigningDelegate) ⇒ <code>BncClient</code>
-            * [.useDefaultBroadcastDelegate()](#module_client.BncClient+useDefaultBroadcastDelegate) ⇒ <code>BncClient</code>
-            * [.useLedgerSigningDelegate(ledgerApp, preSignCb, postSignCb, errCb)](#module_client.BncClient+useLedgerSigningDelegate) ⇒ <code>BncClient</code>
-            * [.transfer(fromAddress, toAddress, amount, asset, memo, sequence)](#module_client.BncClient+transfer) ⇒ <code>Promise</code>
-            * [.multiSend(fromAddress, outputs, memo, sequence)](#module_client.BncClient+multiSend) ⇒ <code>Promise</code>
-            * [.cancelOrder(fromAddress, symbol, refid, sequence)](#module_client.BncClient+cancelOrder) ⇒ <code>Promise</code>
-            * [.placeOrder(address, symbol, side, price, quantity, sequence, timeinforce)](#module_client.BncClient+placeOrder) ⇒ <code>Promise</code>
-            * [.list(address, proposalId, baseAsset, quoteAsset, initPrice, sequence)](#module_client.BncClient+list) ⇒ <code>Promise</code>
-            * [._prepareTransaction(msg, stdSignMsg, address, sequence, memo)](#module_client.BncClient+_prepareTransaction) ⇒ [<code>Transaction</code>](#Transaction)
-            * [.sendTransaction(tx, sync)](#module_client.BncClient+sendTransaction) ⇒ <code>Promise</code>
-            * [.sendRawTransaction(signedBz, sync)](#module_client.BncClient+sendRawTransaction) ⇒ <code>Promise</code>
-            * [._sendTransaction(msg, stdSignMsg, address, sequence, memo, sync)](#module_client.BncClient+_sendTransaction) ⇒ <code>Promise</code>
-            * [.getAccount(address)](#module_client.BncClient+getAccount) ⇒ <code>Promise</code>
-            * [.getBalance(address)](#module_client.BncClient+getBalance) ⇒ <code>Promise</code>
-            * [.getMarkets(offset, limit,)](#module_client.BncClient+getMarkets) ⇒ <code>Promise</code>
-            * [.createAccount()](#module_client.BncClient+createAccount) ⇒ <code>object</code>
-            * [.createAccountWithKeystore(password)](#module_client.BncClient+createAccountWithKeystore)
-            * [.createAccountWithMneomnic()](#module_client.BncClient+createAccountWithMneomnic) ⇒ <code>object</code>
-            * [.recoverAccountFromKeystore(keystore, keystore)](#module_client.BncClient+recoverAccountFromKeystore)
-            * [.recoverAccountFromMnemonic(mneomnic)](#module_client.BncClient+recoverAccountFromMnemonic)
-            * [.recoverAccountFromPrivateKey(privateKey)](#module_client.BncClient+recoverAccountFromPrivateKey)
-            * [.checkAddress(address, prefix)](#module_client.BncClient+checkAddress) ⇒ <code>Boolean</code>
-            * [.getClientKeyAddress()](#module_client.BncClient+getClientKeyAddress) ⇒ <code>String</code>
+        * [.ZarClient](#module_client.ZarClient)
+            * [new exports.ZarClient(server, useAsyncBroadcast, source)](#new_module_client.ZarClient_new)
+            * [.initChain()](#module_client.ZarClient+initChain) ⇒ <code>Promise</code>
+            * [.chooseNetwork(network)](#module_client.ZarClient+chooseNetwork)
+            * [.setPrivateKey()](#module_client.ZarClient+setPrivateKey) ⇒ <code>Promise</code>
+            * [.useAsyncBroadcast(useAsyncBroadcast)](#module_client.ZarClient+useAsyncBroadcast) ⇒ <code>ZarClient</code>
+            * [.setSigningDelegate(delegate)](#module_client.ZarClient+setSigningDelegate) ⇒ <code>ZarClient</code>
+            * [.setBroadcastDelegate(delegate)](#module_client.ZarClient+setBroadcastDelegate) ⇒ <code>ZarClient</code>
+            * [.useDefaultSigningDelegate()](#module_client.ZarClient+useDefaultSigningDelegate) ⇒ <code>ZarClient</code>
+            * [.useDefaultBroadcastDelegate()](#module_client.ZarClient+useDefaultBroadcastDelegate) ⇒ <code>ZarClient</code>
+            * [.useLedgerSigningDelegate(ledgerApp, preSignCb, postSignCb, errCb)](#module_client.ZarClient+useLedgerSigningDelegate) ⇒ <code>ZarClient</code>
+            * [.transfer(fromAddress, toAddress, amount, asset, memo, sequence)](#module_client.ZarClient+transfer) ⇒ <code>Promise</code>
+            * [.multiSend(fromAddress, outputs, memo, sequence)](#module_client.ZarClient+multiSend) ⇒ <code>Promise</code>
+            * [._prepareTransaction(msg, stdSignMsg, address, sequence, memo)](#module_client.ZarClient+_prepareTransaction) ⇒ [<code>Transaction</code>](#Transaction)
+            * [.sendTransaction(tx, sync)](#module_client.ZarClient+sendTransaction) ⇒ <code>Promise</code>
+            * [.sendRawTransaction(signedBz, sync)](#module_client.ZarClient+sendRawTransaction) ⇒ <code>Promise</code>
+            * [._sendTransaction(msg, stdSignMsg, address, sequence, memo, sync)](#module_client.ZarClient+_sendTransaction) ⇒ <code>Promise</code>
+            * [.getAccount(address)](#module_client.ZarClient+getAccount) ⇒ <code>Promise</code>
+            * [.getBalance(address)](#module_client.ZarClient+getBalance) ⇒ <code>Promise</code>
+            * [.createAccount()](#module_client.ZarClient+createAccount) ⇒ <code>object</code>
+            * [.createAccountWithKeystore(password)](#module_client.ZarClient+createAccountWithKeystore)
+            * [.createAccountWithMneomnic()](#module_client.ZarClient+createAccountWithMneomnic) ⇒ <code>object</code>
+            * [.recoverAccountFromKeystore(keystore, keystore)](#module_client.ZarClient+recoverAccountFromKeystore)
+            * [.recoverAccountFromMnemonic(mneomnic)](#module_client.ZarClient+recoverAccountFromMnemonic)
+            * [.recoverAccountFromPrivateKey(privateKey)](#module_client.ZarClient+recoverAccountFromPrivateKey)
+            * [.checkAddress(address, prefix)](#module_client.ZarClient+checkAddress) ⇒ <code>Boolean</code>
+            * [.getClientKeyAddress()](#module_client.ZarClient+getClientKeyAddress) ⇒ <code>String</code>
         * [.DefaultSigningDelegate](#module_client.DefaultSigningDelegate) ⇒ [<code>Transaction</code>](#Transaction)
         * [.DefaultBroadcastDelegate](#module_client.DefaultBroadcastDelegate)
         * [.LedgerSigningDelegate](#module_client.LedgerSigningDelegate) ⇒ <code>function</code>
@@ -84,149 +80,145 @@
         * [~checkOutputs(outputs)](#module_client..checkOutputs)
         * [~calInputCoins(inputs, coins)](#module_client..calInputCoins)
 
-<a name="module_client.BncClient"></a>
+<a name="module_client.ZarClient"></a>
 
-### client.BncClient
-The Binance Chain client.
+### client.ZarClient
+The Zar Network Chain client.
 
 **Kind**: static class of [<code>client</code>](#module_client)  
 
-* [.BncClient](#module_client.BncClient)
-    * [new exports.BncClient(server, useAsyncBroadcast, source)](#new_module_client.BncClient_new)
-    * [.initChain()](#module_client.BncClient+initChain) ⇒ <code>Promise</code>
-    * [.chooseNetwork(network)](#module_client.BncClient+chooseNetwork)
-    * [.setPrivateKey()](#module_client.BncClient+setPrivateKey) ⇒ <code>Promise</code>
-    * [.useAsyncBroadcast(useAsyncBroadcast)](#module_client.BncClient+useAsyncBroadcast) ⇒ <code>BncClient</code>
-    * [.setSigningDelegate(delegate)](#module_client.BncClient+setSigningDelegate) ⇒ <code>BncClient</code>
-    * [.setBroadcastDelegate(delegate)](#module_client.BncClient+setBroadcastDelegate) ⇒ <code>BncClient</code>
-    * [.useDefaultSigningDelegate()](#module_client.BncClient+useDefaultSigningDelegate) ⇒ <code>BncClient</code>
-    * [.useDefaultBroadcastDelegate()](#module_client.BncClient+useDefaultBroadcastDelegate) ⇒ <code>BncClient</code>
-    * [.useLedgerSigningDelegate(ledgerApp, preSignCb, postSignCb, errCb)](#module_client.BncClient+useLedgerSigningDelegate) ⇒ <code>BncClient</code>
-    * [.transfer(fromAddress, toAddress, amount, asset, memo, sequence)](#module_client.BncClient+transfer) ⇒ <code>Promise</code>
-    * [.multiSend(fromAddress, outputs, memo, sequence)](#module_client.BncClient+multiSend) ⇒ <code>Promise</code>
-    * [.cancelOrder(fromAddress, symbol, refid, sequence)](#module_client.BncClient+cancelOrder) ⇒ <code>Promise</code>
-    * [.placeOrder(address, symbol, side, price, quantity, sequence, timeinforce)](#module_client.BncClient+placeOrder) ⇒ <code>Promise</code>
-    * [.list(address, proposalId, baseAsset, quoteAsset, initPrice, sequence)](#module_client.BncClient+list) ⇒ <code>Promise</code>
-    * [._prepareTransaction(msg, stdSignMsg, address, sequence, memo)](#module_client.BncClient+_prepareTransaction) ⇒ [<code>Transaction</code>](#Transaction)
-    * [.sendTransaction(tx, sync)](#module_client.BncClient+sendTransaction) ⇒ <code>Promise</code>
-    * [.sendRawTransaction(signedBz, sync)](#module_client.BncClient+sendRawTransaction) ⇒ <code>Promise</code>
-    * [._sendTransaction(msg, stdSignMsg, address, sequence, memo, sync)](#module_client.BncClient+_sendTransaction) ⇒ <code>Promise</code>
-    * [.getAccount(address)](#module_client.BncClient+getAccount) ⇒ <code>Promise</code>
-    * [.getBalance(address)](#module_client.BncClient+getBalance) ⇒ <code>Promise</code>
-    * [.getMarkets(offset, limit,)](#module_client.BncClient+getMarkets) ⇒ <code>Promise</code>
-    * [.createAccount()](#module_client.BncClient+createAccount) ⇒ <code>object</code>
-    * [.createAccountWithKeystore(password)](#module_client.BncClient+createAccountWithKeystore)
-    * [.createAccountWithMneomnic()](#module_client.BncClient+createAccountWithMneomnic) ⇒ <code>object</code>
-    * [.recoverAccountFromKeystore(keystore, keystore)](#module_client.BncClient+recoverAccountFromKeystore)
-    * [.recoverAccountFromMnemonic(mneomnic)](#module_client.BncClient+recoverAccountFromMnemonic)
-    * [.recoverAccountFromPrivateKey(privateKey)](#module_client.BncClient+recoverAccountFromPrivateKey)
-    * [.checkAddress(address, prefix)](#module_client.BncClient+checkAddress) ⇒ <code>Boolean</code>
-    * [.getClientKeyAddress()](#module_client.BncClient+getClientKeyAddress) ⇒ <code>String</code>
+* [.ZarClient](#module_client.ZarClient)
+    * [new exports.ZarClient(server, useAsyncBroadcast, source)](#new_module_client.ZarClient_new)
+    * [.initChain()](#module_client.ZarClient+initChain) ⇒ <code>Promise</code>
+    * [.chooseNetwork(network)](#module_client.ZarClient+chooseNetwork)
+    * [.setPrivateKey()](#module_client.ZarClient+setPrivateKey) ⇒ <code>Promise</code>
+    * [.useAsyncBroadcast(useAsyncBroadcast)](#module_client.ZarClient+useAsyncBroadcast) ⇒ <code>ZarClient</code>
+    * [.setSigningDelegate(delegate)](#module_client.ZarClient+setSigningDelegate) ⇒ <code>ZarClient</code>
+    * [.setBroadcastDelegate(delegate)](#module_client.ZarClient+setBroadcastDelegate) ⇒ <code>ZarClient</code>
+    * [.useDefaultSigningDelegate()](#module_client.ZarClient+useDefaultSigningDelegate) ⇒ <code>ZarClient</code>
+    * [.useDefaultBroadcastDelegate()](#module_client.ZarClient+useDefaultBroadcastDelegate) ⇒ <code>ZarClient</code>
+    * [.useLedgerSigningDelegate(ledgerApp, preSignCb, postSignCb, errCb)](#module_client.ZarClient+useLedgerSigningDelegate) ⇒ <code>ZarClient</code>
+    * [.transfer(fromAddress, toAddress, amount, asset, memo, sequence)](#module_client.ZarClient+transfer) ⇒ <code>Promise</code>
+    * [.multiSend(fromAddress, outputs, memo, sequence)](#module_client.ZarClient+multiSend) ⇒ <code>Promise</code>
+    * [._prepareTransaction(msg, stdSignMsg, address, sequence, memo)](#module_client.ZarClient+_prepareTransaction) ⇒ [<code>Transaction</code>](#Transaction)
+    * [.sendTransaction(tx, sync)](#module_client.ZarClient+sendTransaction) ⇒ <code>Promise</code>
+    * [.sendRawTransaction(signedBz, sync)](#module_client.ZarClient+sendRawTransaction) ⇒ <code>Promise</code>
+    * [._sendTransaction(msg, stdSignMsg, address, sequence, memo, sync)](#module_client.ZarClient+_sendTransaction) ⇒ <code>Promise</code>
+    * [.getAccount(address)](#module_client.ZarClient+getAccount) ⇒ <code>Promise</code>
+    * [.getBalance(address)](#module_client.ZarClient+getBalance) ⇒ <code>Promise</code>
+    * [.createAccount()](#module_client.ZarClient+createAccount) ⇒ <code>object</code>
+    * [.createAccountWithKeystore(password)](#module_client.ZarClient+createAccountWithKeystore)
+    * [.createAccountWithMneomnic()](#module_client.ZarClient+createAccountWithMneomnic) ⇒ <code>object</code>
+    * [.recoverAccountFromKeystore(keystore, keystore)](#module_client.ZarClient+recoverAccountFromKeystore)
+    * [.recoverAccountFromMnemonic(mneomnic)](#module_client.ZarClient+recoverAccountFromMnemonic)
+    * [.recoverAccountFromPrivateKey(privateKey)](#module_client.ZarClient+recoverAccountFromPrivateKey)
+    * [.checkAddress(address, prefix)](#module_client.ZarClient+checkAddress) ⇒ <code>Boolean</code>
+    * [.getClientKeyAddress()](#module_client.ZarClient+getClientKeyAddress) ⇒ <code>String</code>
 
-<a name="new_module_client.BncClient_new"></a>
+<a name="new_module_client.ZarClient_new"></a>
 
-#### new exports.BncClient(server, useAsyncBroadcast, source)
+#### new exports.ZarClient(server, useAsyncBroadcast, source)
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| server | <code>String</code> |  | Binance Chain public url |
+| server | <code>String</code> |  | Zar Network Chain public url |
 | useAsyncBroadcast | <code>Boolean</code> | <code>false</code> | use async broadcast mode, faster but less guarantees (default off) |
 | source | <code>Number</code> | <code>0</code> | where does this transaction come from (default 0) |
 
-<a name="module_client.BncClient+initChain"></a>
+<a name="module_client.ZarClient+initChain"></a>
 
-#### bncClient.initChain() ⇒ <code>Promise</code>
+#### ZarClient.initChain() ⇒ <code>Promise</code>
 Initialize the client with the chain's ID. Asynchronous.
 
-**Kind**: instance method of [<code>BncClient</code>](#module_client.BncClient)  
-<a name="module_client.BncClient+chooseNetwork"></a>
+**Kind**: instance method of [<code>ZarClient</code>](#module_client.ZarClient)  
+<a name="module_client.ZarClient+chooseNetwork"></a>
 
-#### bncClient.chooseNetwork(network)
+#### ZarClient.chooseNetwork(network)
 Sets the client network (testnet or mainnet).
 
-**Kind**: instance method of [<code>BncClient</code>](#module_client.BncClient)  
+**Kind**: instance method of [<code>ZarClient</code>](#module_client.ZarClient)  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | network | <code>String</code> | Indicate testnet or mainnet |
 
-<a name="module_client.BncClient+setPrivateKey"></a>
+<a name="module_client.ZarClient+setPrivateKey"></a>
 
-#### bncClient.setPrivateKey() ⇒ <code>Promise</code>
+#### ZarClient.setPrivateKey() ⇒ <code>Promise</code>
 Sets the client's private key for calls made by this client. Asynchronous.
 
-**Kind**: instance method of [<code>BncClient</code>](#module_client.BncClient)  
-<a name="module_client.BncClient+useAsyncBroadcast"></a>
+**Kind**: instance method of [<code>ZarClient</code>](#module_client.ZarClient)  
+<a name="module_client.ZarClient+useAsyncBroadcast"></a>
 
-#### bncClient.useAsyncBroadcast(useAsyncBroadcast) ⇒ <code>BncClient</code>
+#### ZarClient.useAsyncBroadcast(useAsyncBroadcast) ⇒ <code>ZarClient</code>
 Use async broadcast mode. Broadcasts faster with less guarantees (default off)
 
-**Kind**: instance method of [<code>BncClient</code>](#module_client.BncClient)  
-**Returns**: <code>BncClient</code> - this instance (for chaining)  
+**Kind**: instance method of [<code>ZarClient</code>](#module_client.ZarClient)  
+**Returns**: <code>ZarClient</code> - this instance (for chaining)  
 
 | Param | Type | Default |
 | --- | --- | --- |
-| useAsyncBroadcast | <code>Boolean</code> | <code>true</code> | 
+| useAsyncBroadcast | <code>Boolean</code> | <code>true</code> |
 
-<a name="module_client.BncClient+setSigningDelegate"></a>
+<a name="module_client.ZarClient+setSigningDelegate"></a>
 
-#### bncClient.setSigningDelegate(delegate) ⇒ <code>BncClient</code>
+#### ZarClient.setSigningDelegate(delegate) ⇒ <code>ZarClient</code>
 Sets the signing delegate (for wallet integrations).
 
-**Kind**: instance method of [<code>BncClient</code>](#module_client.BncClient)  
-**Returns**: <code>BncClient</code> - this instance (for chaining)  
+**Kind**: instance method of [<code>ZarClient</code>](#module_client.ZarClient)  
+**Returns**: <code>ZarClient</code> - this instance (for chaining)  
 
 | Param | Type |
 | --- | --- |
-| delegate | <code>function</code> | 
+| delegate | <code>function</code> |
 
-<a name="module_client.BncClient+setBroadcastDelegate"></a>
+<a name="module_client.ZarClient+setBroadcastDelegate"></a>
 
-#### bncClient.setBroadcastDelegate(delegate) ⇒ <code>BncClient</code>
+#### ZarClient.setBroadcastDelegate(delegate) ⇒ <code>ZarClient</code>
 Sets the broadcast delegate (for wallet integrations).
 
-**Kind**: instance method of [<code>BncClient</code>](#module_client.BncClient)  
-**Returns**: <code>BncClient</code> - this instance (for chaining)  
+**Kind**: instance method of [<code>ZarClient</code>](#module_client.ZarClient)  
+**Returns**: <code>ZarClient</code> - this instance (for chaining)  
 
 | Param | Type |
 | --- | --- |
-| delegate | <code>function</code> | 
+| delegate | <code>function</code> |
 
-<a name="module_client.BncClient+useDefaultSigningDelegate"></a>
+<a name="module_client.ZarClient+useDefaultSigningDelegate"></a>
 
-#### bncClient.useDefaultSigningDelegate() ⇒ <code>BncClient</code>
+#### ZarClient.useDefaultSigningDelegate() ⇒ <code>ZarClient</code>
 Applies the default signing delegate.
 
-**Kind**: instance method of [<code>BncClient</code>](#module_client.BncClient)  
-**Returns**: <code>BncClient</code> - this instance (for chaining)  
-<a name="module_client.BncClient+useDefaultBroadcastDelegate"></a>
+**Kind**: instance method of [<code>ZarClient</code>](#module_client.ZarClient)  
+**Returns**: <code>ZarClient</code> - this instance (for chaining)  
+<a name="module_client.ZarClient+useDefaultBroadcastDelegate"></a>
 
-#### bncClient.useDefaultBroadcastDelegate() ⇒ <code>BncClient</code>
+#### ZarClient.useDefaultBroadcastDelegate() ⇒ <code>ZarClient</code>
 Applies the default broadcast delegate.
 
-**Kind**: instance method of [<code>BncClient</code>](#module_client.BncClient)  
-**Returns**: <code>BncClient</code> - this instance (for chaining)  
-<a name="module_client.BncClient+useLedgerSigningDelegate"></a>
+**Kind**: instance method of [<code>ZarClient</code>](#module_client.ZarClient)  
+**Returns**: <code>ZarClient</code> - this instance (for chaining)  
+<a name="module_client.ZarClient+useLedgerSigningDelegate"></a>
 
-#### bncClient.useLedgerSigningDelegate(ledgerApp, preSignCb, postSignCb, errCb) ⇒ <code>BncClient</code>
+#### ZarClient.useLedgerSigningDelegate(ledgerApp, preSignCb, postSignCb, errCb) ⇒ <code>ZarClient</code>
 Applies the Ledger signing delegate.
 
-**Kind**: instance method of [<code>BncClient</code>](#module_client.BncClient)  
-**Returns**: <code>BncClient</code> - this instance (for chaining)  
+**Kind**: instance method of [<code>ZarClient</code>](#module_client.ZarClient)  
+**Returns**: <code>ZarClient</code> - this instance (for chaining)  
 
 | Param | Type |
 | --- | --- |
-| ledgerApp | <code>function</code> | 
-| preSignCb | <code>function</code> | 
-| postSignCb | <code>function</code> | 
-| errCb | <code>function</code> | 
+| ledgerApp | <code>function</code> |
+| preSignCb | <code>function</code> |
+| postSignCb | <code>function</code> |
+| errCb | <code>function</code> |
 
-<a name="module_client.BncClient+transfer"></a>
+<a name="module_client.ZarClient+transfer"></a>
 
-#### bncClient.transfer(fromAddress, toAddress, amount, asset, memo, sequence) ⇒ <code>Promise</code>
+#### ZarClient.transfer(fromAddress, toAddress, amount, asset, memo, sequence) ⇒ <code>Promise</code>
 Transfer tokens from one address to another.
 
-**Kind**: instance method of [<code>BncClient</code>](#module_client.BncClient)  
+**Kind**: instance method of [<code>ZarClient</code>](#module_client.ZarClient)  
 **Returns**: <code>Promise</code> - resolves with response (success or fail)  
 
 | Param | Type | Default | Description |
@@ -238,12 +230,12 @@ Transfer tokens from one address to another.
 | memo | <code>String</code> |  | optional memo |
 | sequence | <code>Number</code> | <code></code> | optional sequence |
 
-<a name="module_client.BncClient+multiSend"></a>
+<a name="module_client.ZarClient+multiSend"></a>
 
-#### bncClient.multiSend(fromAddress, outputs, memo, sequence) ⇒ <code>Promise</code>
+#### ZarClient.multiSend(fromAddress, outputs, memo, sequence) ⇒ <code>Promise</code>
 Create and sign a multi send tx
 
-**Kind**: instance method of [<code>BncClient</code>](#module_client.BncClient)  
+**Kind**: instance method of [<code>ZarClient</code>](#module_client.ZarClient)  
 **Returns**: <code>Promise</code> - resolves with response (success or fail)  
 
 | Param | Type | Default | Description |
@@ -253,84 +245,12 @@ Create and sign a multi send tx
 | memo | <code>String</code> |  | optional memo |
 | sequence | <code>Number</code> | <code></code> | optional sequence |
 
-**Example**  
-```js
-const outputs = [
-{
-  "to": "tbnb1p4kpnj5qz5spsaf0d2555h6ctngse0me5q57qe",
-  "coins": [{
-    "denom": "BNB",
-    "amount": 10
-  },{
-    "denom": "BTC",
-    "amount": 10
-  }]
-},
-{
-  "to": "tbnb1scjj8chhhp7lngdeflltzex22yaf9ep59ls4gk",
-  "coins": [{
-    "denom": "BTC",
-    "amount": 10
-  },{
-    "denom": "BNB",
-    "amount": 10
-  }]
-}]
-```
-<a name="module_client.BncClient+cancelOrder"></a>
+<a name="module_client.ZarClient+_prepareTransaction"></a>
 
-#### bncClient.cancelOrder(fromAddress, symbol, refid, sequence) ⇒ <code>Promise</code>
-Cancel an order.
-
-**Kind**: instance method of [<code>BncClient</code>](#module_client.BncClient)  
-**Returns**: <code>Promise</code> - resolves with response (success or fail)  
-
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| fromAddress | <code>String</code> |  |  |
-| symbol | <code>String</code> |  | the market pair |
-| refid | <code>String</code> |  | the order ID of the order to cancel |
-| sequence | <code>Number</code> | <code></code> | optional sequence |
-
-<a name="module_client.BncClient+placeOrder"></a>
-
-#### bncClient.placeOrder(address, symbol, side, price, quantity, sequence, timeinforce) ⇒ <code>Promise</code>
-Place an order.
-
-**Kind**: instance method of [<code>BncClient</code>](#module_client.BncClient)  
-**Returns**: <code>Promise</code> - resolves with response (success or fail)  
-
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| address | <code>String</code> |  |  |
-| symbol | <code>String</code> |  | the market pair |
-| side | <code>Number</code> |  | (1-Buy, 2-Sell) |
-| price | <code>Number</code> |  |  |
-| quantity | <code>Number</code> |  |  |
-| sequence | <code>Number</code> | <code></code> | optional sequence |
-| timeinforce | <code>Number</code> | <code>1</code> | (1-GTC(Good Till Expire), 3-IOC(Immediate or Cancel)) |
-
-<a name="module_client.BncClient+list"></a>
-
-#### bncClient.list(address, proposalId, baseAsset, quoteAsset, initPrice, sequence) ⇒ <code>Promise</code>
-**Kind**: instance method of [<code>BncClient</code>](#module_client.BncClient)  
-**Returns**: <code>Promise</code> - resolves with response (success or fail)  
-
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| address | <code>String</code> |  |  |
-| proposalId | <code>Number</code> |  |  |
-| baseAsset | <code>String</code> |  |  |
-| quoteAsset | <code>String</code> |  |  |
-| initPrice | <code>Number</code> |  |  |
-| sequence | <code>Number</code> | <code></code> | optional sequence |
-
-<a name="module_client.BncClient+_prepareTransaction"></a>
-
-#### bncClient.\_prepareTransaction(msg, stdSignMsg, address, sequence, memo) ⇒ [<code>Transaction</code>](#Transaction)
+#### ZarClient.\_prepareTransaction(msg, stdSignMsg, address, sequence, memo) ⇒ [<code>Transaction</code>](#Transaction)
 Prepare a serialized raw transaction for sending to the blockchain.
 
-**Kind**: instance method of [<code>BncClient</code>](#module_client.BncClient)  
+**Kind**: instance method of [<code>ZarClient</code>](#module_client.ZarClient)  
 **Returns**: [<code>Transaction</code>](#Transaction) - signed transaction  
 
 | Param | Type | Default | Description |
@@ -341,12 +261,12 @@ Prepare a serialized raw transaction for sending to the blockchain.
 | sequence | <code>Number</code> | <code></code> | optional sequence |
 | memo | <code>String</code> |  | optional memo |
 
-<a name="module_client.BncClient+sendTransaction"></a>
+<a name="module_client.ZarClient+sendTransaction"></a>
 
-#### bncClient.sendTransaction(tx, sync) ⇒ <code>Promise</code>
+#### ZarClient.sendTransaction(tx, sync) ⇒ <code>Promise</code>
 Broadcast a transaction to the blockchain.
 
-**Kind**: instance method of [<code>BncClient</code>](#module_client.BncClient)  
+**Kind**: instance method of [<code>ZarClient</code>](#module_client.ZarClient)  
 **Returns**: <code>Promise</code> - resolves with response (success or fail)  
 
 | Param | Type | Description |
@@ -354,12 +274,12 @@ Broadcast a transaction to the blockchain.
 | tx | <code>signedTx</code> | signed Transaction object |
 | sync | <code>Boolean</code> | use synchronous mode, optional |
 
-<a name="module_client.BncClient+sendRawTransaction"></a>
+<a name="module_client.ZarClient+sendRawTransaction"></a>
 
-#### bncClient.sendRawTransaction(signedBz, sync) ⇒ <code>Promise</code>
+#### ZarClient.sendRawTransaction(signedBz, sync) ⇒ <code>Promise</code>
 Broadcast a raw transaction to the blockchain.
 
-**Kind**: instance method of [<code>BncClient</code>](#module_client.BncClient)  
+**Kind**: instance method of [<code>ZarClient</code>](#module_client.ZarClient)  
 **Returns**: <code>Promise</code> - resolves with response (success or fail)  
 
 | Param | Type | Description |
@@ -367,12 +287,12 @@ Broadcast a raw transaction to the blockchain.
 | signedBz | <code>String</code> | signed and serialized raw transaction |
 | sync | <code>Boolean</code> | use synchronous mode, optional |
 
-<a name="module_client.BncClient+_sendTransaction"></a>
+<a name="module_client.ZarClient+_sendTransaction"></a>
 
-#### bncClient.\_sendTransaction(msg, stdSignMsg, address, sequence, memo, sync) ⇒ <code>Promise</code>
+#### ZarClient.\_sendTransaction(msg, stdSignMsg, address, sequence, memo, sync) ⇒ <code>Promise</code>
 Broadcast a raw transaction to the blockchain.
 
-**Kind**: instance method of [<code>BncClient</code>](#module_client.BncClient)  
+**Kind**: instance method of [<code>ZarClient</code>](#module_client.ZarClient)  
 **Returns**: <code>Promise</code> - resolves with response (success or fail)  
 
 | Param | Type | Default | Description |
@@ -384,128 +304,115 @@ Broadcast a raw transaction to the blockchain.
 | memo | <code>String</code> |  | optional memo |
 | sync | <code>Boolean</code> |  | use synchronous mode, optional |
 
-<a name="module_client.BncClient+getAccount"></a>
+<a name="module_client.ZarClient+getAccount"></a>
 
-#### bncClient.getAccount(address) ⇒ <code>Promise</code>
+#### ZarClient.getAccount(address) ⇒ <code>Promise</code>
 get account
 
-**Kind**: instance method of [<code>BncClient</code>](#module_client.BncClient)  
+**Kind**: instance method of [<code>ZarClient</code>](#module_client.ZarClient)  
 **Returns**: <code>Promise</code> - resolves with http response  
 
 | Param | Type |
 | --- | --- |
-| address | <code>String</code> | 
+| address | <code>String</code> |
 
-<a name="module_client.BncClient+getBalance"></a>
+<a name="module_client.ZarClient+getBalance"></a>
 
-#### bncClient.getBalance(address) ⇒ <code>Promise</code>
+#### ZarClient.getBalance(address) ⇒ <code>Promise</code>
 get balances
 
-**Kind**: instance method of [<code>BncClient</code>](#module_client.BncClient)  
+**Kind**: instance method of [<code>ZarClient</code>](#module_client.ZarClient)  
 **Returns**: <code>Promise</code> - resolves with http response  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | address | <code>String</code> | optional address |
 
-<a name="module_client.BncClient+getMarkets"></a>
+<a name="module_client.ZarClient+createAccount"></a>
 
-#### bncClient.getMarkets(offset, limit,) ⇒ <code>Promise</code>
-get markets
-
-**Kind**: instance method of [<code>BncClient</code>](#module_client.BncClient)  
-**Returns**: <code>Promise</code> - resolves with http response  
-
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| offset | <code>Number</code> | <code>0</code> | from beggining, default 0 |
-| limit, | <code>Number</code> |  | max 1000 is default |
-
-<a name="module_client.BncClient+createAccount"></a>
-
-#### bncClient.createAccount() ⇒ <code>object</code>
+#### ZarClient.createAccount() ⇒ <code>object</code>
 Creates a private key and returns it and its address.
 
-**Kind**: instance method of [<code>BncClient</code>](#module_client.BncClient)  
+**Kind**: instance method of [<code>ZarClient</code>](#module_client.ZarClient)  
 **Returns**: <code>object</code> - the private key and address in an object.
 {
  address,
  privateKey
 }  
-<a name="module_client.BncClient+createAccountWithKeystore"></a>
+<a name="module_client.ZarClient+createAccountWithKeystore"></a>
 
-#### bncClient.createAccountWithKeystore(password)
+#### ZarClient.createAccountWithKeystore(password)
 Creates an account keystore object, and returns the private key and address.
 
-**Kind**: instance method of [<code>BncClient</code>](#module_client.BncClient)  
+**Kind**: instance method of [<code>ZarClient</code>](#module_client.ZarClient)  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | password | <code>String</code> | {  privateKey,  address,  keystore } |
 
-<a name="module_client.BncClient+createAccountWithMneomnic"></a>
+<a name="module_client.ZarClient+createAccountWithMneomnic"></a>
 
-#### bncClient.createAccountWithMneomnic() ⇒ <code>object</code>
+#### ZarClient.createAccountWithMneomnic() ⇒ <code>object</code>
 Creates an account from mnemonic seed phrase.
 
-**Kind**: instance method of [<code>BncClient</code>](#module_client.BncClient)  
+**Kind**: instance method of [<code>ZarClient</code>](#module_client.ZarClient)  
 **Returns**: <code>object</code> - {
  privateKey,
  address,
  mnemonic
 }  
-<a name="module_client.BncClient+recoverAccountFromKeystore"></a>
+<a name="module_client.ZarClient+recoverAccountFromKeystore"></a>
 
-#### bncClient.recoverAccountFromKeystore(keystore, keystore)
+#### ZarClient.recoverAccountFromKeystore(keystore, keystore)
 Recovers an account from a keystore object.
 
-**Kind**: instance method of [<code>BncClient</code>](#module_client.BncClient)  
+**Kind**: instance method of [<code>ZarClient</code>](#module_client.ZarClient)  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | keystore | <code>object</code> | object. |
 | keystore | <code>string</code> | password. { privateKey, address } |
 
-<a name="module_client.BncClient+recoverAccountFromMnemonic"></a>
+<a name="module_client.ZarClient+recoverAccountFromMnemonic"></a>
 
-#### bncClient.recoverAccountFromMnemonic(mneomnic)
+#### ZarClient.recoverAccountFromMnemonic(mneomnic)
 Recovers an account from a mnemonic seed phrase.
 
-**Kind**: instance method of [<code>BncClient</code>](#module_client.BncClient)  
+**Kind**: instance method of [<code>ZarClient</code>](#module_client.ZarClient)  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | mneomnic | <code>string</code> | { privateKey, address } |
 
-<a name="module_client.BncClient+recoverAccountFromPrivateKey"></a>
+<a name="module_client.ZarClient+recoverAccountFromPrivateKey"></a>
 
-#### bncClient.recoverAccountFromPrivateKey(privateKey)
+#### ZarClient.recoverAccountFromPrivateKey(privateKey)
 Recovers an account using private key.
 
-**Kind**: instance method of [<code>BncClient</code>](#module_client.BncClient)  
+**Kind**: instance method of [<code>ZarClient</code>](#module_client.ZarClient)  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | privateKey | <code>String</code> | { privateKey, address } |
 
-<a name="module_client.BncClient+checkAddress"></a>
+<a name="module_client.ZarClient+checkAddress"></a>
 
-#### bncClient.checkAddress(address, prefix) ⇒ <code>Boolean</code>
+#### ZarClient.checkAddress(address, prefix) ⇒ <code>Boolean</code>
 Validates an address.
 
-**Kind**: instance method of [<code>BncClient</code>](#module_client.BncClient)  
+**Kind**: instance method of [<code>ZarClient</code>](#module_client.ZarClient)  
 
 | Param | Type |
 | --- | --- |
-| address | <code>String</code> | 
-| prefix | <code>String</code> | 
+| address | <code>String</code> |
+| prefix | <code>String</code> |
 
-<a name="module_client.BncClient+getClientKeyAddress"></a>
+<a name="module_client.ZarClient+getClientKeyAddress"></a>
 
-#### bncClient.getClientKeyAddress() ⇒ <code>String</code>
+#### ZarClient.getClientKeyAddress() ⇒ <code>String</code>
 Returns the address for the current account if setPrivateKey has been called on this client.
 
-**Kind**: instance method of [<code>BncClient</code>](#module_client.BncClient)  
+**Kind**: instance method of [<code>ZarClient</code>](#module_client.ZarClient)  
 <a name="module_client.DefaultSigningDelegate"></a>
 
 ### client.DefaultSigningDelegate ⇒ [<code>Transaction</code>](#Transaction)
@@ -538,10 +445,10 @@ The Ledger signing delegate.
 
 | Param | Type |
 | --- | --- |
-| ledgerApp | <code>LedgerApp</code> | 
-| function | <code>preSignCb</code> | 
-| function | <code>postSignCb</code> | 
-| function | <code>errCb</code> | 
+| ledgerApp | <code>LedgerApp</code> |
+| function | <code>preSignCb</code> |
+| function | <code>postSignCb</code> |
+| function | <code>errCb</code> |
 
 <a name="module_client..checkOutputs"></a>
 
@@ -552,7 +459,7 @@ validate the input number.
 
 | Param | Type |
 | --- | --- |
-| outputs | <code>Array</code> | 
+| outputs | <code>Array</code> |
 
 <a name="module_client..calInputCoins"></a>
 
@@ -563,8 +470,8 @@ sum corresponding input coin
 
 | Param | Type |
 | --- | --- |
-| inputs | <code>Array</code> | 
-| coins | <code>Array</code> | 
+| inputs | <code>Array</code> |
+| coins | <code>Array</code> |
 
 <a name="module_crypto"></a>
 
@@ -681,7 +588,7 @@ generator point to get the pubkey.
 
 | Param | Type |
 | --- | --- |
-| privateKey | <code>Buffer</code> | 
+| privateKey | <code>Buffer</code> |
 
 <a name="module_crypto.getAddressFromPublicKey"></a>
 
@@ -808,8 +715,8 @@ js amino UnmarshalBinaryLengthPrefixed
 
 | Param | Type |
 | --- | --- |
-| bytes | <code>Buffer</code> | 
-| type | <code>Object</code> | 
+| bytes | <code>Buffer</code> |
+| type | <code>Object</code> |
 
 <a name="amino.module_decode.unMarshalBinaryBare"></a>
 
@@ -820,8 +727,8 @@ js amino UnmarshalBinaryBare
 
 | Param | Type |
 | --- | --- |
-| bytes | <code>Buffer</code> | 
-| type | <code>Object</code> | 
+| bytes | <code>Buffer</code> |
+| type | <code>Object</code> |
 
 <a name="amino.module_encode"></a>
 
@@ -849,7 +756,7 @@ encode number
 
 | Param |
 | --- |
-| num | 
+| num |
 
 <a name="amino.module_encode.encodeBool"></a>
 
@@ -860,7 +767,7 @@ encode bool
 
 | Param |
 | --- |
-| b | 
+| b |
 
 <a name="amino.module_encode.encodeString"></a>
 
@@ -871,7 +778,7 @@ encode string
 
 | Param |
 | --- |
-| str | 
+| str |
 
 <a name="amino.module_encode.encodeTime"></a>
 
@@ -882,7 +789,7 @@ encode time
 
 | Param |
 | --- |
-| value | 
+| value |
 
 <a name="amino.module_encode.convertObjectToSignBytes"></a>
 
@@ -903,7 +810,7 @@ js amino MarshalBinary
 
 | Param | Type |
 | --- | --- |
-| obj | <code>Object</code> | 
+| obj | <code>Object</code> |
 
 <a name="amino.module_encode.marshalBinaryBare"></a>
 
@@ -914,7 +821,7 @@ js amino MarshalBinaryBare
 
 | Param | Type |
 | --- | --- |
-| obj | <code>Object</code> | 
+| obj | <code>Object</code> |
 
 <a name="amino.module_encode.encodeBinary"></a>
 
@@ -940,7 +847,7 @@ prefixed with bytes length
 
 | Param | Type |
 | --- | --- |
-| bytes | <code>Buffer</code> | 
+| bytes | <code>Buffer</code> |
 
 <a name="amino.module_encode.encodeObjectBinary"></a>
 
@@ -950,7 +857,7 @@ prefixed with bytes length
 
 | Param | Type |
 | --- | --- |
-| obj | <code>Object</code> | 
+| obj | <code>Object</code> |
 
 <a name="amino.module_encode.encodeArrayBinary"></a>
 
@@ -963,132 +870,6 @@ prefixed with bytes length
 | fieldNum | <code>Number</code> | object field index |
 | arr | <code>Array</code> |  |
 | isByteLenPrefix | <code>Boolean</code> |  |
-
-<a name="module_gov"></a>
-
-## gov
-
-* [gov](#module_gov)
-    * _static_
-        * [.voteOption](#module_gov.voteOption)
-    * _inner_
-        * [~Gov](#module_gov..Gov)
-            * [new Gov(bncClient)](#new_module_gov..Gov_new)
-            * [.submitListProposal(listParams)](#module_gov..Gov+submitListProposal)
-            * [.submitProposal(address, title, description, proposalType, initialDeposit, votingPeriod)](#module_gov..Gov+submitProposal) ⇒ <code>Promise</code>
-            * [.deposit(proposalId, address, coins)](#module_gov..Gov+deposit)
-            * [.vote(proposalId, voter, option)](#module_gov..Gov+vote)
-
-<a name="module_gov.voteOption"></a>
-
-### gov.voteOption
-VoteOption
-
-**Kind**: static constant of [<code>gov</code>](#module_gov)  
-**Example**  
-```js
-OptionEmpty - 0x00
-OptionYes - 0x01
-OptionAbstain - 0x02
-OptionNo - 0x03
-OptionNoWithVeto - 0x04
-```
-<a name="module_gov..Gov"></a>
-
-### gov~Gov
-**Kind**: inner class of [<code>gov</code>](#module_gov)  
-
-* [~Gov](#module_gov..Gov)
-    * [new Gov(bncClient)](#new_module_gov..Gov_new)
-    * [.submitListProposal(listParams)](#module_gov..Gov+submitListProposal)
-    * [.submitProposal(address, title, description, proposalType, initialDeposit, votingPeriod)](#module_gov..Gov+submitProposal) ⇒ <code>Promise</code>
-    * [.deposit(proposalId, address, coins)](#module_gov..Gov+deposit)
-    * [.vote(proposalId, voter, option)](#module_gov..Gov+vote)
-
-<a name="new_module_gov..Gov_new"></a>
-
-#### new Gov(bncClient)
-
-| Param | Type |
-| --- | --- |
-| bncClient | <code>Object</code> | 
-
-<a name="module_gov..Gov+submitListProposal"></a>
-
-#### gov.submitListProposal(listParams)
-Submit a list proposal along with an initial deposit
-
-**Kind**: instance method of [<code>Gov</code>](#module_gov..Gov)  
-
-| Param | Type |
-| --- | --- |
-| listParams | <code>Object</code> | 
-
-**Example**  
-```js
-var listParams = {
- title: 'New trading pair',
- description: '',
- baseAsset: 'BTC',
- quoteAsset: 'BNB',
- initPrice: 1,
- address: '',
- initialDeposit: 2000,
- expireTime: 1570665600,
- votingPeriod: 604800
-}
-```
-<a name="module_gov..Gov+submitProposal"></a>
-
-#### gov.submitProposal(address, title, description, proposalType, initialDeposit, votingPeriod) ⇒ <code>Promise</code>
-Submit a proposal along with an initial deposit.
-Proposal title, description, type and deposit can
-be given directly or through a proposal JSON file.
-
-**Kind**: instance method of [<code>Gov</code>](#module_gov..Gov)  
-**Returns**: <code>Promise</code> - resolves with response (success or fail)  
-
-| Param | Type |
-| --- | --- |
-| address | <code>String</code> | 
-| title | <code>String</code> | 
-| description | <code>String</code> | 
-| proposalType | <code>Number</code> | 
-| initialDeposit | <code>Number</code> | 
-| votingPeriod | <code>String</code> | 
-
-<a name="module_gov..Gov+deposit"></a>
-
-#### gov.deposit(proposalId, address, coins)
-Deposit tokens for activing proposal
-
-**Kind**: instance method of [<code>Gov</code>](#module_gov..Gov)  
-
-| Param | Type |
-| --- | --- |
-| proposalId | <code>Number</code> | 
-| address | <code>String</code> | 
-| coins | <code>Array</code> | 
-
-**Example**  
-```js
-var coins = [{
-  "denom": "BNB",
-  "amount": 10
-}]
-```
-<a name="module_gov..Gov+vote"></a>
-
-#### gov.vote(proposalId, voter, option)
-**Kind**: instance method of [<code>Gov</code>](#module_gov..Gov)  
-
-| Param | Type |
-| --- | --- |
-| proposalId | <code>Number</code> | 
-| voter | <code>String</code> | 
-| option | <code>VoteOption</code> | 
-
-<a name="module_ledger"></a>
 
 ## ledger
 
@@ -1230,14 +1011,11 @@ Sends a transaction sign doc to the Ledger app to be signed.
         * [.getAccount(address)](#module_rpc..Client+getAccount) ⇒ <code>Object</code>
         * [.getBalances(balances)](#module_rpc..Client+getBalances)
         * [.getBalance(address, symbol)](#module_rpc..Client+getBalance) ⇒ <code>Object</code>
-        * [.getOpenOrders(address, symbol)](#module_rpc..Client+getOpenOrders) ⇒ <code>Object</code>
-        * [.getTradingPairs(offset, limit)](#module_rpc..Client+getTradingPairs) ⇒ <code>Array</code>
-        * [.getDepth(tradePair)](#module_rpc..Client+getDepth) ⇒ <code>Array</code>
 
 <a name="module_rpc..Client"></a>
 
 ### rpc~Client
-The Binance Chain Node rpc client
+The Zar Network Chain Node rpc client
 
 **Kind**: inner class of [<code>rpc</code>](#module_rpc)  
 
@@ -1248,9 +1026,6 @@ The Binance Chain Node rpc client
     * [.getAccount(address)](#module_rpc..Client+getAccount) ⇒ <code>Object</code>
     * [.getBalances(balances)](#module_rpc..Client+getBalances)
     * [.getBalance(address, symbol)](#module_rpc..Client+getBalance) ⇒ <code>Object</code>
-    * [.getOpenOrders(address, symbol)](#module_rpc..Client+getOpenOrders) ⇒ <code>Object</code>
-    * [.getTradingPairs(offset, limit)](#module_rpc..Client+getTradingPairs) ⇒ <code>Array</code>
-    * [.getDepth(tradePair)](#module_rpc..Client+getDepth) ⇒ <code>Array</code>
 
 <a name="new_module_rpc..Client_new"></a>
 
@@ -1259,7 +1034,7 @@ The Binance Chain Node rpc client
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | uriString | <code>String</code> | <code>localhost:27146</code> | dataseed address |
-| netWork | <code>String</code> |  | Binance Chain network |
+| netWork | <code>String</code> |  | Zar Network Chain network |
 
 <a name="module_rpc..Client+getTokenInfo"></a>
 
@@ -1281,8 +1056,8 @@ get tokens by offset and limit
 
 | Param | Type |
 | --- | --- |
-| offset | <code>Number</code> | 
-| limit | <code>Number</code> | 
+| offset | <code>Number</code> |
+| limit | <code>Number</code> |
 
 <a name="module_rpc..Client+getAccount"></a>
 
@@ -1292,7 +1067,7 @@ get tokens by offset and limit
 
 | Param | Type |
 | --- | --- |
-| address | <code>String</code> | 
+| address | <code>String</code> |
 
 <a name="module_rpc..Client+getBalances"></a>
 
@@ -1301,7 +1076,7 @@ get tokens by offset and limit
 
 | Param | Type |
 | --- | --- |
-| balances | <code>Array</code> | 
+| balances | <code>Array</code> |
 
 <a name="module_rpc..Client+getBalance"></a>
 
@@ -1312,37 +1087,8 @@ get balance by symbol and address
 
 | Param | Type |
 | --- | --- |
-| address | <code>String</code> | 
-| symbol | <code>String</code> | 
-
-<a name="module_rpc..Client+getOpenOrders"></a>
-
-#### client.getOpenOrders(address, symbol) ⇒ <code>Object</code>
-**Kind**: instance method of [<code>Client</code>](#module_rpc..Client)  
-
-| Param | Type |
-| --- | --- |
-| address | <code>String</code> | 
-| symbol | <code>String</code> | 
-
-<a name="module_rpc..Client+getTradingPairs"></a>
-
-#### client.getTradingPairs(offset, limit) ⇒ <code>Array</code>
-**Kind**: instance method of [<code>Client</code>](#module_rpc..Client)  
-
-| Param | Type |
-| --- | --- |
-| offset | <code>Number</code> | 
-| limit | <code>Number</code> | 
-
-<a name="module_rpc..Client+getDepth"></a>
-
-#### client.getDepth(tradePair) ⇒ <code>Array</code>
-**Kind**: instance method of [<code>Client</code>](#module_rpc..Client)  
-
-| Param | Type |
-| --- | --- |
-| tradePair | <code>String</code> | 
+| address | <code>String</code> |
+| symbol | <code>String</code> |
 
 <a name="module_Token"></a>
 
@@ -1350,7 +1096,7 @@ get balance by symbol and address
 
 * [Token](#module_Token)
     * [~TokenManagement](#module_Token..TokenManagement)
-        * [new TokenManagement(bncClient)](#new_module_Token..TokenManagement_new)
+        * [new TokenManagement(ZarClient)](#new_module_Token..TokenManagement_new)
         * [.issue(senderAddress, tokenName, symbol, totalSupply, mintable)](#module_Token..TokenManagement+issue) ⇒ <code>Promise</code>
         * [.freeze(fromAddress, symbol, amount)](#module_Token..TokenManagement+freeze) ⇒ <code>Promise</code>
         * [.unfreeze(fromAddress, symbol, amount)](#module_Token..TokenManagement+unfreeze) ⇒ <code>Promise</code>
@@ -1363,7 +1109,7 @@ get balance by symbol and address
 **Kind**: inner class of [<code>Token</code>](#module_Token)  
 
 * [~TokenManagement](#module_Token..TokenManagement)
-    * [new TokenManagement(bncClient)](#new_module_Token..TokenManagement_new)
+    * [new TokenManagement(ZarClient)](#new_module_Token..TokenManagement_new)
     * [.issue(senderAddress, tokenName, symbol, totalSupply, mintable)](#module_Token..TokenManagement+issue) ⇒ <code>Promise</code>
     * [.freeze(fromAddress, symbol, amount)](#module_Token..TokenManagement+freeze) ⇒ <code>Promise</code>
     * [.unfreeze(fromAddress, symbol, amount)](#module_Token..TokenManagement+unfreeze) ⇒ <code>Promise</code>
@@ -1372,16 +1118,16 @@ get balance by symbol and address
 
 <a name="new_module_Token..TokenManagement_new"></a>
 
-#### new TokenManagement(bncClient)
+#### new TokenManagement(ZarClient)
 
 | Param | Type |
 | --- | --- |
-| bncClient | <code>Object</code> | 
+| ZarClient | <code>Object</code> |
 
 <a name="module_Token..TokenManagement+issue"></a>
 
 #### tokenManagement.issue(senderAddress, tokenName, symbol, totalSupply, mintable) ⇒ <code>Promise</code>
-create a new asset on Binance Chain
+create a new asset on Zar Network Chain
 
 **Kind**: instance method of [<code>TokenManagement</code>](#module_Token..TokenManagement)  
 **Returns**: <code>Promise</code> - resolves with response (success or fail)  
@@ -1404,9 +1150,9 @@ freeze some amount of token
 
 | Param | Type |
 | --- | --- |
-| fromAddress | <code>String</code> | 
-| symbol | <code>String</code> | 
-| amount | <code>String</code> | 
+| fromAddress | <code>String</code> |
+| symbol | <code>String</code> |
+| amount | <code>String</code> |
 
 <a name="module_Token..TokenManagement+unfreeze"></a>
 
@@ -1418,9 +1164,9 @@ unfreeze some amount of token
 
 | Param | Type |
 | --- | --- |
-| fromAddress | <code>String</code> | 
-| symbol | <code>String</code> | 
-| amount | <code>String</code> | 
+| fromAddress | <code>String</code> |
+| symbol | <code>String</code> |
+| amount | <code>String</code> |
 
 <a name="module_Token..TokenManagement+burn"></a>
 
@@ -1432,9 +1178,9 @@ burn some amount of token
 
 | Param | Type |
 | --- | --- |
-| fromAddress | <code>String</code> | 
-| symbol | <code>String</code> | 
-| amount | <code>Number</code> | 
+| fromAddress | <code>String</code> |
+| symbol | <code>String</code> |
+| amount | <code>Number</code> |
 
 <a name="module_Token..TokenManagement+mint"></a>
 
@@ -1446,9 +1192,9 @@ mint tokens for an existing token
 
 | Param | Type |
 | --- | --- |
-| fromAddress | <code>String</code> | 
-| symbol | <code>String</code> | 
-| amount | <code>Number</code> | 
+| fromAddress | <code>String</code> |
+| symbol | <code>String</code> |
+| amount | <code>Number</code> |
 
 <a name="module_utils"></a>
 
@@ -1481,7 +1227,7 @@ mint tokens for an existing token
 
 | Param | Type |
 | --- | --- |
-| buf | <code>arrayBuffer</code> | 
+| buf | <code>arrayBuffer</code> |
 
 <a name="module_utils.str2ab"></a>
 
@@ -1509,7 +1255,7 @@ mint tokens for an existing token
 
 | Param | Type |
 | --- | --- |
-| arr | <code>arrayBuffer</code> | 
+| arr | <code>arrayBuffer</code> |
 
 <a name="module_utils.str2hexstring"></a>
 
@@ -1540,7 +1286,7 @@ convert an integer to big endian hex and add leading zeros
 
 | Param | Type |
 | --- | --- |
-| num | <code>Number</code> | 
+| num | <code>Number</code> |
 
 <a name="module_utils.num2hexstring"></a>
 
@@ -1589,7 +1335,7 @@ Reverses an array. Accepts arrayBuffer.
 
 | Param | Type |
 | --- | --- |
-| arr | <code>Array</code> | 
+| arr | <code>Array</code> |
 
 <a name="module_utils.reverseHex"></a>
 
@@ -1616,7 +1362,7 @@ Checks if input is a hexstring. Empty string is considered a hexstring.
 
 | Param | Type |
 | --- | --- |
-| str | <code>string</code> | 
+| str | <code>string</code> |
 
 **Example**  
 ```js
@@ -1633,7 +1379,7 @@ Throws an error if input is not hexstring.
 
 | Param | Type |
 | --- | --- |
-| str | <code>string</code> | 
+| str | <code>string</code> |
 
 <a name="module_utils.sha256ripemd160"></a>
 
@@ -1739,8 +1485,8 @@ attaches a signature to the transaction
 
 | Param | Type |
 | --- | --- |
-| pubKey | <code>Elliptic.PublicKey</code> | 
-| signature | <code>Buffer</code> | 
+| pubKey | <code>Elliptic.PublicKey</code> |
+| signature | <code>Buffer</code> |
 
 <a name="Transaction+sign"></a>
 
@@ -1774,7 +1520,7 @@ serializes a public key in a 33-byte compressed format.
 
 | Param | Type |
 | --- | --- |
-| unencodedPubKey | <code>Elliptic.PublicKey</code> | 
+| unencodedPubKey | <code>Elliptic.PublicKey</code> |
 
 <a name="checkNumber"></a>
 
@@ -1785,7 +1531,7 @@ validate the input number.
 
 | Param | Type |
 | --- | --- |
-| value | <code>Number</code> | 
+| value | <code>Number</code> |
 
 <a name="checkCoins"></a>
 
@@ -1796,5 +1542,4 @@ basic validation of coins
 
 | Param | Type |
 | --- | --- |
-| coins | <code>Array</code> | 
-
+| coins | <code>Array</code> |

@@ -34,11 +34,11 @@ class TokenManagement {
   static instance
 
   /**
-   * @param {Object} bncClient
+   * @param {Object} ZarClient
    */
-  constructor(bncClient) {
+  constructor(ZarClient) {
     if (!TokenManagement.instance) {
-      this._bncClient = bncClient
+      this._ZarClient = ZarClient
       TokenManagement.instance = this
     }
 
@@ -95,9 +95,9 @@ class TokenManagement {
       value: value
     }
 
-    const signedTx = await this._bncClient._prepareTransaction(issueMsg, issueMsg, senderAddress)
+    const signedTx = await this._ZarClient._prepareTransaction(issueMsg, issueMsg, senderAddress)
     console.log(signedTx)
-    return this._bncClient._broadcastDelegate(signedTx)
+    return this._ZarClient._broadcastDelegate(signedTx)
   }
 
   /**
@@ -111,7 +111,7 @@ class TokenManagement {
 
     validateSymbol(symbol)
 
-    validateNonZeroAmount(amount, symbol, fromAddress, this._bncClient._httpClient, 'free')
+    validateNonZeroAmount(amount, symbol, fromAddress, this._ZarClient._httpClient, 'free')
 
     amount = new Big(amount)
     amount = Number(amount.mul(Math.pow(10, 8)).toString())
@@ -129,8 +129,8 @@ class TokenManagement {
       symbol
     }
 
-    const signedTx = await this._bncClient._prepareTransaction(freezeMsg, freezeSignMsg, fromAddress)
-    return this._bncClient._broadcastDelegate(signedTx)
+    const signedTx = await this._ZarClient._prepareTransaction(freezeMsg, freezeSignMsg, fromAddress)
+    return this._ZarClient._broadcastDelegate(signedTx)
   }
 
   /**
@@ -143,7 +143,7 @@ class TokenManagement {
   async unfreeze(fromAddress, symbol, amount) {
     validateSymbol(symbol)
 
-    validateNonZeroAmount(amount, symbol, fromAddress, this._bncClient._httpClient, 'frozen')
+    validateNonZeroAmount(amount, symbol, fromAddress, this._ZarClient._httpClient, 'frozen')
 
     amount = new Big(amount)
     amount = Number(amount.mul(Math.pow(10, 8)).toString())
@@ -161,8 +161,8 @@ class TokenManagement {
       symbol
     }
 
-    const signedTx = await this._bncClient._prepareTransaction(unfreezeMsg, unfreezeSignMsg, fromAddress)
-    return this._bncClient._broadcastDelegate(signedTx)
+    const signedTx = await this._ZarClient._prepareTransaction(unfreezeMsg, unfreezeSignMsg, fromAddress)
+    return this._ZarClient._broadcastDelegate(signedTx)
   }
 
   /**
@@ -175,7 +175,7 @@ class TokenManagement {
   async burn(fromAddress, symbol, amount) {
     validateSymbol(symbol)
 
-    validateNonZeroAmount(amount, symbol, fromAddress, this._bncClient._httpClient)
+    validateNonZeroAmount(amount, symbol, fromAddress, this._ZarClient._httpClient)
 
     amount = new Big(amount)
     amount = Number(amount.mul(Math.pow(10, 8)).toString())
@@ -191,8 +191,8 @@ class TokenManagement {
       value: value
     }
 
-    const signedTx = await this._bncClient._prepareTransaction(burnMsg, burnMsg, fromAddress)
-    return this._bncClient._broadcastDelegate(signedTx)
+    const signedTx = await this._ZarClient._prepareTransaction(burnMsg, burnMsg, fromAddress)
+    return this._ZarClient._broadcastDelegate(signedTx)
   }
 
   /**
@@ -225,8 +225,8 @@ class TokenManagement {
       value: value
     }
 
-    const signedTx = await this._bncClient._prepareTransaction(mintMsg, mintMsg, fromAddress)
-    return this._bncClient._broadcastDelegate(signedTx)
+    const signedTx = await this._ZarClient._prepareTransaction(mintMsg, mintMsg, fromAddress)
+    return this._ZarClient._broadcastDelegate(signedTx)
   }
 }
 
