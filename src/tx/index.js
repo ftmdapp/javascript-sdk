@@ -7,6 +7,7 @@ export const txType = {
   NewOrderMsg: "NewOrderMsg",
   CancelOrderMsg: "CancelOrderMsg",
   IssueMsg: "IssueMsg",
+  MsgIssue: "issue/MsgIssue",
   BurnMsg: "BurnMsg",
   FreezeMsg: "FreezeMsg",
   UnfreezeMsg: "UnfreezeMsg",
@@ -62,9 +63,9 @@ export const typePrefix = {
  */
 class Transaction {
   constructor(data) {
-    if (!txType[data.type]) {
+    /*if (!txType[data.type]) {
       throw new TypeError(`does not support transaction type: ${data.type}`)
-    }
+    }*/
 
     if (!data.chain_id) {
       throw new Error("chain id should not be null")
@@ -79,6 +80,7 @@ class Transaction {
     this.msgs = data.msg ? [data.msg] : []
     this.memo = data.memo
     this.source = data.source || 0 // default value is 0
+    this.mode = data.mode || "sync"
   }
 
   /**
@@ -90,15 +92,20 @@ class Transaction {
     if (!msg) {
       throw new Error("msg should be an object")
     }
+    const fee = {
+      amount: [],
+      gas: "200000"
+    }
+
     const signMsg = {
       "account_number": this.account_number.toString(),
       "chain_id": this.chain_id,
-      "data": null,
+      "fee": fee,
       "memo": this.memo,
       "msgs": [msg],
       "sequence": this.sequence.toString(),
-      "source": this.source.toString()
     }
+    console.log(signMsg)
 
     return encoder.convertObjectToSignBytes(signMsg)
   }
@@ -110,12 +117,9 @@ class Transaction {
    * @return {Transaction}
    **/
   addSignature(pubKey, signature) {
-    pubKey = this._serializePubKey(pubKey) // => Buffer
     this.signatures = [{
       pub_key: pubKey,
       signature: signature,
-      account_number: this.account_number,
-      sequence: this.sequence,
     }]
     return this
   }
@@ -154,16 +158,20 @@ class Transaction {
     let msg = this.msgs[0]
 
     const stdTx = {
-      msg: [msg],
-      signatures: this.signatures,
-      memo: this.memo,
-      source: this.source, // sdk value is 0, web wallet value is 1
-      data: "",
-      msgType: txType.StdTx
+      tx: {
+        msg: [msg],
+        signatures: this.signatures,
+        memo: this.memo,
+        type: txType.StdTx,
+        fee: {
+          amount: [],
+          gas: "200000"
+        }
+      },
+      mode: this.mode,
     }
 
-    const bytes = encoder.marshalBinary(stdTx)
-    return bytes.toString("hex")
+    return JSON.stringify(stdTx)
   }
 
   /**

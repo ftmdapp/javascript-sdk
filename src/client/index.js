@@ -12,15 +12,14 @@ import Big from "big.js"
 const BASENUMBER = Math.pow(10, 8)
 
 export const api = {
-  broadcast: "/api/v1/broadcast",
-  nodeInfo: "/api/v1/node-info",
-  getAccount: "/api/v1/account",
-  getMarkets: "/api/v1/markets"
+  broadcast: "/txs",
+  nodeInfo: "/node_info",
+  getAccount: "/auth/accounts",
 }
 
 const NETWORK_PREFIX_MAPPING = {
-  "testnet": "tbnb",
-  "mainnet": "bnb"
+  "testnet": "tzar",
+  "mainnet": "zar"
 }
 
 /**
@@ -104,17 +103,17 @@ const calInputCoins = (inputs, coins) => {
 }
 
 /**
- * The Binance Chain client.
+ * The Zar Chain client.
  */
 export class BncClient {
   /**
-   * @param {String} server Binance Chain public url
+   * @param {String} server Zar Chain public url
    * @param {Boolean} useAsyncBroadcast use async broadcast mode, faster but less guarantees (default off)
    * @param {Number} source where does this transaction come from (default 0)
    */
   constructor(server, useAsyncBroadcast = false, source = 0) {
     if (!server) {
-      throw new Error("Binance chain server should not be null")
+      throw new Error("Zar chain server should not be null")
     }
     this._httpClient = new HttpRequest(server)
     this._signingDelegate = DefaultSigningDelegate
@@ -142,7 +141,7 @@ export class BncClient {
    * @param {String} network Indicate testnet or mainnet
    */
   chooseNetwork(network) {
-    this.addressPrefix = NETWORK_PREFIX_MAPPING[network] || "tbnb"
+    this.addressPrefix = NETWORK_PREFIX_MAPPING[network] || "tzar"
     this.network = NETWORK_PREFIX_MAPPING[network] ? network : "testnet"
   }
 
@@ -153,7 +152,7 @@ export class BncClient {
   async setPrivateKey(privateKey) {
     if (privateKey !== this.privateKey) {
       const address = crypto.getAddressFromPrivateKey(privateKey, this.addressPrefix)
-      if (!address) throw new Error("address is falsy: ${address}. invalid private key?")
+      if (!address) throw new Error("address is false: ${address}. invalid private key?")
       if (address === this.address) return this // safety
       this.privateKey = privateKey
       this.address = address
@@ -531,8 +530,8 @@ export class BncClient {
   async _prepareTransaction(msg, stdSignMsg, address, sequence = null, memo = "") {
     if ((!this.account_number || !sequence) && address) {
       const data = await this._httpClient.request("get", `${api.getAccount}/${address}`)
-      sequence = data.result.sequence
-      this.account_number = data.result.account_number
+      sequence = data.result.result.value.sequence
+      this.account_number = data.result.result.value.account_number
       // if user has not used `await` in its call to setPrivateKey (old API), we should wait for the promise here
     } else if (this._setPkPromise) {
       await this._setPkPromise
@@ -545,7 +544,7 @@ export class BncClient {
       msg,
       sequence: parseInt(sequence),
       source: this._source,
-      type: msg.msgType,
+      type: msg.type,
     }
 
     const tx = new Transaction(options)
@@ -607,6 +606,7 @@ export class BncClient {
       const data = await this._httpClient.request("get", `${api.getAccount}/${address}`)
       return data
     } catch (err) {
+      console.log(err)
       return null
     }
   }
@@ -617,9 +617,10 @@ export class BncClient {
    * @return {Promise} resolves with http response
    */
   async getBalance(address = this.address) {
+    console.log(address)
     try {
       const data = await this.getAccount(address)
-      return data.result.balances
+      return data.result.result.value.coins
     } catch (err) {
       return []
     }

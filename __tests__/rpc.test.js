@@ -2,7 +2,7 @@ import rpcClient from "../src/rpc/client"
 
 const NETWORK = "testnet"
 const getClient = (type) => {
-  let uri = "https://data-seed-pre-0-s3.binance.org"
+  let uri = "http://http://34.244.179.123:1317"
   if (type === "wss") {
     uri = "wss://data-seed-pre-0-s3.binance.org"
   }

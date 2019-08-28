@@ -16,10 +16,10 @@ const keystores = {
   badMac: { "version": 1, "id": "dfb09873-f16f-48c6-a6b8-bb5a705c47a7", "address": "bnc1dxj068zgk007fchefj9n8tq06pcuce5ypqm5zk", "crypto": { "ciphertext": "33b7439a8d64d73357dc91f88a6b3a45e7303717664d17daf8e8dc1cc708fa4b", "cipherparams": { "iv": "88c726d70cd0437bfdb2312dc60103fc" }, "cipher": "aes-256-ctr", "kdf": "pbkdf2", "kdfparams": { "dklen": 32, "salt": "ad10ef544417d4a25914dec3d908882686dd9d793b5c484b76fd5aa575cf54b9", "c": 262144, "prf": "hmac-sha256" }, "mac": "x7cc301d18c97c71741492b8029544952ad5567a733971deb49fd3eb03ee696e" } },
 }
 
-const targetAddress = "tbnb1hgm0p7khfk85zpz5v0j8wnej3a90w709zzlffd"
+const targetAddress = "zar1hgm0p7khfk85zpz5v0j8wnej3a90w70979t4js"
 
 const getClient = async (useAwaitSetPrivateKey = true, doNotSetPrivateKey = false) => {
-  const client = new BncClient("https://testnet-dex.binance.org")
+  const client = new BncClient("http://34.244.179.123:1317")
   await client.initChain()
   const privateKey = crypto.getPrivateKeyFromMnemonic(mnemonic)
   if (!doNotSetPrivateKey) {
@@ -59,7 +59,7 @@ beforeEach(() => {
   jest.setTimeout(50000)
 })
 
-it("create account", async () => {
+/*it("create account", async () => {
   const client = await getClient(false)
   const res = client.createAccount()
   expect(res.address).toBeTruthy()
@@ -82,13 +82,6 @@ it("create account with mneomnic", async () => {
   expect(res.mnemonic).toBeTruthy()
 })
 
-it("recover account from keystore", async () => {
-  const client = await getClient(false, true)
-  const res = client.recoverAccountFromKeystore(keystores.new, "12345qwert!S")
-  expect(res.address).toBeTruthy()
-  expect(res.privateKey).toBeTruthy()
-})
-
 it("recover account from legacy (sha256) keystore", async () => {
   const client = await getClient(false, true)
   const res = client.recoverAccountFromKeystore(keystores.legacy, "12345qwert!S")
@@ -102,7 +95,7 @@ it("recover account from bad mac keystore", async () => {
     client.recoverAccountFromKeystore(keystores.badMac, "12345qwert!S")
   }).toThrowError()
 })
-
+*/
 it("recover account from mneomnic", async () => {
   jest.setTimeout(50000)
   const client = await getClient(false)
@@ -110,8 +103,9 @@ it("recover account from mneomnic", async () => {
   await (1500)
   expect(res.address).toBeTruthy()
   expect(res.privateKey).toBeTruthy()
+  console.log(res)
 })
-
+/*
 it("recover account from privatekey", async () => {
   jest.setTimeout(50000)
   const client = await getClient(false)
@@ -131,7 +125,7 @@ it("get balance", async () => {
 it("works with a custom signing delegate", async () => {
   const client = await getClient(true)
   const addr = crypto.getAddressFromPrivateKey(client.privateKey)
-  const account = await client._httpClient.request("get", `/api/v1/account/${addr}`)
+  const account = await client._httpClient.request("get", `/bank/balances/${addr}`)
   const sequence = account.result && account.result.sequence
 
   client.setSigningDelegate((tx, signMsg) => {
@@ -142,7 +136,7 @@ it("works with a custom signing delegate", async () => {
   })
 
   try {
-    await client.transfer(addr, targetAddress, 0.00000001, "BNB", "hello world", sequence)
+    await client.transfer(addr, targetAddress, 0.00000001, "ftm", "hello world", sequence)
   } catch (err) {
     // will throw because a signature was not added by the signing delegate.
   }
@@ -151,7 +145,7 @@ it("works with a custom signing delegate", async () => {
 it("works with a custom broadcast delegate", async () => {
   const client = await getClient(true)
   const addr = crypto.getAddressFromPrivateKey(client.privateKey)
-  const account = await client._httpClient.request("get", `/api/v1/account/${addr}`)
+  const account = await client._httpClient.request("get", `/bank/balances/${addr}`)
   const sequence = account.result && account.result.sequence
 
   client.setBroadcastDelegate(signedTx => {
@@ -160,68 +154,30 @@ it("works with a custom broadcast delegate", async () => {
     return "broadcastDelegateResult"
   })
 
-  const res = await client.transfer(addr, targetAddress, 0.00000001, "BNB", "hello world", sequence)
+  const res = await client.transfer(addr, targetAddress, 0.00000001, "ftm", "hello world", sequence)
   expect(res).toBe("broadcastDelegateResult")
-})
-
-it("transfer placeOrder cancelOrder only", async () => {
-  jest.setTimeout(50000)
-
-  const symbol = "BNB_USDT.B-B7C"
-  const client = await getClient(true)
-  const addr = crypto.getAddressFromPrivateKey(client.privateKey)
-  const accCode = crypto.decodeAddress(addr)
-  const account = await client._httpClient.request("get", `/api/v1/account/${addr}`)
-  const sequence = account.result && account.result.sequence
-  const res = await client.transfer(addr, targetAddress, 0.00000001, "BNB", "hello world", sequence)
-  expect(res.status).toBe(200)
-
-  await wait(3000)
-
-  // acc needs .004 BNB to lock
-  const res1 = await client.placeOrder(addr, symbol, 2, 40, 0.0001, sequence + 1)
-  expect(res1.status).toBe(200)
-
-  await wait(5000)
-
-  const orderId = `${accCode.toString("hex")}-${sequence + 2}`.toUpperCase()
-  const res2 = await client.cancelOrder(addr, symbol, orderId, sequence + 2)
-  expect(res2.status).toBe(200)
 })
 
 it("transfer with presicion", async ()=>{
   jest.setTimeout(30000)
 
-  const coin = "BNB"
+  const coin = "ftm"
   let amount = 2.00177011
   const client = await getClient(false)
   const addr = crypto.getAddressFromPrivateKey(client.privateKey)
-  const account = await client._httpClient.request("get", `/api/v1/account/${addr}`)
+  const account = await client._httpClient.request("get", `/bank/balances/${addr}`)
   const sequence = account.result && account.result.sequence
   const res = await client.transfer(addr, targetAddress, amount, coin, "hello world", sequence)
   expect(res.status).toBe(200)
 
   try{
     const hash = res.result[0].hash
-    const res2 = await client._httpClient.get(`/api/v1/tx/${hash}?format=json`)
+    const res2 = await client._httpClient.get(`/txs/${hash}`)
     const sendAmount = res2.result.tx.value.msg[0].value.inputs[0].coins[0].amount
     expect(sendAmount).toBe(200177011)
   }catch(err){
     //
   }
-})
-
-it("transfer placeOrder cancelOrder (no await on set privkey)", async () => {
-  jest.setTimeout(25000)
-
-  const symbol = "BNB_USDT.B-B7C"
-  const client = await getClient(false)
-  const addr = crypto.getAddressFromPrivateKey(client.privateKey)
-
-  // acc needs .004 BNB to lock
-  // IOC - auto cancels
-  const res1 = await client.placeOrder(addr, symbol, 2, 40, 0.0001, null, 3)
-  expect(res1.status).toBe(200)
 })
 
 it("get account", async () => {
@@ -240,98 +196,29 @@ it("get balance no arg", async () => {
   expect(balances.length).toBeGreaterThan(0)
 })
 
-it("choose network", async () => {
-  const client = await getClient(false)
-  client.chooseNetwork("testnet")
-  const res = client.createAccountWithKeystore("12345678")
-  expect(res.address.includes("tbnb")).toBeTruthy()
-
-  client.chooseNetwork("mainnet")
-  const res1 = client.createAccountWithKeystore("12345678")
-  expect(res1.address.includes("bnb")).toBeTruthy()
-})
-
-it("get markets works", async () => {
-  const client = await getClient(false)
-  const { result: markets, status } = await client.getMarkets(150)
-  expect(status).toBe(200)
-  expect(markets.length).toBeGreaterThan(0)
-  expect(markets[0]).toHaveProperty("base_asset_symbol")
-  expect(markets[0]).toHaveProperty("quote_asset_symbol")
-  expect(markets[0]).toHaveProperty("list_price")
-  expect(markets[0]).toHaveProperty("tick_size")
-  expect(markets[0]).toHaveProperty("lot_size")
-})
-
 it("check number when transfer", async () => {
   const client = await getClient(true)
   const addr = crypto.getAddressFromPrivateKey(client.privateKey)
 
-  const account = await client._httpClient.request("get", `/api/v1/account/${addr}`)
+  const account = await client._httpClient.request("get", `/bank/balances/${addr}`)
   const sequence = account.result && account.result.sequence
 
   try {
-    await client.transfer(addr, targetAddress, -1, "BNB", "hello world", sequence)
+    await client.transfer(addr, targetAddress, -1, "ftm", "hello world", sequence)
   } catch (err) {
     expect(err.message).toBe("amount should be a positive number")
   }
 
   try {
-    await client.transfer(addr, targetAddress, Math.pow(2, 63), "BNB", "hello world", sequence)
+    await client.transfer(addr, targetAddress, Math.pow(2, 63), "ftm", "hello world", sequence)
   } catch (err) {
     expect(err.message).toBe("amount should be less than 2^63")
   }
-})
-
-it("check number when place order", async () => {
-  const symbol = "BNB_USDT.B-B7C"
-  const client = await getClient(true)
-  const addr = crypto.getAddressFromPrivateKey(client.privateKey)
-
-  try {
-    await client.placeOrder(addr, symbol, 2, -40, 0.0001, 1)
-  } catch (err) {
-    expect(err.message).toBe("price should be a positive number")
-  }
-
-  try {
-    await client.placeOrder(addr, symbol, 2, Math.pow(2, 63), 2, 1)
-  } catch (err) {
-    expect(err.message).toBe("price should be less than 2^63")
-  }
-})
-
-it("multiSend", async () => {
-  const client = await getClient(true)
-  const addr = "tbnb1hgm0p7khfk85zpz5v0j8wnej3a90w709zzlffd"
-  const transfers = [{
-    "to": "tbnb1p4kpnj5qz5spsaf0d2555h6ctngse0me5q57qe",
-    "coins": [{
-      "denom": "BNB",
-      "amount": 0.01
-    }, {
-      "denom": "USDT.B-B7C",
-      "amount": 0.01
-    }]
-  },
-  {
-    "to": "tbnb1scjj8chhhp7lngdeflltzex22yaf9ep59ls4gk",
-    "coins": [{
-      "denom": "USDT.B-B7C",
-      "amount": 0.02
-    }, {
-      "denom": "BNB",
-      "amount": 0.3
-    }]
-  }]
-
-  const { status } = await client.multiSend(addr, transfers)
-  expect(status).toBe(200)
-})
+})*/
 
 it("issue token", async () => {
   const client = await getClient(true)
-  const addr = "tbnb1hgm0p7khfk85zpz5v0j8wnej3a90w709zzlffd"
+  const addr = "zar1hgm0p7khfk85zpz5v0j8wnej3a90w70979t4js"
   const symbol = "MINT"
   const tokenName = "test issue token"
   const totalSupply = 21000000
@@ -341,9 +228,9 @@ it("issue token", async () => {
   expect(res.status).toBe(200)
 })
 
-it("freeze token", async () => {
+/*it("freeze token", async () => {
   const client = await getClient(true)
-  const addr = "tbnb1hgm0p7khfk85zpz5v0j8wnej3a90w709zzlffd"
+  const addr = "zar1hgm0p7khfk85zpz5v0j8wnej3a90w70979t4js"
   const symbol = "XZJ-D9A"
   const amount = 10000
 
@@ -353,7 +240,7 @@ it("freeze token", async () => {
 
 it("unfreeze token", async () => {
   const client = await getClient(true)
-  const addr = "tbnb1hgm0p7khfk85zpz5v0j8wnej3a90w709zzlffd"
+  const addr = "zar1hgm0p7khfk85zpz5v0j8wnej3a90w70979t4js"
   const symbol = "XZJ-D9A"
   const amount = 100
   try {
@@ -366,7 +253,7 @@ it("unfreeze token", async () => {
 
 it("burn token", async () => {
   const client = await getClient(true)
-  const addr = "tbnb1hgm0p7khfk85zpz5v0j8wnej3a90w709zzlffd"
+  const addr = "zar1hgm0p7khfk85zpz5v0j8wnej3a90w70979t4js"
   const symbol = "XZJ-D9A"
   const amount = 10000
   const { status } = await client.tokens.burn(addr, symbol, amount)
@@ -375,7 +262,7 @@ it("burn token", async () => {
 
 it("mint token", async () => {
   const client = await getClient(true)
-  const addr = "tbnb1hgm0p7khfk85zpz5v0j8wnej3a90w709zzlffd"
+  const addr = "zar1hgm0p7khfk85zpz5v0j8wnej3a90w70979t4js"
   const symbol = "MINT-04F"
   const amount = 10000000
   const res = await client.tokens.mint(addr, symbol, amount)
@@ -437,6 +324,6 @@ it("list MINT", async ()=>{
   }catch(err){
     expect(err.message).toBe("trading pair exists")
   }
-})
+})*/
 
 // })

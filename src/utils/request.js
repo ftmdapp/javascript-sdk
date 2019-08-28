@@ -40,6 +40,9 @@ class HttpRequest {
         try {
           const msgObj = err.response && err.response.data
           error = new Error(msgObj.message)
+          console.log(err.response.data)
+          console.log(path)
+          console.log(options.data)
           error.code = msgObj.code
         } catch (err) {
           throw error

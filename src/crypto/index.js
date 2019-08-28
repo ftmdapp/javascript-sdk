@@ -42,7 +42,7 @@ export const decodeAddress = (value) => {
 /**
  * Checks whether an address is valid.
  * @param {string} address the bech32 address to decode
- * @param {string} hrp the prefix to check for the bech32 address 
+ * @param {string} hrp the prefix to check for the bech32 address
  * @return {boolean}
  */
 export const checkAddress = (address, hrp) => {
@@ -70,7 +70,7 @@ export const checkAddress = (address, hrp) => {
  * @param {*} prefix the address prefix
  * @param {*} type the output type (default: hex)
  */
-export const encodeAddress = (value, prefix = "tbnb", type = "hex") => {
+export const encodeAddress = (value, prefix = "zar", type = "hex") => {
   const words = bech32.toWords(Buffer.from(value, type))
   return bech32.encode(prefix, words)
 }
@@ -122,7 +122,8 @@ export const getPublicKeyFromPrivateKey = privateKeyHex => {
 export const generatePubKey = privateKey => {
   const curve = new EC(CURVE)
   const keypair = curve.keyFromPrivate(privateKey)
-  return keypair.getPublic()
+  const pubKeyHex = keypair.getPublic(true,"base64")
+  return {type:"tendermint/PubKeySecp256k1",value:pubKeyHex}
 }
 
 /**
@@ -158,7 +159,7 @@ export const generateSignature = (signBytesHex, privateKey) => {
   const msgHash = sha256(signBytesHex)
   const msgHashHex = Buffer.from(msgHash, "hex")
   const signature = ecc.sign(msgHashHex, Buffer.from(privateKey, "hex")) // enc ignored if buffer
-  return signature
+  return signature.toString("base64")
 }
 
 /**

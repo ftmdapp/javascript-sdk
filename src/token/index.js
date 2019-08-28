@@ -34,7 +34,7 @@ class TokenManagement {
   static instance
 
   /**
-   * @param {Object} bncClient 
+   * @param {Object} bncClient
    */
   constructor(bncClient) {
     if (!TokenManagement.instance) {
@@ -47,11 +47,11 @@ class TokenManagement {
 
   /**
    * create a new asset on Binance Chain
-   * @param {String} - senderAddress 
-   * @param {String} - tokenName 
-   * @param {String} - symbol 
-   * @param {Number} - totalSupply 
-   * @param {Boolean} - mintable 
+   * @param {String} - senderAddress
+   * @param {String} - tokenName
+   * @param {String} - symbol
+   * @param {Number} - totalSupply
+   * @param {Boolean} - mintable
    * @returns {Promise} resolves with response (success or fail)
    */
   async issue(senderAddress, tokenName, symbol, totalSupply = 0, mintable = false) {
@@ -74,32 +74,45 @@ class TokenManagement {
     totalSupply = new Big(totalSupply)
     totalSupply = Number(totalSupply.mul(Math.pow(10, 8)).toString())
 
+    const value = {
+      from_address: senderAddress,
+      params: {
+        name: tokenName,
+        symbol,
+        total_supply: ""+totalSupply,
+        decimals: "18",
+        description: "",
+        burn_owner_disabled: false,
+        burn_holder_disabled: false,
+        burn_from_disabled: false,
+        minting_finished: false,
+        freeze_disabled: false
+      }
+    }
+
     const issueMsg = {
-      from: crypto.decodeAddress(senderAddress),
-      name: tokenName,
-      symbol,
-      total_supply: totalSupply,
-      mintable,
-      msgType: txType.IssueMsg
+      type: txType.MsgIssue,
+      value: value
     }
 
     const signIssueMsg = {
       from: senderAddress,
       name: tokenName,
       symbol,
-      total_supply: totalSupply,
+      total_supply: ""+totalSupply,
       mintable,
     }
 
-    const signedTx = await this._bncClient._prepareTransaction(issueMsg, signIssueMsg, senderAddress)
+    const signedTx = await this._bncClient._prepareTransaction(issueMsg, issueMsg, senderAddress)
+    console.log(signedTx)
     return this._bncClient._broadcastDelegate(signedTx)
   }
 
   /**
    * freeze some amount of token
-   * @param {String} fromAddress 
-   * @param {String} symbol 
-   * @param {String} amount 
+   * @param {String} fromAddress
+   * @param {String} symbol
+   * @param {String} amount
    * @returns {Promise}  resolves with response (success or fail)
    */
   async freeze(fromAddress, symbol, amount) {
@@ -130,9 +143,9 @@ class TokenManagement {
 
   /**
    * unfreeze some amount of token
-   * @param {String} fromAddress 
-   * @param {String} symbol 
-   * @param {String} amount 
+   * @param {String} fromAddress
+   * @param {String} symbol
+   * @param {String} amount
    * @returns {Promise}  resolves with response (success or fail)
    */
   async unfreeze(fromAddress, symbol, amount) {
@@ -162,9 +175,9 @@ class TokenManagement {
 
   /**
    * burn some amount of token
-   * @param {String} fromAddress 
-   * @param {String} symbol 
-   * @param {Number} amount 
+   * @param {String} fromAddress
+   * @param {String} symbol
+   * @param {Number} amount
    * @returns {Promise}  resolves with response (success or fail)
    */
   async burn(fromAddress, symbol, amount) {
@@ -194,9 +207,9 @@ class TokenManagement {
 
   /**
    * mint tokens for an existing token
-   * @param {String} fromAddress 
-   * @param {String} symbol 
-   * @param {Number} amount 
+   * @param {String} fromAddress
+   * @param {String} symbol
+   * @param {Number} amount
    * @returns {Promise}  resolves with response (success or fail)
    */
   async mint(fromAddress, symbol, amount) {
