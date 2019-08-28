@@ -18,7 +18,8 @@ export const txType = {
   SignatureSecp256k1: "SignatureSecp256k1",
   MsgSubmitProposal: "MsgSubmitProposal",
   MsgDeposit: "MsgDeposit",
-  MsgVote: "MsgVote"
+  MsgVote: "MsgVote",
+  SendMsg: "cosmos-sdk/MsgSend",
 }
 
 export const typePrefix = {

@@ -160,5 +160,6 @@ class Client extends BaseRpc {
     const bal = balances.find(item => item.symbol.toUpperCase() === symbol.toUpperCase())
     return bal
   }
+}
 
 export default Client

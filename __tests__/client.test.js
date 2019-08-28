@@ -59,7 +59,7 @@ beforeEach(() => {
   jest.setTimeout(50000)
 })
 
-it("create account", async () => {
+/*it("create account", async () => {
   const client = await getClient(false)
   const res = client.createAccount()
   expect(res.address).toBeTruthy()
@@ -120,9 +120,20 @@ it("get balance", async () => {
   const client = await getClient(false)
   const res = await client.getBalance(targetAddress)
   expect(res.length).toBeGreaterThanOrEqual(0)
+})*/
+
+it("transfer tokens", async () => {
+  const client = await getClient(false)
+  const addr = crypto.getAddressFromPrivateKey(client.privateKey)
+  const account = await client._httpClient.request("get", `/bank/balances/${addr}`)
+  const sequence = account.result && account.result.sequence
+
+  const res = await client.transfer(addr, targetAddress, 0.00000001, "ftm", "hello world", sequence)
+  console.log(res)
+  expect(res.status).toBe(200)
 })
 
-it("works with a custom signing delegate", async () => {
+/*it("works with a custom signing delegate", async () => {
   const client = await getClient(true)
   const addr = crypto.getAddressFromPrivateKey(client.privateKey)
   const account = await client._httpClient.request("get", `/bank/balances/${addr}`)
@@ -156,28 +167,6 @@ it("works with a custom broadcast delegate", async () => {
 
   const res = await client.transfer(addr, targetAddress, 0.00000001, "ftm", "hello world", sequence)
   expect(res).toBe("broadcastDelegateResult")
-})
-
-it("transfer with presicion", async ()=>{
-  jest.setTimeout(30000)
-
-  const coin = "ftm"
-  let amount = 2.00177011
-  const client = await getClient(false)
-  const addr = crypto.getAddressFromPrivateKey(client.privateKey)
-  const account = await client._httpClient.request("get", `/bank/balances/${addr}`)
-  const sequence = account.result && account.result.sequence
-  const res = await client.transfer(addr, targetAddress, amount, coin, "hello world", sequence)
-  expect(res.status).toBe(200)
-
-  try{
-    const hash = res.result[0].hash
-    const res2 = await client._httpClient.get(`/txs/${hash}`)
-    const sendAmount = res2.result.tx.value.msg[0].value.inputs[0].coins[0].amount
-    expect(sendAmount).toBe(200177011)
-  }catch(err){
-    //
-  }
 })
 
 it("get account", async () => {
@@ -269,6 +258,6 @@ it("mint token", async () => {
   const res = await client.tokens.mint(addr, symbol, amount)
   console.log(res)
   expect(res.status).toBe(200)
-})
+})*/
 
 // })

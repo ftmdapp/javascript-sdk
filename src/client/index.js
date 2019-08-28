@@ -7,6 +7,7 @@ import HttpRequest from "../utils/request"
 import { checkNumber } from "../utils/validateHelper"
 import TokenManagement from "../token/"
 import Gov from "../gov/"
+import { txType } from '../tx/'
 import Big from "big.js"
 
 const BASENUMBER = Math.pow(10, 8)
@@ -238,49 +239,27 @@ export class ZarClient {
    * @return {Promise} resolves with response (success or fail)
    */
   async transfer(fromAddress, toAddress, amount, asset, memo = "", sequence = null) {
-    const accCode = crypto.decodeAddress(fromAddress)
-    const toAccCode = crypto.decodeAddress(toAddress)
 
     amount = new Big(amount)
     amount = Number(amount.mul(BASENUMBER).toString())
 
     checkNumber(amount, "amount")
 
-    const coin = {
-      denom: asset,
-      amount: amount,
-    }
-
-    const msg = {
-      inputs: [{
-        address: accCode,
-        coins: [coin]
-      }],
-      outputs: [{
-        address: toAccCode,
-        coins: [coin]
-      }],
-      msgType: "MsgSend"
-    }
-
-    const signMsg = {
-      inputs: [{
-        address: fromAddress,
-        coins: [{
-          amount: amount,
-          denom: asset
-        }]
-      }],
-      outputs: [{
-        address: toAddress,
-        coins: [{
-          amount: amount,
-          denom: asset
-        }]
+    const value = {
+      from_address: fromAddress,
+      to_address: toAddress,
+      amount: [{
+        denom: asset,
+        amount: ""+amount
       }]
     }
 
-    const signedTx = await this._prepareTransaction(msg, signMsg, fromAddress, sequence, memo)
+    const msg = {
+      type: txType.SendMsg,
+      value: value
+    }
+
+    const signedTx = await this._prepareTransaction(msg, msg, fromAddress, sequence, memo)
     return this._broadcastDelegate(signedTx)
   }
 
