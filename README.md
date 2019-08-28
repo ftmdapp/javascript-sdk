@@ -1,10 +1,10 @@
-# Binance Chain JavaScript SDK
+# Zar Network Chain JavaScript SDK
 
-The Binance Chain JavaScript SDK allows browsers and node.js clients to interact with Binance Chain. It includes the following core components:
+The Zar Network Chain JavaScript SDK allows browsers and node.js clients to interact with Zar Network Chain. It includes the following core components:
 
 * **crypto** - core cryptographic functions.
 * **amino** - [amino](https://github.com/binance-chain/docs-site/blob/master/docs/encoding.md) (protobuf-like) encoding and decoding of transactions.
-* **client** - implementations of Binance Chain transaction types, such as for transfers and trading.
+* **client** - implementations of Zar Network Chain transaction types, such as for transfers and trading.
 * **accounts** - management of "accounts" and wallets, including seed and encrypted mnemonic generation.
 * **ledger** - Ledger Nano S/X support via HID, U2F and Web BLE (Bluetooth).
 * **rpc** - Node RPC client.
@@ -25,11 +25,11 @@ $ sudo apt-get install libudev-dev libusb-dev usbutils
 ### Install the NPM package
 If you **do not** need Ledger support with node.js:
 ```bash
-$ npm i @binance-chain/javascript-sdk --no-optional
+$ npm i @zar-network/javascript-sdk --no-optional
 ```
 If you **need** Ledger support with node.js:
 ```bash
-$ npm i @binance-chain/javascript-sdk
+$ npm i @zar-network/javascript-sdk
 ```
 
 ### Use with Webpack
@@ -47,7 +47,7 @@ config.plugins.push(new webpack.IgnorePlugin(/^usb$/))
 
 # API
 
-For up-to-date API documentation, please check the [wiki](https://github.com/binance-chain/javascript-sdk/wiki).
+For up-to-date API documentation, please check the [wiki](https://github.com/zar-network/javascript-sdk/wiki).
 
 # Testing
 
@@ -66,4 +66,4 @@ $ npm run test:ledger:browser
 
 # Contributing
 
-Contributions to the Binance Chain JavaScript SDK are welcome. Please ensure that you have tested the changes with a local client and have added unit test coverage for your code.
+Contributions to the Zar Network Chain JavaScript SDK are welcome. Please ensure that you have tested the changes with a local client and have added unit test coverage for your code.

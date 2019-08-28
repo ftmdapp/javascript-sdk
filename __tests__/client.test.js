@@ -259,7 +259,7 @@ it("burn token", async () => {
   const res = await client.tokens.burn(addr, symbol, amount)
   console.log(res)
   expect(res.status).toBe(200)
-})*/
+})
 
 it("mint token", async () => {
   const client = await getClient(true)
@@ -270,7 +270,7 @@ it("mint token", async () => {
   console.log(res)
   expect(res.status).toBe(200)
 })
-/*
+
 it("submitListProposal", async () => {
   const client = await getClient(true)
   const addr = crypto.getAddressFromPrivateKey(client.privateKey)
