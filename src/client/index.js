@@ -5,8 +5,6 @@ import * as crypto from "../crypto"
 import Transaction from "../tx"
 import HttpRequest from "../utils/request"
 import { checkNumber } from "../utils/validateHelper"
-import TokenManagement from "../token/"
-import Gov from "../gov/"
 import { txType } from '../tx/'
 import Big from "big.js"
 
@@ -121,8 +119,6 @@ export class ZarClient {
     this._broadcastDelegate = DefaultBroadcastDelegate
     this._useAsyncBroadcast = useAsyncBroadcast
     this._source = source
-    this.tokens = new TokenManagement(this)
-    this.gov = new Gov(this)
   }
 
   /**
