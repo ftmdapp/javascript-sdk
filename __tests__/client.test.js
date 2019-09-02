@@ -5,7 +5,7 @@ import Transaction from "../src/tx"
 import { voteOption } from "../src/gov/"
 
 /* make sure the address from the mnemonic has balances, or the case will failed */
-const mnemonic = "offer caution gift cross surge pretty orange during eye soldier popular holiday mention east eight office fashion ill parrot vault rent devote earth cousin"
+const mnemonic = "antenna reject civil thrive novel boy health chronic sport vote maximum message false walnut share ability bag ladder volume ring slam daring similar day"
 
 const keystores = {
   // keystore with sha3 mac
@@ -16,10 +16,10 @@ const keystores = {
   badMac: { "version": 1, "id": "dfb09873-f16f-48c6-a6b8-bb5a705c47a7", "address": "bnc1dxj068zgk007fchefj9n8tq06pcuce5ypqm5zk", "crypto": { "ciphertext": "33b7439a8d64d73357dc91f88a6b3a45e7303717664d17daf8e8dc1cc708fa4b", "cipherparams": { "iv": "88c726d70cd0437bfdb2312dc60103fc" }, "cipher": "aes-256-ctr", "kdf": "pbkdf2", "kdfparams": { "dklen": 32, "salt": "ad10ef544417d4a25914dec3d908882686dd9d793b5c484b76fd5aa575cf54b9", "c": 262144, "prf": "hmac-sha256" }, "mac": "x7cc301d18c97c71741492b8029544952ad5567a733971deb49fd3eb03ee696e" } },
 }
 
-const targetAddress = "zar1hgm0p7khfk85zpz5v0j8wnej3a90w70979t4js"
+const targetAddress = "zar1alh4yqa0sustmm6u64ygxx6awna90y636w73a7"
 
 const getClient = async (useAwaitSetPrivateKey = true, doNotSetPrivateKey = false) => {
-  const client = new ZarClient("http://34.244.179.123:1317")
+  const client = new ZarClient("http://localhost:1317")
   await client.initChain()
   const privateKey = crypto.getPrivateKeyFromMnemonic(mnemonic)
   if (!doNotSetPrivateKey) {
@@ -59,6 +59,40 @@ beforeEach(() => {
   jest.setTimeout(50000)
 })
 
+/*it("issue token", async () => {
+  const client = await getClient(true)
+  console.log(client)
+  const addr = "zar1alh4yqa0sustmm6u64ygxx6awna90y636w73a7"
+  const symbol = "MINT"
+  const tokenName = "test issue token"
+  const totalSupply = 21000000
+
+  const res = await client.tokens.issue(addr, tokenName, symbol, totalSupply, false)
+  console.log(res)
+  expect(res.status).toBe(200)
+})*/
+
+it("mint token", async () => {
+  const client = await getClient(true)
+  const from = "zar1alh4yqa0sustmm6u64ygxx6awna90y636w73a7"
+  const to = "zar1fmxprwjafu8uk234zd7utynl8q8a8kwf62v5wp"
+  const symbol = "coin174876e800"
+  const amount = 10000000
+  const res = await client.tokens.mint(from, symbol, amount, to)
+  console.log(res)
+  expect(res.status).toBe(200)
+})
+
+/*it("burn token", async () => {
+  const client = await getClient(true)
+  const addr = "zar1fmxprwjafu8uk234zd7utynl8q8a8kwf62v5wp"
+  const symbol = "coin174876e800"
+  const amount = 10000
+  const res = await client.tokens.burn(addr, symbol, amount)
+  console.log(res)
+  expect(res.status).toBe(200)
+})*/
+
 /*it("create account", async () => {
   const client = await getClient(false)
   const res = client.createAccount()
@@ -74,7 +108,7 @@ it("create account with keystore", async () => {
   expect(res.keystore).toBeTruthy()
 })
 
-it("create account with mneomnic", async () => {
+it("create account with mnemonic", async () => {
   const client = await getClient(false)
   const res = client.createAccountWithMneomnic()
   expect(res.address).toBeTruthy()
@@ -122,7 +156,7 @@ it("get balance", async () => {
   expect(res.length).toBeGreaterThanOrEqual(0)
 })*/
 
-it("transfer tokens", async () => {
+/*it("transfer tokens", async () => {
   const client = await getClient(false)
   const addr = crypto.getAddressFromPrivateKey(client.privateKey)
   const account = await client._httpClient.request("get", `/bank/balances/${addr}`)
@@ -131,7 +165,7 @@ it("transfer tokens", async () => {
   const res = await client.transfer(addr, targetAddress, 0.00000001, "ftm", "hello world", sequence)
   console.log(res)
   expect(res.status).toBe(200)
-})
+})*/
 
 /*it("works with a custom signing delegate", async () => {
   const client = await getClient(true)
@@ -207,7 +241,7 @@ it("check number when transfer", async () => {
 
 it("issue token", async () => {
   const client = await getClient(true)
-  const addr = "zar1hgm0p7khfk85zpz5v0j8wnej3a90w70979t4js"
+  const addr = "zar1vq4k0nsxyvpk36gfcp6r5cpacygk3szt77lcpd"
   const symbol = "MINT"
   const tokenName = "test issue token"
   const totalSupply = 21000000

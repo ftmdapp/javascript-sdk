@@ -437,8 +437,7 @@ export class ZarClient {
       const data = await this._httpClient.request("get", `${api.getAccount}/${address}`)
       return data
     } catch (err) {
-      console.log(err)
-      return null
+      return err
     }
   }
 
@@ -448,12 +447,11 @@ export class ZarClient {
    * @return {Promise} resolves with http response
    */
   async getBalance(address = this.address) {
-    console.log(address)
     try {
       const data = await this.getAccount(address)
       return data.result.result.value.coins
     } catch (err) {
-      return []
+      return err
     }
   }
 

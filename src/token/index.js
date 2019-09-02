@@ -26,7 +26,6 @@ const validateNonZeroAmount = async (amount, symbol, fromAddress, httpClient, ty
 
   } catch (err) {
     //if get account failed. still broadcast
-    console.log(err)
   }
 }
 
@@ -54,7 +53,7 @@ class TokenManagement {
    * @param {Boolean} - mintable
    * @returns {Promise} resolves with response (success or fail)
    */
-  async issue(senderAddress, tokenName, symbol, totalSupply = 0, mintable = false) {
+  async issue(senderAddress, tokenName, symbol, totalSupply = 0, mintable = false, decimals = "18", description = "", burnOwnerDisabled = false, burnHolderDisabled = false, burnFromDisabled = false, freezeDisabled = false) {
     if (!senderAddress) {
       throw new Error("sender address cannot be empty")
     }
@@ -72,21 +71,20 @@ class TokenManagement {
     }
 
     totalSupply = new Big(totalSupply)
-    totalSupply = Number(totalSupply.mul(Math.pow(10, 8)).toString())
 
     const value = {
       from_address: senderAddress,
       params: {
         name: tokenName,
         symbol,
-        total_supply: ""+totalSupply,
-        decimals: "18",
-        description: "",
-        burn_owner_disabled: false,
-        burn_holder_disabled: false,
-        burn_from_disabled: false,
-        minting_finished: false,
-        freeze_disabled: false
+        total_supply: totalSupply.toString(),
+        decimals: decimals,
+        description: description,
+        burn_owner_disabled: burnOwnerDisabled,
+        burn_holder_disabled: burnHolderDisabled,
+        burn_from_disabled: burnFromDisabled,
+        minting_finished: mintable,
+        freeze_disabled: freezeDisabled
       }
     }
 
@@ -96,7 +94,6 @@ class TokenManagement {
     }
 
     const signedTx = await this._ZarClient._prepareTransaction(issueMsg, issueMsg, senderAddress)
-    console.log(signedTx)
     return this._ZarClient._broadcastDelegate(signedTx)
   }
 
@@ -104,27 +101,19 @@ class TokenManagement {
    * freeze some amount of token
    * @param {String} fromAddress
    * @param {String} symbol
-   * @param {String} amount
    * @returns {Promise}  resolves with response (success or fail)
    */
-  async freeze(fromAddress, symbol, amount) {
+  async freeze(fromAddress, symbol) {
 
     validateSymbol(symbol)
-
-    validateNonZeroAmount(amount, symbol, fromAddress, this._ZarClient._httpClient, 'free')
-
-    amount = new Big(amount)
-    amount = Number(amount.mul(Math.pow(10, 8)).toString())
 
     const freezeMsg = {
       from: crypto.decodeAddress(fromAddress),
       symbol,
-      amount,
       msgType: txType.FreezeMsg
     }
 
     const freezeSignMsg = {
-      amount: amount,
       from: fromAddress,
       symbol
     }
@@ -137,26 +126,18 @@ class TokenManagement {
    * unfreeze some amount of token
    * @param {String} fromAddress
    * @param {String} symbol
-   * @param {String} amount
    * @returns {Promise}  resolves with response (success or fail)
    */
-  async unfreeze(fromAddress, symbol, amount) {
+  async unfreeze(fromAddress, symbol) {
     validateSymbol(symbol)
-
-    validateNonZeroAmount(amount, symbol, fromAddress, this._ZarClient._httpClient, 'frozen')
-
-    amount = new Big(amount)
-    amount = Number(amount.mul(Math.pow(10, 8)).toString())
 
     const unfreezeMsg = {
       from: crypto.decodeAddress(fromAddress),
       symbol,
-      amount,
       msgType: txType.UnfreezeMsg
     }
 
     const unfreezeSignMsg = {
-      amount: amount,
       from: fromAddress,
       symbol
     }
@@ -178,12 +159,11 @@ class TokenManagement {
     validateNonZeroAmount(amount, symbol, fromAddress, this._ZarClient._httpClient)
 
     amount = new Big(amount)
-    amount = Number(amount.mul(Math.pow(10, 8)).toString())
 
     const value = {
       from_address: fromAddress,
       issue_id: symbol,
-      amount: ""+amount
+      amount: amount.toString(),
     }
 
     const burnMsg = {
@@ -202,7 +182,7 @@ class TokenManagement {
    * @param {Number} amount
    * @returns {Promise}  resolves with response (success or fail)
    */
-  async mint(fromAddress, symbol, amount) {
+  async mint(fromAddress, symbol, amount, toAddress = fromAddress) {
     validateSymbol(symbol)
 
     if (amount <= 0 || amount > MAXTOTALSUPPLY) {
@@ -210,13 +190,12 @@ class TokenManagement {
     }
 
     amount = new Big(amount)
-    amount = Number(amount.mul(Math.pow(10, 8)).toString())
 
     const value = {
       from_address: fromAddress,
-      to_address: fromAddress,
+      to_address: toAddress,
       issue_id: symbol,
-      amount: ""+amount,
+      amount: amount.toString(),
       decimals: "18"
     }
 

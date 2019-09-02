@@ -106,6 +106,7 @@ class Transaction {
       "msgs": [msg],
       "sequence": this.sequence.toString(),
     }
+
     console.log(signMsg)
 
     return encoder.convertObjectToSignBytes(signMsg)
