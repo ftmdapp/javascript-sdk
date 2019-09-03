@@ -59,6 +59,13 @@ beforeEach(() => {
   jest.setTimeout(50000)
 })
 
+it("transfer tokens", async () => {
+  const client = await getClient(false)
+  const addr = crypto.getAddressFromPrivateKey(client.privateKey)
+  const res = await client.transfer(addr, targetAddress, 1, "coin174876e800", "hello world")
+  expect(res.status).toBe(200)
+})
+
 /*it("issue token", async () => {
   const client = await getClient(true)
   console.log(client)
@@ -83,7 +90,7 @@ beforeEach(() => {
   expect(res.status).toBe(200)
 })*/
 
-it("burn token", async () => {
+/*it("burn token", async () => {
   const client = await getClient(true)
   const addr = "zar1alh4yqa0sustmm6u64ygxx6awna90y636w73a7"
   const symbol = "coin174876e800"
@@ -91,7 +98,7 @@ it("burn token", async () => {
   const res = await client.burn(addr, symbol, amount)
   console.log(res)
   expect(res.status).toBe(200)
-})
+})*/
 
 /*it("create account", async () => {
   const client = await getClient(false)

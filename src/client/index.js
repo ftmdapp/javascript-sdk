@@ -260,7 +260,6 @@ export class ZarClient {
   async transfer(fromAddress, toAddress, amount, asset, memo = "", sequence = null) {
 
     amount = new Big(amount)
-    amount = Number(amount.mul(BASENUMBER).toString())
 
     checkNumber(amount, "amount")
 
@@ -277,8 +276,7 @@ export class ZarClient {
       type: txType.SendMsg,
       value: value
     }
-
-    const signedTx = await this._prepareTransaction(msg, msg, fromAddress, sequence, memo)
+    const signedTx = await this._prepareTransaction(msg, fromAddress, sequence, memo)
     return this._broadcastDelegate(signedTx)
   }
 
