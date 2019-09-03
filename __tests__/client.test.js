@@ -72,26 +72,26 @@ beforeEach(() => {
   expect(res.status).toBe(200)
 })*/
 
-it("mint token", async () => {
+/*it("mint token", async () => {
   const client = await getClient(true)
   const from = "zar1alh4yqa0sustmm6u64ygxx6awna90y636w73a7"
   const to = "zar1fmxprwjafu8uk234zd7utynl8q8a8kwf62v5wp"
   const symbol = "coin174876e800"
   const amount = 10000000
-  const res = await client.tokens.mint(from, symbol, amount, to)
-  console.log(res)
-  expect(res.status).toBe(200)
-})
-
-/*it("burn token", async () => {
-  const client = await getClient(true)
-  const addr = "zar1fmxprwjafu8uk234zd7utynl8q8a8kwf62v5wp"
-  const symbol = "coin174876e800"
-  const amount = 10000
-  const res = await client.tokens.burn(addr, symbol, amount)
+  const res = await client.mint(from, symbol, amount, to)
   console.log(res)
   expect(res.status).toBe(200)
 })*/
+
+it("burn token", async () => {
+  const client = await getClient(true)
+  const addr = "zar1alh4yqa0sustmm6u64ygxx6awna90y636w73a7"
+  const symbol = "coin174876e800"
+  const amount = 10000
+  const res = await client.burn(addr, symbol, amount)
+  console.log(res)
+  expect(res.status).toBe(200)
+})
 
 /*it("create account", async () => {
   const client = await getClient(false)
