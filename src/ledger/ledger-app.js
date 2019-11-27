@@ -2,7 +2,7 @@
  * @module ledger
  */
 /********************************************************************************
- *   Binance Chain Ledger App Interface
+ *   Xar Chain Ledger App Interface
  *   (c) 2018-2019 Binance
  *   (c) 2018 ZondaX GmbH
  *

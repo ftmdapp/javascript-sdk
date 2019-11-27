@@ -1,5 +1,5 @@
 /********************************************************************************
- *   Binance Chain Ledger App Interface
+ *   Xar Chain Ledger App Interface
  *   (c) 2018-2019 Binance
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");

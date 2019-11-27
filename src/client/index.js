@@ -3,6 +3,7 @@
  */
 import * as crypto from "../crypto"
 import Transaction from "../tx"
+import Issue from "../issue"
 import HttpRequest from "../utils/request"
 import { checkNumber } from "../utils/validateHelper"
 import { txType } from '../tx/'
@@ -140,6 +141,7 @@ export class XarClient {
     this._httpClient = new HttpRequest(server)
     this._signingDelegate = DefaultSigningDelegate
     this._broadcastDelegate = DefaultBroadcastDelegate
+    this.Issue = new Issue()
     this._useAsyncBroadcast = useAsyncBroadcast
     this._source = source
   }
@@ -245,6 +247,11 @@ export class XarClient {
   useLedgerSigningDelegate(ledgerApp, preSignCb, postSignCb, errCb, hdPath) {
     this._signingDelegate = LedgerSigningDelegate(ledgerApp, preSignCb, postSignCb, errCb, hdPath)
     return this
+  }
+
+  async sendTx(msg, fromAddress) {
+    const signedTx = await this._prepareTransaction(msg, fromAddress)
+    return this._broadcastDelegate(signedTx)
   }
 
   /**
@@ -605,120 +612,5 @@ export class XarClient {
     const address = crypto.getAddressFromPrivateKey(this.privateKey, this.addressPrefix)
     this.address = address
     return address
-  }
-
-  /**
-   * create a new asset on Xar Network Chain
-   * @param {String} - senderAddress
-   * @param {String} - tokenName
-   * @param {String} - symbol
-   * @param {Number} - totalSupply
-   * @param {Boolean} - mintable
-   * @returns {Promise} resolves with response (success or fail)
-   */
-  async issue(senderAddress, tokenName, symbol, totalSupply = 0, mintable = false, decimals = "18", description = "", burnOwnerDisabled = false, burnHolderDisabled = false, burnFromDisabled = false, freezeDisabled = false) {
-    if (!senderAddress) {
-      throw new Error("sender address cannot be empty")
-    }
-
-    if (tokenName.length > 32) {
-      throw new Error("token name is limited to 32 characters")
-    }
-
-    if (!/^[a-zA-z\d]{3,8}$/.test(symbol)) {
-      throw new Error("symbol should be alphanumeric and length is limited to 3~8")
-    }
-
-    if (totalSupply <= 0 || totalSupply > MAXTOTALSUPPLY) {
-      throw new Error("invalid supply amount")
-    }
-
-    totalSupply = new Big(totalSupply)
-
-    const value = {
-      from_address: senderAddress,
-      params: {
-        name: tokenName,
-        symbol,
-        total_supply: totalSupply.toString(),
-        decimals: decimals,
-        description: description,
-        burn_owner_disabled: burnOwnerDisabled,
-        burn_holder_disabled: burnHolderDisabled,
-        burn_from_disabled: burnFromDisabled,
-        minting_finished: mintable,
-        freeze_disabled: freezeDisabled
-      }
-    }
-
-    const issueMsg = {
-      type: txType.MsgIssue,
-      value: value
-    }
-
-    const signedTx = await this._prepareTransaction(issueMsg, senderAddress)
-    return this._broadcastDelegate(signedTx)
-  }
-
-  /**
-   * burn some amount of token
-   * @param {String} fromAddress
-   * @param {String} symbol
-   * @param {Number} amount
-   * @returns {Promise}  resolves with response (success or fail)
-   */
-  async burn(fromAddress, symbol, amount) {
-    validateSymbol(symbol)
-
-    validateNonZeroAmount(amount, symbol, fromAddress, this._httpClient)
-
-    amount = new Big(amount)
-
-    const value = {
-      from_address: fromAddress,
-      issue_id: symbol,
-      amount: amount.toString(),
-    }
-
-    const burnMsg = {
-      type: txType.BurnMsg,
-      value: value
-    }
-
-    const signedTx = await this._prepareTransaction(burnMsg, fromAddress)
-    return this._broadcastDelegate(signedTx)
-  }
-
-  /**
-   * mint tokens for an existing token
-   * @param {String} fromAddress
-   * @param {String} symbol
-   * @param {Number} amount
-   * @returns {Promise}  resolves with response (success or fail)
-   */
-  async mint(fromAddress, symbol, amount, toAddress = fromAddress) {
-    validateSymbol(symbol)
-
-    if (amount <= 0 || amount > MAXTOTALSUPPLY) {
-      throw new Error("invalid amount")
-    }
-
-    amount = new Big(amount)
-
-    const value = {
-      from_address: fromAddress,
-      to_address: toAddress,
-      issue_id: symbol,
-      amount: amount.toString(),
-      decimals: "18"
-    }
-
-    const mintMsg = {
-      type: txType.MintMsg,
-      value: value
-    }
-
-    const signedTx = await this._prepareTransaction(mintMsg, fromAddress)
-    return this._broadcastDelegate(signedTx)
   }
 }

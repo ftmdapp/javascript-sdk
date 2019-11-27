@@ -45,7 +45,7 @@ class TokenManagement {
   }
 
   /**
-   * create a new asset on Binance Chain
+   * create a new asset on Xar Chain
    * @param {String} - senderAddress
    * @param {String} - tokenName
    * @param {String} - symbol

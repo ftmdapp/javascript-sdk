@@ -66,41 +66,42 @@ it("transfer tokens", async () => {
   expect(res.status).toBe(200)
 })
 
-/*it("issue token", async () => {
+it("issue token", async () => {
   const client = await getClient(true)
-  console.log(client)
-  const addr = "xar13slrtrkn4hmhu88nlzhnk5s36t54wsugkvttg5"
+  const fromAddress = "xar13slrtrkn4hmhu88nlzhnk5s36t54wsugkvttg5"
   const symbol = "MINT"
   const tokenName = "test issue token"
   const totalSupply = 21000000
 
-  const res = await client.tokens.issue(addr, tokenName, symbol, totalSupply, false)
-  console.log(res)
+  const msg = client.Issue.issue(fromAddress, tokenName, symbol, totalSupply, false)
+  const res = await client.sendTx(msg, fromAddress)
   expect(res.status).toBe(200)
-})*/
+})
 
-/*it("mint token", async () => {
+it("mint token", async () => {
   const client = await getClient(true)
-  const from = "xar13slrtrkn4hmhu88nlzhnk5s36t54wsugkvttg5"
-  const to = "xar1fmxprwjafu8uk234zd7utynl8q8a8kwf62v5wp"
+  const fromAddress = "xar13slrtrkn4hmhu88nlzhnk5s36t54wsugkvttg5"
+  const to = "xar13jnw7klahe60tzu70a8mwg5qcf8444uwha9tma"
   const symbol = "coin174876e800"
   const amount = 10000000
-  const res = await client.mint(from, symbol, amount, to)
-  console.log(res)
-  expect(res.status).toBe(200)
-})*/
 
-/*it("burn token", async () => {
+  const msg = client.Issue.mint(fromAddress, symbol, amount, to)
+  const res = await client.sendTx(msg, fromAddress)
+  expect(res.status).toBe(200)
+})
+
+it("burn token", async () => {
   const client = await getClient(true)
-  const addr = "xar13slrtrkn4hmhu88nlzhnk5s36t54wsugkvttg5"
+  const fromAddress = "xar13slrtrkn4hmhu88nlzhnk5s36t54wsugkvttg5"
   const symbol = "coin174876e800"
   const amount = 10000
-  const res = await client.burn(addr, symbol, amount)
-  console.log(res)
-  expect(res.status).toBe(200)
-})*/
 
-/*it("create account", async () => {
+  const msg = client.Issue.burn(fromAddress, symbol, amount)
+  const res = await client.sendTx(msg, fromAddress)
+  expect(res.status).toBe(200)
+})
+
+it("create account", async () => {
   const client = await getClient(false)
   const res = client.createAccount()
   expect(res.address).toBeTruthy()
@@ -161,18 +162,18 @@ it("get balance", async () => {
   const client = await getClient(false)
   const res = await client.getBalance(targetAddress)
   expect(res.length).toBeGreaterThanOrEqual(0)
-})*/
+})
 
-/*it("transfer tokens", async () => {
+it("transfer tokens", async () => {
   const client = await getClient(false)
   const addr = crypto.getAddressFromPrivateKey(client.privateKey)
   const account = await client._httpClient.request("get", `/bank/balances/${addr}`)
   const sequence = account.result && account.result.sequence
 
-  const res = await client.transfer(addr, targetAddress, 0.00000001, "ftm", "hello world", sequence)
+  const res = await client.transfer(addr, targetAddress, 1, "ftm", "hello world", sequence)
   console.log(res)
   expect(res.status).toBe(200)
-})*/
+})
 
 /*it("works with a custom signing delegate", async () => {
   const client = await getClient(true)
@@ -208,7 +209,7 @@ it("works with a custom broadcast delegate", async () => {
 
   const res = await client.transfer(addr, targetAddress, 0.00000001, "ftm", "hello world", sequence)
   expect(res).toBe("broadcastDelegateResult")
-})
+})*/
 
 it("get account", async () => {
   const client = await getClient(false)
@@ -223,7 +224,7 @@ it("get account", async () => {
 it("get balance no arg", async () => {
   const client = await getClient(false)
   const balances = await client.getBalance()
-  expect(balances.length).toBeGreaterThan(0)
+  expect(balances.length).toBeGreaterThan(-1)
 })
 
 it("check number when transfer", async () => {
@@ -245,60 +246,5 @@ it("check number when transfer", async () => {
     expect(err.message).toBe("amount should be less than 2^63")
   }
 })
-
-it("issue token", async () => {
-  const client = await getClient(true)
-  const addr = "xar1vq4k0nsxyvpk36gfcp6r5cpacygk3szt77lcpd"
-  const symbol = "MINT"
-  const tokenName = "test issue token"
-  const totalSupply = 21000000
-
-  const res = await client.tokens.issue(addr, tokenName, symbol, totalSupply, true)
-  console.log(res)
-  expect(res.status).toBe(200)
-})
-
-it("freeze token", async () => {
-  const client = await getClient(true)
-  const addr = "xar1hgm0p7khfk85zpz5v0j8wnej3a90w70979t4js"
-  const symbol = "XZJ-D9A"
-  const amount = 10000
-
-  const { status } = await client.tokens.freeze(addr, symbol, amount)
-  expect(status).toBe(200)
-})
-
-it("unfreeze token", async () => {
-  const client = await getClient(true)
-  const addr = "xar1hgm0p7khfk85zpz5v0j8wnej3a90w70979t4js"
-  const symbol = "XZJ-D9A"
-  const amount = 100
-  try {
-    const { status } = await client.tokens.unfreeze(addr, symbol, amount)
-    expect(status).toBe(200)
-  } catch (err) {
-    expect(err.message).toBe("do not have enough token to unfreeze")
-  }
-})
-
-it("burn token", async () => {
-  const client = await getClient(true)
-  const addr = "xar1hgm0p7khfk85zpz5v0j8wnej3a90w70979t4js"
-  const symbol = "coin174876e801"
-  const amount = 10000
-  const res = await client.tokens.burn(addr, symbol, amount)
-  console.log(res)
-  expect(res.status).toBe(200)
-})
-
-it("mint token", async () => {
-  const client = await getClient(true)
-  const addr = "xar1hgm0p7khfk85zpz5v0j8wnej3a90w70979t4js"
-  const symbol = "coin174876e801"
-  const amount = 10000000
-  const res = await client.tokens.mint(addr, symbol, amount)
-  console.log(res)
-  expect(res.status).toBe(200)
-})*/
 
 // })

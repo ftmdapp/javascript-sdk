@@ -35,13 +35,13 @@ const convertObjectArrayNum = (objArr, keys) => {
 }
 
 /**
- * The Binance Chain Node rpc client
+ * The Xar Chain Node rpc client
  */
 class Client extends BaseRpc {
 
   /**
    * @param {String} uriString dataseed address
-   * @param {String} netWork Binance Chain network
+   * @param {String} netWork Xar Chain network
    */
   constructor(uriString = "localhost:27146", netWork) {
     super(uriString)
