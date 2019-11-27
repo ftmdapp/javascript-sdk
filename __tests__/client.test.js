@@ -42,8 +42,54 @@ const wait = ms => {
     }, ms)
   })
 }
-// describe("checkNumber", async () => {
-it("ensures that the number is positive", async () => {
+
+beforeEach(() => {
+  jest.setTimeout(50000)
+})
+
+/*it("create issuer", async () => {
+  const client = await getClient(true)
+  const fromAddress = "xar13slrtrkn4hmhu88nlzhnk5s36t54wsugkvttg5"
+  const issuer = "xar13slrtrkn4hmhu88nlzhnk5s36t54wsugkvttg5"
+  const denominations = ["uftm"]
+
+  const msg = client.Authority.createIssuer(fromAddress, issuer, denominations)
+  const res = await client.sendTx(msg, fromAddress)
+  expect(res.status).toBe(200)
+})
+
+it("destroy issuer", async () => {
+  const client = await getClient(true)
+  const fromAddress = "xar13slrtrkn4hmhu88nlzhnk5s36t54wsugkvttg5"
+  const issuer = "xar13slrtrkn4hmhu88nlzhnk5s36t54wsugkvttg5"
+
+  const msg = client.Authority.destroyIssuer(fromAddress, issuer)
+  const res = await client.sendTx(msg, fromAddress)
+  expect(res.status).toBe(200)
+})
+
+it("create oracle", async () => {
+  const client = await getClient(true)
+  const fromAddress = "xar13slrtrkn4hmhu88nlzhnk5s36t54wsugkvttg5"
+  const oracleAddress = "xar13slrtrkn4hmhu88nlzhnk5s36t54wsugkvttg5"
+
+  const msg = client.Authority.createOracle(fromAddress, oracleAddress)
+  const res = await client.sendTx(msg, fromAddress)
+  expect(res.status).toBe(200)
+})
+
+it("create market", async () => {
+  const client = await getClient(true)
+  const fromAddress = "xar13slrtrkn4hmhu88nlzhnk5s36t54wsugkvttg5"
+  const baseAsset = "uftm"
+  const quoteAsset = "ucsdt"
+
+  const msg = client.Authority.createMarket(fromAddress, baseAsset, quoteAsset)
+  const res = await client.sendTx(msg, fromAddress)
+  expect(res.status).toBe(200)
+})*/
+
+/*it("ensures that the number is positive", async () => {
   expect(() => checkNumber(-100, "-100")).toThrowError("-100 should be a positive number")
 })
 
@@ -51,13 +97,7 @@ it("ensures that the number is less than 2^63", async () => {
   expect(() => checkNumber(Math.pow(2, 63), "2^63")).toThrowError("2^63 should be less than 2^63")
   expect(() => checkNumber(Math.pow(2, 63) + 1, "2^63")).toThrowError("2^63 should be less than 2^63")
 })
-// })
 
-// describe("XarClient test", async () => {
-
-beforeEach(() => {
-  jest.setTimeout(50000)
-})
 
 it("transfer tokens", async () => {
   const client = await getClient(false)
@@ -175,42 +215,6 @@ it("transfer tokens", async () => {
   expect(res.status).toBe(200)
 })
 
-/*it("works with a custom signing delegate", async () => {
-  const client = await getClient(true)
-  const addr = crypto.getAddressFromPrivateKey(client.privateKey)
-  const account = await client._httpClient.request("get", `/bank/balances/${addr}`)
-  const sequence = account.result && account.result.sequence
-
-  client.setSigningDelegate((tx, signMsg) => {
-    expect(tx instanceof Transaction).toBeTruthy()
-    expect(!tx.signatures.length).toBeTruthy()
-    expect(signMsg.inputs.length).toBeTruthy()
-    return tx
-  })
-
-  try {
-    await client.transfer(addr, targetAddress, 0.00000001, "ftm", "hello world", sequence)
-  } catch (err) {
-    // will throw because a signature was not added by the signing delegate.
-  }
-})
-
-it("works with a custom broadcast delegate", async () => {
-  const client = await getClient(true)
-  const addr = crypto.getAddressFromPrivateKey(client.privateKey)
-  const account = await client._httpClient.request("get", `/bank/balances/${addr}`)
-  const sequence = account.result && account.result.sequence
-
-  client.setBroadcastDelegate(signedTx => {
-    expect(signedTx instanceof Transaction).toBeTruthy()
-    expect(signedTx.signatures.length).toBeTruthy()
-    return "broadcastDelegateResult"
-  })
-
-  const res = await client.transfer(addr, targetAddress, 0.00000001, "ftm", "hello world", sequence)
-  expect(res).toBe("broadcastDelegateResult")
-})*/
-
 it("get account", async () => {
   const client = await getClient(false)
   const res = await client.getAccount(targetAddress)
@@ -245,6 +249,4 @@ it("check number when transfer", async () => {
   } catch (err) {
     expect(err.message).toBe("amount should be less than 2^63")
   }
-})
-
-// })
+})*/
