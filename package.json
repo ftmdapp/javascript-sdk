@@ -1,6 +1,6 @@
 {
   "name": "@xar-network/javascript-sdk",
-  "version": "2.15.8",
+  "version": "2.15.9",
   "license": "Apache-2.0",
   "main": "lib/index.js",
   "scripts": {

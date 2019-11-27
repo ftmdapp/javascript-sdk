@@ -8,6 +8,10 @@ The Xar Network Chain JavaScript SDK allows browsers and node.js clients to inte
 * **accounts** - management of "accounts" and wallets, including seed and encrypted mnemonic generation.
 * **ledger** - Ledger Nano S/X support via HID, U2F and Web BLE (Bluetooth).
 * **rpc** - Node RPC client.
+* **authority** - implementations of authority transaction types to add oracles, markets, and issuers.
+* **issue** - implementations of issue transaction types to issue erc20 compatible assets on-chain.
+* **issuer** - implementations of issuer transaction types to manage native system assets as well as create liquidity providers for credit based assets.
+* **liquidityprovider** - implementations of liquidity provider transaction types to manage credit based assets.
 
 # Installation
 
