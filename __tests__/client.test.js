@@ -47,7 +47,19 @@ beforeEach(() => {
   jest.setTimeout(50000)
 })
 
-it("record immutable proof", async () => {
+it("csdt", async () => {
+  const client = await getClient(true)
+  const fromAddress = "xar13slrtrkn4hmhu88nlzhnk5s36t54wsugkvttg5"
+  const collateralDenom = "uftm"
+  const collateralChange = "10000"
+  const debtChange = "100"
+
+  const msg = client.CSDT.createOrModifyCSDT(fromAddress, collateralDenom, collateralChange, debtChange)
+  const res = await client.sendTx(msg, fromAddress)
+  expect(res.status).toBe(200)
+})
+
+/*it("record immutable proof", async () => {
   const client = await getClient(true)
   const fromAddress = "xar13slrtrkn4hmhu88nlzhnk5s36t54wsugkvttg5"
   const name = "123"
@@ -60,7 +72,7 @@ it("record immutable proof", async () => {
   const msg = client.Record.record(fromAddress, name, author, hash, recordNo, recordType, description)
   const res = await client.sendTx(msg, fromAddress)
   expect(res.status).toBe(200)
-})
+})*/
 
 
 /*it("mint tokens liquidity provider", async () => {

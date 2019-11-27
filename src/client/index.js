@@ -8,6 +8,7 @@ import Authority from "../authority"
 import LiquidityProvider from "../liquidityprovider"
 import Record from "../record"
 import Issuer from "../issuer"
+import CSDT from "../csdt"
 import HttpRequest from "../utils/request"
 import { checkNumber } from "../utils/validateHelper"
 import { txType } from '../tx/'
@@ -149,6 +150,7 @@ export class XarClient {
     this.Authority = new Authority()
     this.Issuer = new Issuer()
     this.Record = new Record()
+    this.CSDT = new CSDT()
     this.LiquidityProvider = new LiquidityProvider()
     this._useAsyncBroadcast = useAsyncBroadcast
     this._source = source

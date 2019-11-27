@@ -12,6 +12,8 @@ The Xar Network Chain JavaScript SDK allows browsers and node.js clients to inte
 * **issue** - implementations of issue transaction types to issue erc20 compatible assets on-chain.
 * **issuer** - implementations of issuer transaction types to manage native system assets as well as create liquidity providers for credit based assets.
 * **liquidityprovider** - implementations of liquidity provider transaction types to manage credit based assets.
+* **record** - implementations of record transaction types to capture immutable proofs on-chain.
+* **csdt** - implementations of csdt transaction types manage collateral stable debt tokens.
 
 # Installation
 
