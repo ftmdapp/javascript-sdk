@@ -6,6 +6,7 @@ import Transaction from "../tx"
 import Issue from "../issue"
 import Authority from "../authority"
 import LiquidityProvider from "../liquidityprovider"
+import Record from "../record"
 import Issuer from "../issuer"
 import HttpRequest from "../utils/request"
 import { checkNumber } from "../utils/validateHelper"
@@ -147,6 +148,7 @@ export class XarClient {
     this.Issue = new Issue()
     this.Authority = new Authority()
     this.Issuer = new Issuer()
+    this.Record = new Record()
     this.LiquidityProvider = new LiquidityProvider()
     this._useAsyncBroadcast = useAsyncBroadcast
     this._source = source

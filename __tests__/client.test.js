@@ -47,7 +47,23 @@ beforeEach(() => {
   jest.setTimeout(50000)
 })
 
-it("mint tokens liquidity provider", async () => {
+it("record immutable proof", async () => {
+  const client = await getClient(true)
+  const fromAddress = "xar13slrtrkn4hmhu88nlzhnk5s36t54wsugkvttg5"
+  const name = "123"
+  const author = "bob"
+  const hash = "e1273esa"
+  const recordNo = "1"
+  const recordType = "123"
+  const description = "lorem ipsum"
+
+  const msg = client.Record.record(fromAddress, name, author, hash, recordNo, recordType, description)
+  const res = await client.sendTx(msg, fromAddress)
+  expect(res.status).toBe(200)
+})
+
+
+/*it("mint tokens liquidity provider", async () => {
   const client = await getClient(true)
   const fromAddress = "xar13slrtrkn4hmhu88nlzhnk5s36t54wsugkvttg5"
   const amount = [{
@@ -71,7 +87,7 @@ it("burn tokens liquidity provider", async () => {
   const msg = client.LiquidityProvider.burnTokens(fromAddress, amount)
   const res = await client.sendTx(msg, fromAddress)
   expect(res.status).toBe(200)
-})
+})*/
 
 /*it("increase credit", async () => {
   const client = await getClient(true)

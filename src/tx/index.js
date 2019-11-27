@@ -58,6 +58,7 @@ export const txType = {
   MsgDelegate: "cosmos-sdk/MsgDelegate",
   MsgUndelegate: "cosmos-sdk/MsgUndelegate",
   MsgBeginRedelegate: "cosmos-sdk/MsgBeginRedelegate",
+  MsgRecord: "record/MsgRecord",
 }
 
 /**
