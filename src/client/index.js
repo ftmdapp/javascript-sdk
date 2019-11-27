@@ -5,6 +5,7 @@ import * as crypto from "../crypto"
 import Transaction from "../tx"
 import Issue from "../issue"
 import Authority from "../authority"
+import Issuer from "../issuer"
 import HttpRequest from "../utils/request"
 import { checkNumber } from "../utils/validateHelper"
 import { txType } from '../tx/'
@@ -144,6 +145,7 @@ export class XarClient {
     this._broadcastDelegate = DefaultBroadcastDelegate
     this.Issue = new Issue()
     this.Authority = new Authority()
+    this.Issuer = new Issuer()
     this._useAsyncBroadcast = useAsyncBroadcast
     this._source = source
   }

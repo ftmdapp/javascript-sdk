@@ -10,24 +10,24 @@ const MAXTOTALSUPPLY = 9000000000000000000
 
 class Issuer {
   /**
-   * create a new issuer for native denoms
-   * @param {String} - senderAddress / authority
-   * @param {String} - issuer
-   * @param {String} - denominations
+   * increase the credit of a liquidity provider
+   * @param {String} - senderAddress / issuer
+   * @param {String} - liquidityProvider
+   * @param {String} - creditIncrease
    */
-  createIssuer(senderAddress, issuer, denominations) {
+  increaseCredit(senderAddress, liquidityProvider, creditIncrease) {
     if (!senderAddress) {
       throw new Error("sender address cannot be empty")
     }
 
     const value = {
-      Issuer: issuer,
-      Denominations: denominations,
-      Authority: senderAddress
+      CreditIncrease: creditIncrease,
+      LiquidityProvider: liquidityProvider,
+      Issuer: senderAddress
     }
 
     const msg = {
-      type: txType.MsgCreateIssuer,
+      type: txType.MsgIncreaseCredit,
       value: value
     }
 
@@ -35,22 +35,24 @@ class Issuer {
   }
 
   /**
-   * destroy an issuer for native denoms
-   * @param {String} - senderAddress / authority
-   * @param {String} - issuer
+   * decrease the credit of a liquidity provider
+   * @param {String} - senderAddress / issuer
+   * @param {String} - liquidityProvider
+   * @param {String} - creditDecrease
    */
-  destroyIssuer(senderAddress, issuer) {
+  decreaseCredit(senderAddress, liquidityProvider, creditDecrease) {
     if (!senderAddress) {
       throw new Error("sender address cannot be empty")
     }
 
     const value = {
-      Issuer: issuer,
-      Authority: senderAddress
+      CreditDecrease: creditDecrease,
+      LiquidityProvider: liquidityProvider,
+      Issuer: senderAddress
     }
 
     const msg = {
-      type: txType.MsgDestroyIssuer,
+      type: txType.MsgDecreaseCredit,
       value: value
     }
 
@@ -58,47 +60,22 @@ class Issuer {
   }
 
   /**
-   * create a new oracle for oracle feeds
-   * @param {String} - senderAddress / authority
-   * @param {String} - oracle address
+   * Revoke liquidity provider
+   * @param {String} - senderAddress / issuer
+   * @param {String} - liquidityProvider
    */
-  createOracle(senderAddress, oracleAddress) {
+  revokeLiquidityProvider(senderAddress, liquidityProvider) {
     if (!senderAddress) {
       throw new Error("sender address cannot be empty")
     }
 
     const value = {
-      Oracle: oracleAddress,
-      Authority: senderAddress
+      LiquidityProvider: liquidityProvider,
+      Issuer: senderAddress
     }
 
     const msg = {
-      type: txType.MsgCreateOracle,
-      value: value
-    }
-
-    return msg
-  }
-
-  /**
-   * create a new market for dex
-   * @param {String} - senderAddress / authority
-   * @param {String} - baseAsset
-   * @param {String} - quoteAsset
-   */
-  createMarket(senderAddress, baseAsset, quoteAsset) {
-    if (!senderAddress) {
-      throw new Error("sender address cannot be empty")
-    }
-
-    const value = {
-      BaseAsset: baseAsset,
-      QuoteAsset: quoteAsset,
-      Authority: senderAddress
-    }
-
-    const msg = {
-      type: txType.MsgCreateMarket,
+      type: txType.MsgRevokeLiquidityProvider,
       value: value
     }
 

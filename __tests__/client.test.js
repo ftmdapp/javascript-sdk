@@ -47,6 +47,45 @@ beforeEach(() => {
   jest.setTimeout(50000)
 })
 
+/*it("increase credit", async () => {
+  const client = await getClient(true)
+  const fromAddress = "xar13slrtrkn4hmhu88nlzhnk5s36t54wsugkvttg5"
+  const liquidityProvider = "xar13slrtrkn4hmhu88nlzhnk5s36t54wsugkvttg5"
+  const creditIncrease = [{
+      denom: 'uftm',
+      amount: '1000'
+  }]
+
+  const msg = client.Issuer.increaseCredit(fromAddress, liquidityProvider, creditIncrease)
+  const res = await client.sendTx(msg, fromAddress)
+  expect(res.status).toBe(200)
+})
+
+it("decrease credit", async () => {
+  const client = await getClient(true)
+  const fromAddress = "xar13slrtrkn4hmhu88nlzhnk5s36t54wsugkvttg5"
+  const liquidityProvider = "xar13slrtrkn4hmhu88nlzhnk5s36t54wsugkvttg5"
+  const creditDecrease = [{
+      denom: 'uftm',
+      amount: '1000'
+  }]
+
+
+  const msg = client.Issuer.decreaseCredit(fromAddress, liquidityProvider, creditDecrease)
+  const res = await client.sendTx(msg, fromAddress)
+  expect(res.status).toBe(200)
+})
+
+it("revoke liquidity provider", async () => {
+  const client = await getClient(true)
+  const fromAddress = "xar13slrtrkn4hmhu88nlzhnk5s36t54wsugkvttg5"
+  const liquidityProvider = "xar13slrtrkn4hmhu88nlzhnk5s36t54wsugkvttg5"
+
+  const msg = client.Issuer.revokeLiquidityProvider(fromAddress, liquidityProvider)
+  const res = await client.sendTx(msg, fromAddress)
+  expect(res.status).toBe(200)
+})*/
+
 /*it("create issuer", async () => {
   const client = await getClient(true)
   const fromAddress = "xar13slrtrkn4hmhu88nlzhnk5s36t54wsugkvttg5"
