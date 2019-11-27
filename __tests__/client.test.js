@@ -1,11 +1,11 @@
-import ZarClient from "../src"
+import XarClient from "../src"
 import { checkNumber } from "../src/utils/validateHelper"
 import * as crypto from "../src/crypto"
 import Transaction from "../src/tx"
 import { voteOption } from "../src/gov/"
 
 /* make sure the address from the mnemonic has balances, or the case will failed */
-const mnemonic = "antenna reject civil thrive novel boy health chronic sport vote maximum message false walnut share ability bag ladder volume ring slam daring similar day"
+const mnemonic = "outdoor typical inspire firm curtain rich favorite before owner switch club sheriff design alone upset undo void reason squeeze anchor pencil chest grief catalog"
 
 const keystores = {
   // keystore with sha3 mac
@@ -16,10 +16,10 @@ const keystores = {
   badMac: { "version": 1, "id": "dfb09873-f16f-48c6-a6b8-bb5a705c47a7", "address": "bnc1dxj068zgk007fchefj9n8tq06pcuce5ypqm5zk", "crypto": { "ciphertext": "33b7439a8d64d73357dc91f88a6b3a45e7303717664d17daf8e8dc1cc708fa4b", "cipherparams": { "iv": "88c726d70cd0437bfdb2312dc60103fc" }, "cipher": "aes-256-ctr", "kdf": "pbkdf2", "kdfparams": { "dklen": 32, "salt": "ad10ef544417d4a25914dec3d908882686dd9d793b5c484b76fd5aa575cf54b9", "c": 262144, "prf": "hmac-sha256" }, "mac": "x7cc301d18c97c71741492b8029544952ad5567a733971deb49fd3eb03ee696e" } },
 }
 
-const targetAddress = "zar1alh4yqa0sustmm6u64ygxx6awna90y636w73a7"
+const targetAddress = "xar13slrtrkn4hmhu88nlzhnk5s36t54wsugkvttg5"
 
 const getClient = async (useAwaitSetPrivateKey = true, doNotSetPrivateKey = false) => {
-  const client = new ZarClient("http://localhost:1317")
+  const client = new XarClient("http://localhost:1317")
   await client.initChain()
   const privateKey = crypto.getPrivateKeyFromMnemonic(mnemonic)
   if (!doNotSetPrivateKey) {
@@ -53,7 +53,7 @@ it("ensures that the number is less than 2^63", async () => {
 })
 // })
 
-// describe("ZarClient test", async () => {
+// describe("XarClient test", async () => {
 
 beforeEach(() => {
   jest.setTimeout(50000)
@@ -69,7 +69,7 @@ it("transfer tokens", async () => {
 /*it("issue token", async () => {
   const client = await getClient(true)
   console.log(client)
-  const addr = "zar1alh4yqa0sustmm6u64ygxx6awna90y636w73a7"
+  const addr = "xar13slrtrkn4hmhu88nlzhnk5s36t54wsugkvttg5"
   const symbol = "MINT"
   const tokenName = "test issue token"
   const totalSupply = 21000000
@@ -81,8 +81,8 @@ it("transfer tokens", async () => {
 
 /*it("mint token", async () => {
   const client = await getClient(true)
-  const from = "zar1alh4yqa0sustmm6u64ygxx6awna90y636w73a7"
-  const to = "zar1fmxprwjafu8uk234zd7utynl8q8a8kwf62v5wp"
+  const from = "xar13slrtrkn4hmhu88nlzhnk5s36t54wsugkvttg5"
+  const to = "xar1fmxprwjafu8uk234zd7utynl8q8a8kwf62v5wp"
   const symbol = "coin174876e800"
   const amount = 10000000
   const res = await client.mint(from, symbol, amount, to)
@@ -92,7 +92,7 @@ it("transfer tokens", async () => {
 
 /*it("burn token", async () => {
   const client = await getClient(true)
-  const addr = "zar1alh4yqa0sustmm6u64ygxx6awna90y636w73a7"
+  const addr = "xar13slrtrkn4hmhu88nlzhnk5s36t54wsugkvttg5"
   const symbol = "coin174876e800"
   const amount = 10000
   const res = await client.burn(addr, symbol, amount)
@@ -248,7 +248,7 @@ it("check number when transfer", async () => {
 
 it("issue token", async () => {
   const client = await getClient(true)
-  const addr = "zar1vq4k0nsxyvpk36gfcp6r5cpacygk3szt77lcpd"
+  const addr = "xar1vq4k0nsxyvpk36gfcp6r5cpacygk3szt77lcpd"
   const symbol = "MINT"
   const tokenName = "test issue token"
   const totalSupply = 21000000
@@ -260,7 +260,7 @@ it("issue token", async () => {
 
 it("freeze token", async () => {
   const client = await getClient(true)
-  const addr = "zar1hgm0p7khfk85zpz5v0j8wnej3a90w70979t4js"
+  const addr = "xar1hgm0p7khfk85zpz5v0j8wnej3a90w70979t4js"
   const symbol = "XZJ-D9A"
   const amount = 10000
 
@@ -270,7 +270,7 @@ it("freeze token", async () => {
 
 it("unfreeze token", async () => {
   const client = await getClient(true)
-  const addr = "zar1hgm0p7khfk85zpz5v0j8wnej3a90w70979t4js"
+  const addr = "xar1hgm0p7khfk85zpz5v0j8wnej3a90w70979t4js"
   const symbol = "XZJ-D9A"
   const amount = 100
   try {
@@ -283,7 +283,7 @@ it("unfreeze token", async () => {
 
 it("burn token", async () => {
   const client = await getClient(true)
-  const addr = "zar1hgm0p7khfk85zpz5v0j8wnej3a90w70979t4js"
+  const addr = "xar1hgm0p7khfk85zpz5v0j8wnej3a90w70979t4js"
   const symbol = "coin174876e801"
   const amount = 10000
   const res = await client.tokens.burn(addr, symbol, amount)
@@ -293,7 +293,7 @@ it("burn token", async () => {
 
 it("mint token", async () => {
   const client = await getClient(true)
-  const addr = "zar1hgm0p7khfk85zpz5v0j8wnej3a90w70979t4js"
+  const addr = "xar1hgm0p7khfk85zpz5v0j8wnej3a90w70979t4js"
   const symbol = "coin174876e801"
   const amount = 10000000
   const res = await client.tokens.mint(addr, symbol, amount)

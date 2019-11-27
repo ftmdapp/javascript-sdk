@@ -39,7 +39,8 @@ class HttpRequest {
         let error = err
         try {
           const msgObj = err.response && err.response.data
-          error = new Error(msgObj.message)
+          console.log(msgObj)
+          error = new Error(msgObj.error)
           error.code = msgObj.code
         } catch (err) {
           throw error

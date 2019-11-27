@@ -40,8 +40,8 @@ export const api = {
 }
 
 const NETWORK_PREFIX_MAPPING = {
-  "testnet": "tzar",
-  "mainnet": "zar"
+  "testnet": "txar",
+  "mainnet": "xar"
 }
 
 /**
@@ -125,11 +125,11 @@ const calInputCoins = (inputs, coins) => {
 }
 
 /**
- * The Zar Chain client.
+ * The Xar Chain client.
  */
-export class ZarClient {
+export class XarClient {
   /**
-   * @param {String} server Zar Chain public url
+   * @param {String} server Xar Chain public url
    * @param {Boolean} useAsyncBroadcast use async broadcast mode, faster but less guarantees (default off)
    * @param {Number} source where does this transaction come from (default 0)
    */
@@ -161,7 +161,7 @@ export class ZarClient {
    * @param {String} network Indicate testnet or mainnet
    */
   chooseNetwork(network) {
-    this.addressPrefix = NETWORK_PREFIX_MAPPING[network] || "tzar"
+    this.addressPrefix = NETWORK_PREFIX_MAPPING[network] || "txar"
     this.network = NETWORK_PREFIX_MAPPING[network] ? network : "testnet"
   }
 
@@ -187,7 +187,7 @@ export class ZarClient {
   /**
    * Use async broadcast mode. Broadcasts faster with less guarantees (default off)
    * @param {Boolean} useAsyncBroadcast
-   * @return {ZarClient} this instance (for chaining)
+   * @return {XarClient} this instance (for chaining)
    */
   useAsyncBroadcast(useAsyncBroadcast = true) {
     this._useAsyncBroadcast = useAsyncBroadcast
@@ -197,7 +197,7 @@ export class ZarClient {
   /**
    * Sets the signing delegate (for wallet integrations).
    * @param {function} delegate
-   * @return {ZarClient} this instance (for chaining)
+   * @return {XarClient} this instance (for chaining)
    */
   setSigningDelegate(delegate) {
     if (typeof delegate !== "function") throw new Error("signing delegate must be a function")
@@ -208,7 +208,7 @@ export class ZarClient {
   /**
    * Sets the broadcast delegate (for wallet integrations).
    * @param {function} delegate
-   * @return {ZarClient} this instance (for chaining)
+   * @return {XarClient} this instance (for chaining)
    */
   setBroadcastDelegate(delegate) {
     if (typeof delegate !== "function") throw new Error("broadcast delegate must be a function")
@@ -218,7 +218,7 @@ export class ZarClient {
 
   /**
    * Applies the default signing delegate.
-   * @return {ZarClient} this instance (for chaining)
+   * @return {XarClient} this instance (for chaining)
    */
   useDefaultSigningDelegate() {
     this._signingDelegate = DefaultSigningDelegate
@@ -227,7 +227,7 @@ export class ZarClient {
 
   /**
    * Applies the default broadcast delegate.
-   * @return {ZarClient} this instance (for chaining)
+   * @return {XarClient} this instance (for chaining)
    */
   useDefaultBroadcastDelegate() {
     this._broadcastDelegate = DefaultBroadcastDelegate
@@ -240,7 +240,7 @@ export class ZarClient {
    * @param {function} preSignCb
    * @param {function} postSignCb
    * @param {function} errCb
-   * @return {ZarClient} this instance (for chaining)
+   * @return {XarClient} this instance (for chaining)
    */
   useLedgerSigningDelegate(ledgerApp, preSignCb, postSignCb, errCb, hdPath) {
     this._signingDelegate = LedgerSigningDelegate(ledgerApp, preSignCb, postSignCb, errCb, hdPath)
@@ -273,7 +273,7 @@ export class ZarClient {
     }
 
     const msg = {
-      type: txType.SendMsg,
+      type: txType.MsgSend,
       value: value
     }
     const signedTx = await this._prepareTransaction(msg, fromAddress, sequence, memo)
@@ -608,7 +608,7 @@ export class ZarClient {
   }
 
   /**
-   * create a new asset on Zar Network Chain
+   * create a new asset on Xar Network Chain
    * @param {String} - senderAddress
    * @param {String} - tokenName
    * @param {String} - symbol

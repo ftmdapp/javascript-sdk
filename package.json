@@ -1,5 +1,5 @@
 {
-  "name": "@zar-network/javascript-sdk",
+  "name": "@xar-network/javascript-sdk",
   "version": "2.15.7",
   "license": "Apache-2.0",
   "main": "lib/index.js",

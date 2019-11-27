@@ -6,10 +6,10 @@ import * as utils from "./utils"
 import rpc from "./rpc/client"
 import Ledger from "./ledger"
 
-const { ZarClient } = client
+const { XarClient } = client
 const amino = { ...encoder, ...decoder }
 
-module.exports = ZarClient
+module.exports = XarClient
 module.exports.crypto = crypto
 module.exports.amino = amino
 module.exports.utils = utils

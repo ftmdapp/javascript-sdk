@@ -33,11 +33,11 @@ class TokenManagement {
   static instance
 
   /**
-   * @param {Object} ZarClient
+   * @param {Object} XarClient
    */
-  constructor(ZarClient) {
+  constructor(XarClient) {
     if (!TokenManagement.instance) {
-      this._ZarClient = ZarClient
+      this._XarClient = XarClient
       TokenManagement.instance = this
     }
 
@@ -93,8 +93,8 @@ class TokenManagement {
       value: value
     }
 
-    const signedTx = await this._ZarClient._prepareTransaction(issueMsg, issueMsg, senderAddress)
-    return this._ZarClient._broadcastDelegate(signedTx)
+    const signedTx = await this._XarClient._prepareTransaction(issueMsg, issueMsg, senderAddress)
+    return this._XarClient._broadcastDelegate(signedTx)
   }
 
   /**
@@ -118,8 +118,8 @@ class TokenManagement {
       symbol
     }
 
-    const signedTx = await this._ZarClient._prepareTransaction(freezeMsg, freezeSignMsg, fromAddress)
-    return this._ZarClient._broadcastDelegate(signedTx)
+    const signedTx = await this._XarClient._prepareTransaction(freezeMsg, freezeSignMsg, fromAddress)
+    return this._XarClient._broadcastDelegate(signedTx)
   }
 
   /**
@@ -142,8 +142,8 @@ class TokenManagement {
       symbol
     }
 
-    const signedTx = await this._ZarClient._prepareTransaction(unfreezeMsg, unfreezeSignMsg, fromAddress)
-    return this._ZarClient._broadcastDelegate(signedTx)
+    const signedTx = await this._XarClient._prepareTransaction(unfreezeMsg, unfreezeSignMsg, fromAddress)
+    return this._XarClient._broadcastDelegate(signedTx)
   }
 
   /**
@@ -156,7 +156,7 @@ class TokenManagement {
   async burn(fromAddress, symbol, amount) {
     validateSymbol(symbol)
 
-    validateNonZeroAmount(amount, symbol, fromAddress, this._ZarClient._httpClient)
+    validateNonZeroAmount(amount, symbol, fromAddress, this._XarClient._httpClient)
 
     amount = new Big(amount)
 
@@ -171,8 +171,8 @@ class TokenManagement {
       value: value
     }
 
-    const signedTx = await this._ZarClient._prepareTransaction(burnMsg, burnMsg, fromAddress)
-    return this._ZarClient._broadcastDelegate(signedTx)
+    const signedTx = await this._XarClient._prepareTransaction(burnMsg, burnMsg, fromAddress)
+    return this._XarClient._broadcastDelegate(signedTx)
   }
 
   /**
@@ -204,8 +204,8 @@ class TokenManagement {
       value: value
     }
 
-    const signedTx = await this._ZarClient._prepareTransaction(mintMsg, mintMsg, fromAddress)
-    return this._ZarClient._broadcastDelegate(signedTx)
+    const signedTx = await this._XarClient._prepareTransaction(mintMsg, mintMsg, fromAddress)
+    return this._XarClient._broadcastDelegate(signedTx)
   }
 }
 

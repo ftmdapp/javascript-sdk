@@ -46,33 +46,33 @@
 
 * [client](#module_client)
     * _static_
-        * [.ZarClient](#module_client.ZarClient)
-            * [new exports.ZarClient(server, useAsyncBroadcast, source)](#new_module_client.ZarClient_new)
-            * [.initChain()](#module_client.ZarClient+initChain) ⇒ <code>Promise</code>
-            * [.chooseNetwork(network)](#module_client.ZarClient+chooseNetwork)
-            * [.setPrivateKey()](#module_client.ZarClient+setPrivateKey) ⇒ <code>Promise</code>
-            * [.useAsyncBroadcast(useAsyncBroadcast)](#module_client.ZarClient+useAsyncBroadcast) ⇒ <code>ZarClient</code>
-            * [.setSigningDelegate(delegate)](#module_client.ZarClient+setSigningDelegate) ⇒ <code>ZarClient</code>
-            * [.setBroadcastDelegate(delegate)](#module_client.ZarClient+setBroadcastDelegate) ⇒ <code>ZarClient</code>
-            * [.useDefaultSigningDelegate()](#module_client.ZarClient+useDefaultSigningDelegate) ⇒ <code>ZarClient</code>
-            * [.useDefaultBroadcastDelegate()](#module_client.ZarClient+useDefaultBroadcastDelegate) ⇒ <code>ZarClient</code>
-            * [.useLedgerSigningDelegate(ledgerApp, preSignCb, postSignCb, errCb)](#module_client.ZarClient+useLedgerSigningDelegate) ⇒ <code>ZarClient</code>
-            * [.transfer(fromAddress, toAddress, amount, asset, memo, sequence)](#module_client.ZarClient+transfer) ⇒ <code>Promise</code>
-            * [.multiSend(fromAddress, outputs, memo, sequence)](#module_client.ZarClient+multiSend) ⇒ <code>Promise</code>
-            * [._prepareTransaction(msg, stdSignMsg, address, sequence, memo)](#module_client.ZarClient+_prepareTransaction) ⇒ [<code>Transaction</code>](#Transaction)
-            * [.sendTransaction(tx, sync)](#module_client.ZarClient+sendTransaction) ⇒ <code>Promise</code>
-            * [.sendRawTransaction(signedBz, sync)](#module_client.ZarClient+sendRawTransaction) ⇒ <code>Promise</code>
-            * [._sendTransaction(msg, stdSignMsg, address, sequence, memo, sync)](#module_client.ZarClient+_sendTransaction) ⇒ <code>Promise</code>
-            * [.getAccount(address)](#module_client.ZarClient+getAccount) ⇒ <code>Promise</code>
-            * [.getBalance(address)](#module_client.ZarClient+getBalance) ⇒ <code>Promise</code>
-            * [.createAccount()](#module_client.ZarClient+createAccount) ⇒ <code>object</code>
-            * [.createAccountWithKeystore(password)](#module_client.ZarClient+createAccountWithKeystore)
-            * [.createAccountWithMneomnic()](#module_client.ZarClient+createAccountWithMneomnic) ⇒ <code>object</code>
-            * [.recoverAccountFromKeystore(keystore, keystore)](#module_client.ZarClient+recoverAccountFromKeystore)
-            * [.recoverAccountFromMnemonic(mneomnic)](#module_client.ZarClient+recoverAccountFromMnemonic)
-            * [.recoverAccountFromPrivateKey(privateKey)](#module_client.ZarClient+recoverAccountFromPrivateKey)
-            * [.checkAddress(address, prefix)](#module_client.ZarClient+checkAddress) ⇒ <code>Boolean</code>
-            * [.getClientKeyAddress()](#module_client.ZarClient+getClientKeyAddress) ⇒ <code>String</code>
+        * [.XarClient](#module_client.XarClient)
+            * [new exports.XarClient(server, useAsyncBroadcast, source)](#new_module_client.XarClient_new)
+            * [.initChain()](#module_client.XarClient+initChain) ⇒ <code>Promise</code>
+            * [.chooseNetwork(network)](#module_client.XarClient+chooseNetwork)
+            * [.setPrivateKey()](#module_client.XarClient+setPrivateKey) ⇒ <code>Promise</code>
+            * [.useAsyncBroadcast(useAsyncBroadcast)](#module_client.XarClient+useAsyncBroadcast) ⇒ <code>XarClient</code>
+            * [.setSigningDelegate(delegate)](#module_client.XarClient+setSigningDelegate) ⇒ <code>XarClient</code>
+            * [.setBroadcastDelegate(delegate)](#module_client.XarClient+setBroadcastDelegate) ⇒ <code>XarClient</code>
+            * [.useDefaultSigningDelegate()](#module_client.XarClient+useDefaultSigningDelegate) ⇒ <code>XarClient</code>
+            * [.useDefaultBroadcastDelegate()](#module_client.XarClient+useDefaultBroadcastDelegate) ⇒ <code>XarClient</code>
+            * [.useLedgerSigningDelegate(ledgerApp, preSignCb, postSignCb, errCb)](#module_client.XarClient+useLedgerSigningDelegate) ⇒ <code>XarClient</code>
+            * [.transfer(fromAddress, toAddress, amount, asset, memo, sequence)](#module_client.XarClient+transfer) ⇒ <code>Promise</code>
+            * [.multiSend(fromAddress, outputs, memo, sequence)](#module_client.XarClient+multiSend) ⇒ <code>Promise</code>
+            * [._prepareTransaction(msg, stdSignMsg, address, sequence, memo)](#module_client.XarClient+_prepareTransaction) ⇒ [<code>Transaction</code>](#Transaction)
+            * [.sendTransaction(tx, sync)](#module_client.XarClient+sendTransaction) ⇒ <code>Promise</code>
+            * [.sendRawTransaction(signedBz, sync)](#module_client.XarClient+sendRawTransaction) ⇒ <code>Promise</code>
+            * [._sendTransaction(msg, stdSignMsg, address, sequence, memo, sync)](#module_client.XarClient+_sendTransaction) ⇒ <code>Promise</code>
+            * [.getAccount(address)](#module_client.XarClient+getAccount) ⇒ <code>Promise</code>
+            * [.getBalance(address)](#module_client.XarClient+getBalance) ⇒ <code>Promise</code>
+            * [.createAccount()](#module_client.XarClient+createAccount) ⇒ <code>object</code>
+            * [.createAccountWithKeystore(password)](#module_client.XarClient+createAccountWithKeystore)
+            * [.createAccountWithMneomnic()](#module_client.XarClient+createAccountWithMneomnic) ⇒ <code>object</code>
+            * [.recoverAccountFromKeystore(keystore, keystore)](#module_client.XarClient+recoverAccountFromKeystore)
+            * [.recoverAccountFromMnemonic(mneomnic)](#module_client.XarClient+recoverAccountFromMnemonic)
+            * [.recoverAccountFromPrivateKey(privateKey)](#module_client.XarClient+recoverAccountFromPrivateKey)
+            * [.checkAddress(address, prefix)](#module_client.XarClient+checkAddress) ⇒ <code>Boolean</code>
+            * [.getClientKeyAddress()](#module_client.XarClient+getClientKeyAddress) ⇒ <code>String</code>
         * [.DefaultSigningDelegate](#module_client.DefaultSigningDelegate) ⇒ [<code>Transaction</code>](#Transaction)
         * [.DefaultBroadcastDelegate](#module_client.DefaultBroadcastDelegate)
         * [.LedgerSigningDelegate](#module_client.LedgerSigningDelegate) ⇒ <code>function</code>
@@ -80,131 +80,131 @@
         * [~checkOutputs(outputs)](#module_client..checkOutputs)
         * [~calInputCoins(inputs, coins)](#module_client..calInputCoins)
 
-<a name="module_client.ZarClient"></a>
+<a name="module_client.XarClient"></a>
 
-### client.ZarClient
-The Zar Network Chain client.
+### client.XarClient
+The Xar Network Chain client.
 
 **Kind**: static class of [<code>client</code>](#module_client)  
 
-* [.ZarClient](#module_client.ZarClient)
-    * [new exports.ZarClient(server, useAsyncBroadcast, source)](#new_module_client.ZarClient_new)
-    * [.initChain()](#module_client.ZarClient+initChain) ⇒ <code>Promise</code>
-    * [.chooseNetwork(network)](#module_client.ZarClient+chooseNetwork)
-    * [.setPrivateKey()](#module_client.ZarClient+setPrivateKey) ⇒ <code>Promise</code>
-    * [.useAsyncBroadcast(useAsyncBroadcast)](#module_client.ZarClient+useAsyncBroadcast) ⇒ <code>ZarClient</code>
-    * [.setSigningDelegate(delegate)](#module_client.ZarClient+setSigningDelegate) ⇒ <code>ZarClient</code>
-    * [.setBroadcastDelegate(delegate)](#module_client.ZarClient+setBroadcastDelegate) ⇒ <code>ZarClient</code>
-    * [.useDefaultSigningDelegate()](#module_client.ZarClient+useDefaultSigningDelegate) ⇒ <code>ZarClient</code>
-    * [.useDefaultBroadcastDelegate()](#module_client.ZarClient+useDefaultBroadcastDelegate) ⇒ <code>ZarClient</code>
-    * [.useLedgerSigningDelegate(ledgerApp, preSignCb, postSignCb, errCb)](#module_client.ZarClient+useLedgerSigningDelegate) ⇒ <code>ZarClient</code>
-    * [.transfer(fromAddress, toAddress, amount, asset, memo, sequence)](#module_client.ZarClient+transfer) ⇒ <code>Promise</code>
-    * [.multiSend(fromAddress, outputs, memo, sequence)](#module_client.ZarClient+multiSend) ⇒ <code>Promise</code>
-    * [._prepareTransaction(msg, stdSignMsg, address, sequence, memo)](#module_client.ZarClient+_prepareTransaction) ⇒ [<code>Transaction</code>](#Transaction)
-    * [.sendTransaction(tx, sync)](#module_client.ZarClient+sendTransaction) ⇒ <code>Promise</code>
-    * [.sendRawTransaction(signedBz, sync)](#module_client.ZarClient+sendRawTransaction) ⇒ <code>Promise</code>
-    * [._sendTransaction(msg, stdSignMsg, address, sequence, memo, sync)](#module_client.ZarClient+_sendTransaction) ⇒ <code>Promise</code>
-    * [.getAccount(address)](#module_client.ZarClient+getAccount) ⇒ <code>Promise</code>
-    * [.getBalance(address)](#module_client.ZarClient+getBalance) ⇒ <code>Promise</code>
-    * [.createAccount()](#module_client.ZarClient+createAccount) ⇒ <code>object</code>
-    * [.createAccountWithKeystore(password)](#module_client.ZarClient+createAccountWithKeystore)
-    * [.createAccountWithMneomnic()](#module_client.ZarClient+createAccountWithMneomnic) ⇒ <code>object</code>
-    * [.recoverAccountFromKeystore(keystore, keystore)](#module_client.ZarClient+recoverAccountFromKeystore)
-    * [.recoverAccountFromMnemonic(mneomnic)](#module_client.ZarClient+recoverAccountFromMnemonic)
-    * [.recoverAccountFromPrivateKey(privateKey)](#module_client.ZarClient+recoverAccountFromPrivateKey)
-    * [.checkAddress(address, prefix)](#module_client.ZarClient+checkAddress) ⇒ <code>Boolean</code>
-    * [.getClientKeyAddress()](#module_client.ZarClient+getClientKeyAddress) ⇒ <code>String</code>
+* [.XarClient](#module_client.XarClient)
+    * [new exports.XarClient(server, useAsyncBroadcast, source)](#new_module_client.XarClient_new)
+    * [.initChain()](#module_client.XarClient+initChain) ⇒ <code>Promise</code>
+    * [.chooseNetwork(network)](#module_client.XarClient+chooseNetwork)
+    * [.setPrivateKey()](#module_client.XarClient+setPrivateKey) ⇒ <code>Promise</code>
+    * [.useAsyncBroadcast(useAsyncBroadcast)](#module_client.XarClient+useAsyncBroadcast) ⇒ <code>XarClient</code>
+    * [.setSigningDelegate(delegate)](#module_client.XarClient+setSigningDelegate) ⇒ <code>XarClient</code>
+    * [.setBroadcastDelegate(delegate)](#module_client.XarClient+setBroadcastDelegate) ⇒ <code>XarClient</code>
+    * [.useDefaultSigningDelegate()](#module_client.XarClient+useDefaultSigningDelegate) ⇒ <code>XarClient</code>
+    * [.useDefaultBroadcastDelegate()](#module_client.XarClient+useDefaultBroadcastDelegate) ⇒ <code>XarClient</code>
+    * [.useLedgerSigningDelegate(ledgerApp, preSignCb, postSignCb, errCb)](#module_client.XarClient+useLedgerSigningDelegate) ⇒ <code>XarClient</code>
+    * [.transfer(fromAddress, toAddress, amount, asset, memo, sequence)](#module_client.XarClient+transfer) ⇒ <code>Promise</code>
+    * [.multiSend(fromAddress, outputs, memo, sequence)](#module_client.XarClient+multiSend) ⇒ <code>Promise</code>
+    * [._prepareTransaction(msg, stdSignMsg, address, sequence, memo)](#module_client.XarClient+_prepareTransaction) ⇒ [<code>Transaction</code>](#Transaction)
+    * [.sendTransaction(tx, sync)](#module_client.XarClient+sendTransaction) ⇒ <code>Promise</code>
+    * [.sendRawTransaction(signedBz, sync)](#module_client.XarClient+sendRawTransaction) ⇒ <code>Promise</code>
+    * [._sendTransaction(msg, stdSignMsg, address, sequence, memo, sync)](#module_client.XarClient+_sendTransaction) ⇒ <code>Promise</code>
+    * [.getAccount(address)](#module_client.XarClient+getAccount) ⇒ <code>Promise</code>
+    * [.getBalance(address)](#module_client.XarClient+getBalance) ⇒ <code>Promise</code>
+    * [.createAccount()](#module_client.XarClient+createAccount) ⇒ <code>object</code>
+    * [.createAccountWithKeystore(password)](#module_client.XarClient+createAccountWithKeystore)
+    * [.createAccountWithMneomnic()](#module_client.XarClient+createAccountWithMneomnic) ⇒ <code>object</code>
+    * [.recoverAccountFromKeystore(keystore, keystore)](#module_client.XarClient+recoverAccountFromKeystore)
+    * [.recoverAccountFromMnemonic(mneomnic)](#module_client.XarClient+recoverAccountFromMnemonic)
+    * [.recoverAccountFromPrivateKey(privateKey)](#module_client.XarClient+recoverAccountFromPrivateKey)
+    * [.checkAddress(address, prefix)](#module_client.XarClient+checkAddress) ⇒ <code>Boolean</code>
+    * [.getClientKeyAddress()](#module_client.XarClient+getClientKeyAddress) ⇒ <code>String</code>
 
-<a name="new_module_client.ZarClient_new"></a>
+<a name="new_module_client.XarClient_new"></a>
 
-#### new exports.ZarClient(server, useAsyncBroadcast, source)
+#### new exports.XarClient(server, useAsyncBroadcast, source)
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| server | <code>String</code> |  | Zar Network Chain public url |
+| server | <code>String</code> |  | Xar Network Chain public url |
 | useAsyncBroadcast | <code>Boolean</code> | <code>false</code> | use async broadcast mode, faster but less guarantees (default off) |
 | source | <code>Number</code> | <code>0</code> | where does this transaction come from (default 0) |
 
-<a name="module_client.ZarClient+initChain"></a>
+<a name="module_client.XarClient+initChain"></a>
 
-#### ZarClient.initChain() ⇒ <code>Promise</code>
+#### XarClient.initChain() ⇒ <code>Promise</code>
 Initialize the client with the chain's ID. Asynchronous.
 
-**Kind**: instance method of [<code>ZarClient</code>](#module_client.ZarClient)  
-<a name="module_client.ZarClient+chooseNetwork"></a>
+**Kind**: instance method of [<code>XarClient</code>](#module_client.XarClient)  
+<a name="module_client.XarClient+chooseNetwork"></a>
 
-#### ZarClient.chooseNetwork(network)
+#### XarClient.chooseNetwork(network)
 Sets the client network (testnet or mainnet).
 
-**Kind**: instance method of [<code>ZarClient</code>](#module_client.ZarClient)  
+**Kind**: instance method of [<code>XarClient</code>](#module_client.XarClient)  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | network | <code>String</code> | Indicate testnet or mainnet |
 
-<a name="module_client.ZarClient+setPrivateKey"></a>
+<a name="module_client.XarClient+setPrivateKey"></a>
 
-#### ZarClient.setPrivateKey() ⇒ <code>Promise</code>
+#### XarClient.setPrivateKey() ⇒ <code>Promise</code>
 Sets the client's private key for calls made by this client. Asynchronous.
 
-**Kind**: instance method of [<code>ZarClient</code>](#module_client.ZarClient)  
-<a name="module_client.ZarClient+useAsyncBroadcast"></a>
+**Kind**: instance method of [<code>XarClient</code>](#module_client.XarClient)  
+<a name="module_client.XarClient+useAsyncBroadcast"></a>
 
-#### ZarClient.useAsyncBroadcast(useAsyncBroadcast) ⇒ <code>ZarClient</code>
+#### XarClient.useAsyncBroadcast(useAsyncBroadcast) ⇒ <code>XarClient</code>
 Use async broadcast mode. Broadcasts faster with less guarantees (default off)
 
-**Kind**: instance method of [<code>ZarClient</code>](#module_client.ZarClient)  
-**Returns**: <code>ZarClient</code> - this instance (for chaining)  
+**Kind**: instance method of [<code>XarClient</code>](#module_client.XarClient)  
+**Returns**: <code>XarClient</code> - this instance (for chaining)  
 
 | Param | Type | Default |
 | --- | --- | --- |
 | useAsyncBroadcast | <code>Boolean</code> | <code>true</code> |
 
-<a name="module_client.ZarClient+setSigningDelegate"></a>
+<a name="module_client.XarClient+setSigningDelegate"></a>
 
-#### ZarClient.setSigningDelegate(delegate) ⇒ <code>ZarClient</code>
+#### XarClient.setSigningDelegate(delegate) ⇒ <code>XarClient</code>
 Sets the signing delegate (for wallet integrations).
 
-**Kind**: instance method of [<code>ZarClient</code>](#module_client.ZarClient)  
-**Returns**: <code>ZarClient</code> - this instance (for chaining)  
+**Kind**: instance method of [<code>XarClient</code>](#module_client.XarClient)  
+**Returns**: <code>XarClient</code> - this instance (for chaining)  
 
 | Param | Type |
 | --- | --- |
 | delegate | <code>function</code> |
 
-<a name="module_client.ZarClient+setBroadcastDelegate"></a>
+<a name="module_client.XarClient+setBroadcastDelegate"></a>
 
-#### ZarClient.setBroadcastDelegate(delegate) ⇒ <code>ZarClient</code>
+#### XarClient.setBroadcastDelegate(delegate) ⇒ <code>XarClient</code>
 Sets the broadcast delegate (for wallet integrations).
 
-**Kind**: instance method of [<code>ZarClient</code>](#module_client.ZarClient)  
-**Returns**: <code>ZarClient</code> - this instance (for chaining)  
+**Kind**: instance method of [<code>XarClient</code>](#module_client.XarClient)  
+**Returns**: <code>XarClient</code> - this instance (for chaining)  
 
 | Param | Type |
 | --- | --- |
 | delegate | <code>function</code> |
 
-<a name="module_client.ZarClient+useDefaultSigningDelegate"></a>
+<a name="module_client.XarClient+useDefaultSigningDelegate"></a>
 
-#### ZarClient.useDefaultSigningDelegate() ⇒ <code>ZarClient</code>
+#### XarClient.useDefaultSigningDelegate() ⇒ <code>XarClient</code>
 Applies the default signing delegate.
 
-**Kind**: instance method of [<code>ZarClient</code>](#module_client.ZarClient)  
-**Returns**: <code>ZarClient</code> - this instance (for chaining)  
-<a name="module_client.ZarClient+useDefaultBroadcastDelegate"></a>
+**Kind**: instance method of [<code>XarClient</code>](#module_client.XarClient)  
+**Returns**: <code>XarClient</code> - this instance (for chaining)  
+<a name="module_client.XarClient+useDefaultBroadcastDelegate"></a>
 
-#### ZarClient.useDefaultBroadcastDelegate() ⇒ <code>ZarClient</code>
+#### XarClient.useDefaultBroadcastDelegate() ⇒ <code>XarClient</code>
 Applies the default broadcast delegate.
 
-**Kind**: instance method of [<code>ZarClient</code>](#module_client.ZarClient)  
-**Returns**: <code>ZarClient</code> - this instance (for chaining)  
-<a name="module_client.ZarClient+useLedgerSigningDelegate"></a>
+**Kind**: instance method of [<code>XarClient</code>](#module_client.XarClient)  
+**Returns**: <code>XarClient</code> - this instance (for chaining)  
+<a name="module_client.XarClient+useLedgerSigningDelegate"></a>
 
-#### ZarClient.useLedgerSigningDelegate(ledgerApp, preSignCb, postSignCb, errCb) ⇒ <code>ZarClient</code>
+#### XarClient.useLedgerSigningDelegate(ledgerApp, preSignCb, postSignCb, errCb) ⇒ <code>XarClient</code>
 Applies the Ledger signing delegate.
 
-**Kind**: instance method of [<code>ZarClient</code>](#module_client.ZarClient)  
-**Returns**: <code>ZarClient</code> - this instance (for chaining)  
+**Kind**: instance method of [<code>XarClient</code>](#module_client.XarClient)  
+**Returns**: <code>XarClient</code> - this instance (for chaining)  
 
 | Param | Type |
 | --- | --- |
@@ -213,12 +213,12 @@ Applies the Ledger signing delegate.
 | postSignCb | <code>function</code> |
 | errCb | <code>function</code> |
 
-<a name="module_client.ZarClient+transfer"></a>
+<a name="module_client.XarClient+transfer"></a>
 
-#### ZarClient.transfer(fromAddress, toAddress, amount, asset, memo, sequence) ⇒ <code>Promise</code>
+#### XarClient.transfer(fromAddress, toAddress, amount, asset, memo, sequence) ⇒ <code>Promise</code>
 Transfer tokens from one address to another.
 
-**Kind**: instance method of [<code>ZarClient</code>](#module_client.ZarClient)  
+**Kind**: instance method of [<code>XarClient</code>](#module_client.XarClient)  
 **Returns**: <code>Promise</code> - resolves with response (success or fail)  
 
 | Param | Type | Default | Description |
@@ -230,12 +230,12 @@ Transfer tokens from one address to another.
 | memo | <code>String</code> |  | optional memo |
 | sequence | <code>Number</code> | <code></code> | optional sequence |
 
-<a name="module_client.ZarClient+multiSend"></a>
+<a name="module_client.XarClient+multiSend"></a>
 
-#### ZarClient.multiSend(fromAddress, outputs, memo, sequence) ⇒ <code>Promise</code>
+#### XarClient.multiSend(fromAddress, outputs, memo, sequence) ⇒ <code>Promise</code>
 Create and sign a multi send tx
 
-**Kind**: instance method of [<code>ZarClient</code>](#module_client.ZarClient)  
+**Kind**: instance method of [<code>XarClient</code>](#module_client.XarClient)  
 **Returns**: <code>Promise</code> - resolves with response (success or fail)  
 
 | Param | Type | Default | Description |
@@ -245,12 +245,12 @@ Create and sign a multi send tx
 | memo | <code>String</code> |  | optional memo |
 | sequence | <code>Number</code> | <code></code> | optional sequence |
 
-<a name="module_client.ZarClient+_prepareTransaction"></a>
+<a name="module_client.XarClient+_prepareTransaction"></a>
 
-#### ZarClient.\_prepareTransaction(msg, stdSignMsg, address, sequence, memo) ⇒ [<code>Transaction</code>](#Transaction)
+#### XarClient.\_prepareTransaction(msg, stdSignMsg, address, sequence, memo) ⇒ [<code>Transaction</code>](#Transaction)
 Prepare a serialized raw transaction for sending to the blockchain.
 
-**Kind**: instance method of [<code>ZarClient</code>](#module_client.ZarClient)  
+**Kind**: instance method of [<code>XarClient</code>](#module_client.XarClient)  
 **Returns**: [<code>Transaction</code>](#Transaction) - signed transaction  
 
 | Param | Type | Default | Description |
@@ -261,12 +261,12 @@ Prepare a serialized raw transaction for sending to the blockchain.
 | sequence | <code>Number</code> | <code></code> | optional sequence |
 | memo | <code>String</code> |  | optional memo |
 
-<a name="module_client.ZarClient+sendTransaction"></a>
+<a name="module_client.XarClient+sendTransaction"></a>
 
-#### ZarClient.sendTransaction(tx, sync) ⇒ <code>Promise</code>
+#### XarClient.sendTransaction(tx, sync) ⇒ <code>Promise</code>
 Broadcast a transaction to the blockchain.
 
-**Kind**: instance method of [<code>ZarClient</code>](#module_client.ZarClient)  
+**Kind**: instance method of [<code>XarClient</code>](#module_client.XarClient)  
 **Returns**: <code>Promise</code> - resolves with response (success or fail)  
 
 | Param | Type | Description |
@@ -274,12 +274,12 @@ Broadcast a transaction to the blockchain.
 | tx | <code>signedTx</code> | signed Transaction object |
 | sync | <code>Boolean</code> | use synchronous mode, optional |
 
-<a name="module_client.ZarClient+sendRawTransaction"></a>
+<a name="module_client.XarClient+sendRawTransaction"></a>
 
-#### ZarClient.sendRawTransaction(signedBz, sync) ⇒ <code>Promise</code>
+#### XarClient.sendRawTransaction(signedBz, sync) ⇒ <code>Promise</code>
 Broadcast a raw transaction to the blockchain.
 
-**Kind**: instance method of [<code>ZarClient</code>](#module_client.ZarClient)  
+**Kind**: instance method of [<code>XarClient</code>](#module_client.XarClient)  
 **Returns**: <code>Promise</code> - resolves with response (success or fail)  
 
 | Param | Type | Description |
@@ -287,12 +287,12 @@ Broadcast a raw transaction to the blockchain.
 | signedBz | <code>String</code> | signed and serialized raw transaction |
 | sync | <code>Boolean</code> | use synchronous mode, optional |
 
-<a name="module_client.ZarClient+_sendTransaction"></a>
+<a name="module_client.XarClient+_sendTransaction"></a>
 
-#### ZarClient.\_sendTransaction(msg, stdSignMsg, address, sequence, memo, sync) ⇒ <code>Promise</code>
+#### XarClient.\_sendTransaction(msg, stdSignMsg, address, sequence, memo, sync) ⇒ <code>Promise</code>
 Broadcast a raw transaction to the blockchain.
 
-**Kind**: instance method of [<code>ZarClient</code>](#module_client.ZarClient)  
+**Kind**: instance method of [<code>XarClient</code>](#module_client.XarClient)  
 **Returns**: <code>Promise</code> - resolves with response (success or fail)  
 
 | Param | Type | Default | Description |
@@ -304,115 +304,115 @@ Broadcast a raw transaction to the blockchain.
 | memo | <code>String</code> |  | optional memo |
 | sync | <code>Boolean</code> |  | use synchronous mode, optional |
 
-<a name="module_client.ZarClient+getAccount"></a>
+<a name="module_client.XarClient+getAccount"></a>
 
-#### ZarClient.getAccount(address) ⇒ <code>Promise</code>
+#### XarClient.getAccount(address) ⇒ <code>Promise</code>
 get account
 
-**Kind**: instance method of [<code>ZarClient</code>](#module_client.ZarClient)  
+**Kind**: instance method of [<code>XarClient</code>](#module_client.XarClient)  
 **Returns**: <code>Promise</code> - resolves with http response  
 
 | Param | Type |
 | --- | --- |
 | address | <code>String</code> |
 
-<a name="module_client.ZarClient+getBalance"></a>
+<a name="module_client.XarClient+getBalance"></a>
 
-#### ZarClient.getBalance(address) ⇒ <code>Promise</code>
+#### XarClient.getBalance(address) ⇒ <code>Promise</code>
 get balances
 
-**Kind**: instance method of [<code>ZarClient</code>](#module_client.ZarClient)  
+**Kind**: instance method of [<code>XarClient</code>](#module_client.XarClient)  
 **Returns**: <code>Promise</code> - resolves with http response  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | address | <code>String</code> | optional address |
 
-<a name="module_client.ZarClient+createAccount"></a>
+<a name="module_client.XarClient+createAccount"></a>
 
-#### ZarClient.createAccount() ⇒ <code>object</code>
+#### XarClient.createAccount() ⇒ <code>object</code>
 Creates a private key and returns it and its address.
 
-**Kind**: instance method of [<code>ZarClient</code>](#module_client.ZarClient)  
+**Kind**: instance method of [<code>XarClient</code>](#module_client.XarClient)  
 **Returns**: <code>object</code> - the private key and address in an object.
 {
  address,
  privateKey
 }  
-<a name="module_client.ZarClient+createAccountWithKeystore"></a>
+<a name="module_client.XarClient+createAccountWithKeystore"></a>
 
-#### ZarClient.createAccountWithKeystore(password)
+#### XarClient.createAccountWithKeystore(password)
 Creates an account keystore object, and returns the private key and address.
 
-**Kind**: instance method of [<code>ZarClient</code>](#module_client.ZarClient)  
+**Kind**: instance method of [<code>XarClient</code>](#module_client.XarClient)  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | password | <code>String</code> | {  privateKey,  address,  keystore } |
 
-<a name="module_client.ZarClient+createAccountWithMneomnic"></a>
+<a name="module_client.XarClient+createAccountWithMneomnic"></a>
 
-#### ZarClient.createAccountWithMneomnic() ⇒ <code>object</code>
+#### XarClient.createAccountWithMneomnic() ⇒ <code>object</code>
 Creates an account from mnemonic seed phrase.
 
-**Kind**: instance method of [<code>ZarClient</code>](#module_client.ZarClient)  
+**Kind**: instance method of [<code>XarClient</code>](#module_client.XarClient)  
 **Returns**: <code>object</code> - {
  privateKey,
  address,
  mnemonic
 }  
-<a name="module_client.ZarClient+recoverAccountFromKeystore"></a>
+<a name="module_client.XarClient+recoverAccountFromKeystore"></a>
 
-#### ZarClient.recoverAccountFromKeystore(keystore, keystore)
+#### XarClient.recoverAccountFromKeystore(keystore, keystore)
 Recovers an account from a keystore object.
 
-**Kind**: instance method of [<code>ZarClient</code>](#module_client.ZarClient)  
+**Kind**: instance method of [<code>XarClient</code>](#module_client.XarClient)  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | keystore | <code>object</code> | object. |
 | keystore | <code>string</code> | password. { privateKey, address } |
 
-<a name="module_client.ZarClient+recoverAccountFromMnemonic"></a>
+<a name="module_client.XarClient+recoverAccountFromMnemonic"></a>
 
-#### ZarClient.recoverAccountFromMnemonic(mneomnic)
+#### XarClient.recoverAccountFromMnemonic(mneomnic)
 Recovers an account from a mnemonic seed phrase.
 
-**Kind**: instance method of [<code>ZarClient</code>](#module_client.ZarClient)  
+**Kind**: instance method of [<code>XarClient</code>](#module_client.XarClient)  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | mneomnic | <code>string</code> | { privateKey, address } |
 
-<a name="module_client.ZarClient+recoverAccountFromPrivateKey"></a>
+<a name="module_client.XarClient+recoverAccountFromPrivateKey"></a>
 
-#### ZarClient.recoverAccountFromPrivateKey(privateKey)
+#### XarClient.recoverAccountFromPrivateKey(privateKey)
 Recovers an account using private key.
 
-**Kind**: instance method of [<code>ZarClient</code>](#module_client.ZarClient)  
+**Kind**: instance method of [<code>XarClient</code>](#module_client.XarClient)  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | privateKey | <code>String</code> | { privateKey, address } |
 
-<a name="module_client.ZarClient+checkAddress"></a>
+<a name="module_client.XarClient+checkAddress"></a>
 
-#### ZarClient.checkAddress(address, prefix) ⇒ <code>Boolean</code>
+#### XarClient.checkAddress(address, prefix) ⇒ <code>Boolean</code>
 Validates an address.
 
-**Kind**: instance method of [<code>ZarClient</code>](#module_client.ZarClient)  
+**Kind**: instance method of [<code>XarClient</code>](#module_client.XarClient)  
 
 | Param | Type |
 | --- | --- |
 | address | <code>String</code> |
 | prefix | <code>String</code> |
 
-<a name="module_client.ZarClient+getClientKeyAddress"></a>
+<a name="module_client.XarClient+getClientKeyAddress"></a>
 
-#### ZarClient.getClientKeyAddress() ⇒ <code>String</code>
+#### XarClient.getClientKeyAddress() ⇒ <code>String</code>
 Returns the address for the current account if setPrivateKey has been called on this client.
 
-**Kind**: instance method of [<code>ZarClient</code>](#module_client.ZarClient)  
+**Kind**: instance method of [<code>XarClient</code>](#module_client.XarClient)  
 <a name="module_client.DefaultSigningDelegate"></a>
 
 ### client.DefaultSigningDelegate ⇒ [<code>Transaction</code>](#Transaction)
@@ -1015,7 +1015,7 @@ Sends a transaction sign doc to the Ledger app to be signed.
 <a name="module_rpc..Client"></a>
 
 ### rpc~Client
-The Zar Network Chain Node rpc client
+The Xar Network Chain Node rpc client
 
 **Kind**: inner class of [<code>rpc</code>](#module_rpc)  
 
@@ -1034,7 +1034,7 @@ The Zar Network Chain Node rpc client
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | uriString | <code>String</code> | <code>localhost:27146</code> | dataseed address |
-| netWork | <code>String</code> |  | Zar Network Chain network |
+| netWork | <code>String</code> |  | Xar Network Chain network |
 
 <a name="module_rpc..Client+getTokenInfo"></a>
 
@@ -1096,7 +1096,7 @@ get balance by symbol and address
 
 * [Token](#module_Token)
     * [~TokenManagement](#module_Token..TokenManagement)
-        * [new TokenManagement(ZarClient)](#new_module_Token..TokenManagement_new)
+        * [new TokenManagement(XarClient)](#new_module_Token..TokenManagement_new)
         * [.issue(senderAddress, tokenName, symbol, totalSupply, mintable)](#module_Token..TokenManagement+issue) ⇒ <code>Promise</code>
         * [.freeze(fromAddress, symbol, amount)](#module_Token..TokenManagement+freeze) ⇒ <code>Promise</code>
         * [.unfreeze(fromAddress, symbol, amount)](#module_Token..TokenManagement+unfreeze) ⇒ <code>Promise</code>
@@ -1109,7 +1109,7 @@ get balance by symbol and address
 **Kind**: inner class of [<code>Token</code>](#module_Token)  
 
 * [~TokenManagement](#module_Token..TokenManagement)
-    * [new TokenManagement(ZarClient)](#new_module_Token..TokenManagement_new)
+    * [new TokenManagement(XarClient)](#new_module_Token..TokenManagement_new)
     * [.issue(senderAddress, tokenName, symbol, totalSupply, mintable)](#module_Token..TokenManagement+issue) ⇒ <code>Promise</code>
     * [.freeze(fromAddress, symbol, amount)](#module_Token..TokenManagement+freeze) ⇒ <code>Promise</code>
     * [.unfreeze(fromAddress, symbol, amount)](#module_Token..TokenManagement+unfreeze) ⇒ <code>Promise</code>
@@ -1118,16 +1118,16 @@ get balance by symbol and address
 
 <a name="new_module_Token..TokenManagement_new"></a>
 
-#### new TokenManagement(ZarClient)
+#### new TokenManagement(XarClient)
 
 | Param | Type |
 | --- | --- |
-| ZarClient | <code>Object</code> |
+| XarClient | <code>Object</code> |
 
 <a name="module_Token..TokenManagement+issue"></a>
 
 #### tokenManagement.issue(senderAddress, tokenName, symbol, totalSupply, mintable) ⇒ <code>Promise</code>
-create a new asset on Zar Network Chain
+create a new asset on Xar Network Chain
 
 **Kind**: instance method of [<code>TokenManagement</code>](#module_Token..TokenManagement)  
 **Returns**: <code>Promise</code> - resolves with response (success or fail)  
