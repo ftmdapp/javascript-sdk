@@ -47,6 +47,32 @@ beforeEach(() => {
   jest.setTimeout(50000)
 })
 
+it("mint tokens liquidity provider", async () => {
+  const client = await getClient(true)
+  const fromAddress = "xar13slrtrkn4hmhu88nlzhnk5s36t54wsugkvttg5"
+  const amount = [{
+      denom: 'uftm',
+      amount: '1000'
+  }]
+
+  const msg = client.LiquidityProvider.mintTokens(fromAddress, amount)
+  const res = await client.sendTx(msg, fromAddress)
+  expect(res.status).toBe(200)
+})
+
+it("burn tokens liquidity provider", async () => {
+  const client = await getClient(true)
+  const fromAddress = "xar13slrtrkn4hmhu88nlzhnk5s36t54wsugkvttg5"
+  const amount = [{
+      denom: 'uftm',
+      amount: '1000'
+  }]
+
+  const msg = client.LiquidityProvider.burnTokens(fromAddress, amount)
+  const res = await client.sendTx(msg, fromAddress)
+  expect(res.status).toBe(200)
+})
+
 /*it("increase credit", async () => {
   const client = await getClient(true)
   const fromAddress = "xar13slrtrkn4hmhu88nlzhnk5s36t54wsugkvttg5"
