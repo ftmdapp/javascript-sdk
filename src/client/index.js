@@ -395,9 +395,16 @@ export class XarClient {
   async _prepareTransaction(msg, address, sequence = null, memo = "") {
     if ((!this.account_number || !sequence) && address) {
       const data = await this._httpClient.request("get", `${api.getAccount}/${address}`)
-      sequence = data.result.result.value.sequence
-      this.account_number = data.result.result.value.account_number
-      // if user has not used `await` in its call to setPrivateKey (old API), we should wait for the promise here
+      if (data.result.result.value.sequence != undefined) {
+        sequence = data.result.result.value.sequence
+        this.account_number = data.result.result.value.account_number
+        // if user has not used `await` in its call to setPrivateKey (old API), we should wait for the promise here
+      } else if (data.result.result.value.Account != undefined) {
+        //lp accounts
+        sequence = data.result.result.value.Account.value.sequence
+        this.account_number = data.result.result.value.Account.value.account_number
+      }
+
     } else if (this._setPkPromise) {
       await this._setPkPromise
     }

@@ -47,7 +47,14 @@ beforeEach(() => {
   jest.setTimeout(50000)
 })
 
-it("csdt", async () => {
+it("transfer tokens", async () => {
+  const client = await getClient(false)
+  const addr = crypto.getAddressFromPrivateKey(client.privateKey)
+  const res = await client.transfer(addr, targetAddress, 1, "uftm", "sdk")
+  expect(res.status).toBe(200)
+})
+
+/*it("csdt", async () => {
   const client = await getClient(true)
   const fromAddress = "xar13slrtrkn4hmhu88nlzhnk5s36t54wsugkvttg5"
   const collateralDenom = "uftm"
@@ -57,7 +64,7 @@ it("csdt", async () => {
   const msg = client.CSDT.createOrModifyCSDT(fromAddress, collateralDenom, collateralChange, debtChange)
   const res = await client.sendTx(msg, fromAddress)
   expect(res.status).toBe(200)
-})
+})*/
 
 /*it("record immutable proof", async () => {
   const client = await getClient(true)
