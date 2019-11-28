@@ -43,6 +43,15 @@ export const api = {
   broadcast: "/txs",
   nodeInfo: "/node_info",
   getAccount: "/auth/accounts",
+  getSupply: "/supply/total",
+  getTx: "/txs",
+  getCurrentPrice: "/oracle/currentprice",
+  getCSDT: "/csdts",
+  getValidators: "/staking/validators",
+  getStakingParameters: "/staking/parameters",
+  getMintinParameters: "/minting/parameters",
+  getInflation: "/minting/inflation",
+  getAssets: "/issue/list",
 }
 
 const NETWORK_PREFIX_MAPPING = {
@@ -184,7 +193,7 @@ export class XarClient {
   async setPrivateKey(privateKey) {
     if (privateKey !== this.privateKey) {
       const address = crypto.getAddressFromPrivateKey(privateKey, this.addressPrefix)
-      if (!address) throw new Error("address is false: ${address}. invalid private key?")
+      if (!address) throw new Error("address is empty: ${address}. invalid private key?")
       if (address === this.address) return this // safety
       this.privateKey = privateKey
       this.address = address
@@ -329,7 +338,7 @@ export class XarClient {
    */
   async multiSend(fromAddress, outputs, memo = "", sequence = null) {
     if (!fromAddress) {
-      throw new Error("fromAddress should not be falsy")
+      throw new Error("fromAddress should not be empty")
     }
 
     if (!Array.isArray(outputs)) {
@@ -472,10 +481,157 @@ export class XarClient {
    */
   async getAccount(address = this.address) {
     if (!address) {
-      throw new Error("address should not be falsy")
+      throw new Error("address should not be empty")
     }
     try {
       const data = await this._httpClient.request("get", `${api.getAccount}/${address}`)
+      return data
+    } catch (err) {
+      return err
+    }
+  }
+
+  /**
+   * get transaction
+   * @param {String} txid
+   * @return {Promise} resolves with http response
+   */
+  async getTx(txid) {
+    if (!txid) {
+      throw new Error("txid should not be empty")
+    }
+    try {
+      const data = await this._httpClient.request("get", `${api.getTx}/${txid}`)
+      return data
+    } catch (err) {
+      return err
+    }
+  }
+
+  /**
+   * get current price
+   * @param {String} txid
+   * @return {Promise} resolves with http response
+   */
+  async getCurrentPrice(denom) {
+    if (!denom) {
+      throw new Error("denom should not be empty")
+    }
+    try {
+      const data = await this._httpClient.request("get", `${api.getCurrentPrice}/${denom}`)
+      return data
+    } catch (err) {
+      return err
+    }
+  }
+
+  //dts?collateralDenom=uftm&owner=xar1n4avxelsujq8chr7jh2qgf4gcttuxkxdv40rdj&underCollateralizedAt=400
+
+  /**
+   * get csdt
+   * @param {String} address
+   * @return {Promise} resolves with http response
+   */
+  async getCSDT(address = this.address, denom) {
+    if (!address) {
+      throw new Error("address should not be empty")
+    }
+    if (!denom) {
+      throw new Error("denom should not be empty")
+    }
+    try {
+      const data = await this._httpClient.request("get", `${api.getCSDT}?owner=${address}&collateralDenom=${denom}`)
+      return data
+    } catch (err) {
+      return err
+    }
+  }
+
+  /**
+   * get node info
+   * @return {Promise} resolves with http response
+   */
+  async getNodeInfo() {
+    try {
+      const data = await this._httpClient.request("get", `${api.nodeInfo}`)
+      return data
+    } catch (err) {
+      return err
+    }
+  }
+
+  /**
+   * get supply
+   * @return {Promise} resolves with http response
+   */
+  async getSupply() {
+    try {
+      const data = await this._httpClient.request("get", `${api.getSupply}`)
+      return data
+    } catch (err) {
+      return err
+    }
+  }
+
+  /**
+   * get validators
+   * @return {Promise} resolves with http response
+   */
+  async getValidators() {
+    try {
+      const data = await this._httpClient.request("get", `${api.getValidators}`)
+      return data
+    } catch (err) {
+      return err
+    }
+  }
+
+  /**
+   * get staking parameters
+   * @return {Promise} resolves with http response
+   */
+  async getStakingParameters() {
+    try {
+      const data = await this._httpClient.request("get", `${api.getStakingParameters}`)
+      return data
+    } catch (err) {
+      return err
+    }
+  }
+
+  /**
+   * get minting parameters
+   * @return {Promise} resolves with http response
+   */
+  async getMintinParameters() {
+    try {
+      const data = await this._httpClient.request("get", `${api.getMintinParameters}`)
+      return data
+    } catch (err) {
+      return err
+    }
+  }
+
+  /**
+   * get current inflation
+   * @return {Promise} resolves with http response
+   */
+  async getInflation() {
+    try {
+      const data = await this._httpClient.request("get", `${api.getInflation}`)
+      return data
+    } catch (err) {
+      return err
+    }
+  }
+
+  /**
+   * get current assets
+   * @return {Promise} resolves with http response
+   */
+  async getAssets() {
+    try {
+      const data = await this._httpClient.request("get", `${api.getAssets}`)
       return data
     } catch (err) {
       return err
@@ -523,7 +679,7 @@ export class XarClient {
    */
   createAccountWithKeystore(password) {
     if (!password) {
-      throw new Error("password should not be falsy")
+      throw new Error("password should not be empty")
     }
     const privateKey = crypto.generatePrivateKey()
     const address = crypto.getAddressFromPrivateKey(privateKey, this.addressPrefix)

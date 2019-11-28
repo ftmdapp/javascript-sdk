@@ -47,10 +47,69 @@ beforeEach(() => {
   jest.setTimeout(50000)
 })
 
-it("transfer tokens", async () => {
-  const client = await getClient(false)
-  const addr = crypto.getAddressFromPrivateKey(client.privateKey)
-  const res = await client.transfer(addr, targetAddress, 1, "uftm", "sdk")
+it("get node info", async () => {
+  const client = await getClient(true)
+  const res = await client.getNodeInfo()
+  expect(res.status).toBe(200)
+})
+
+it("get supply", async () => {
+  const client = await getClient(true)
+  const res = await client.getSupply()
+  expect(res.status).toBe(200)
+})
+
+it("get validators", async () => {
+  const client = await getClient(true)
+  const res = await client.getValidators()
+  expect(res.status).toBe(200)
+})
+
+it("get staking parameters", async () => {
+  const client = await getClient(true)
+  const res = await client.getStakingParameters()
+  expect(res.status).toBe(200)
+})
+
+it("get minting parameters", async () => {
+  const client = await getClient(true)
+  const res = await client.getMintinParameters()
+  expect(res.status).toBe(200)
+})
+
+it("get inflation", async () => {
+  const client = await getClient(true)
+  const res = await client.getInflation()
+  expect(res.status).toBe(200)
+})
+
+it("get assets", async () => {
+  const client = await getClient(true)
+  const res = await client.getAssets()
+  expect(res.status).toBe(200)
+})
+
+it("get tx", async () => {
+  const client = await getClient(true)
+  const res = await client.getTx("8A80D64C536B496D91FE9C1707706B2AE887F60138CD5BA9550E4D3385D998CA")
+  expect(res.status).toBe(200)
+})
+
+it("get account", async () => {
+  const client = await getClient(true)
+  const res = await client.getAccount("xar14nh6rs0wyxl8t6rlv962dsv5sg644xj7d9h6jq")
+  expect(res.status).toBe(200)
+})
+
+it("get current price", async () => {
+  const client = await getClient(true)
+  const res = await client.getCurrentPrice("uftm")
+  expect(res.status).toBe(200)
+})
+
+it("get csdt", async () => {
+  const client = await getClient(true)
+  const res = await client.getCSDT("xar1n4avxelsujq8chr7jh2qgf4gcttuxkxdv40rdj","uftm")
   expect(res.status).toBe(200)
 })
 
