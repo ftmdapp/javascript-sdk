@@ -60,6 +60,11 @@ export const txType = {
   MsgBurnCoins: "denominations/MsgBurnCoins",
   MsgFreezeCoins: "denominations/MsgFreezeCoins",
   MsgUnfreezeCoins: "denominations/MsgUnfreezeCoins",
+  MsgPostPrice: "oracle/MsgPostPrice",
+  MsgAddOracle: "oracle/MsgAddOracle",
+  MsgSetOracles: "oracle/MsgSetOracles",
+  MsgAddAsset: "oracle/MsgAddAsset",
+  MsgSetAsset: "oracle/MsgSetAsset",
 }
 
 /**
