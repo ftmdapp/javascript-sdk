@@ -4,10 +4,8 @@
 import * as crypto from "../crypto"
 import Transaction from "../tx"
 import Issue from "../issue"
-import Authority from "../authority"
-import LiquidityProvider from "../liquidityprovider"
 import Record from "../record"
-import Issuer from "../issuer"
+import Denominations from "../denominations"
 import CSDT from "../csdt"
 import HttpRequest from "../utils/request"
 import { checkNumber } from "../utils/validateHelper"
@@ -52,6 +50,8 @@ export const api = {
   getMintinParameters: "/minting/parameters",
   getInflation: "/minting/inflation",
   getAssets: "/issue/list",
+  getTokens: "/denominations/tokens",
+  getToken: "/denominations/tokens",
 }
 
 const NETWORK_PREFIX_MAPPING = {
@@ -156,11 +156,9 @@ export class XarClient {
     this._signingDelegate = DefaultSigningDelegate
     this._broadcastDelegate = DefaultBroadcastDelegate
     this.Issue = new Issue()
-    this.Authority = new Authority()
-    this.Issuer = new Issuer()
+    this.Denominations = new Denominations()
     this.Record = new Record()
     this.CSDT = new CSDT()
-    this.LiquidityProvider = new LiquidityProvider()
     this._useAsyncBroadcast = useAsyncBroadcast
     this._source = source
   }
@@ -525,6 +523,35 @@ export class XarClient {
     }
   }
 
+  /**
+   * get token list
+   * @return {Promise} resolves with http response
+   */
+  async getTokens() {
+    try {
+      const data = await this._httpClient.request("get", `${api.getTokens}`)
+      return data
+    } catch (err) {
+      return err
+    }
+  }
+
+  /**
+   * get specific token
+   * @param {String} token denom
+   * @return {Promise} resolves with http response
+   */
+  async getToken(denom) {
+    if (!denom) {
+      throw new Error("denom should not be empty")
+    }
+    try {
+      const data = await this._httpClient.request("get", `${api.getToken}/${denom}`)
+      return data
+    } catch (err) {
+      return err
+    }
+  }
   //dts?collateralDenom=uftm&owner=xar1n4avxelsujq8chr7jh2qgf4gcttuxkxdv40rdj&underCollateralizedAt=400
 
   /**

@@ -4,10 +4,6 @@ import { UVarInt } from "../encoder/varint"
 
 export const txType = {
   MsgPlaceBid: "auction/MsgPlaceBid",
-  MsgCreateIssuer: "authority/MsgCreateIssuer",
-  MsgCreateOracle: "authority/MsgCreateOracle",
-  MsgDestroyIssuer: "authority/MsgDestroyIssuer",
-  MsgCreateMarket: "authority/MsgCreateMarket",
   MsgCreateOrModifyCSDT: "csdt/MsgCreateOrModifyCSDT",
   MsgTransferCSDT: "csdt/MsgTransferCSDT",
   MsgIssue: "issue/MsgIssue",
@@ -59,6 +55,11 @@ export const txType = {
   MsgUndelegate: "cosmos-sdk/MsgUndelegate",
   MsgBeginRedelegate: "cosmos-sdk/MsgBeginRedelegate",
   MsgRecord: "record/MsgRecord",
+  MsgIssueToken: "denominations/MsgIssueToken",
+  MsgMintCoins: "denominations/MsgMintCoins",
+  MsgBurnCoins: "denominations/MsgBurnCoins",
+  MsgFreezeCoins: "denominations/MsgFreezeCoins",
+  MsgUnfreezeCoins: "denominations/MsgUnfreezeCoins",
 }
 
 /**

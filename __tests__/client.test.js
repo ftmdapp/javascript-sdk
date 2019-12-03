@@ -19,7 +19,7 @@ const keystores = {
 const targetAddress = "xar13slrtrkn4hmhu88nlzhnk5s36t54wsugkvttg5"
 
 const getClient = async (useAwaitSetPrivateKey = true, doNotSetPrivateKey = false) => {
-  const client = new XarClient("http://localhost:1317")
+  const client = new XarClient("http://54.229.172.186:1317/")
   await client.initChain()
   const privateKey = crypto.getPrivateKeyFromMnemonic(mnemonic)
   if (!doNotSetPrivateKey) {
@@ -45,6 +45,90 @@ const wait = ms => {
 
 beforeEach(() => {
   jest.setTimeout(50000)
+})
+
+/*it("issue native denom", async () => {
+  const client = await getClient(true)
+  const fromAddress = "xar13slrtrkn4hmhu88nlzhnk5s36t54wsugkvttg5"
+
+  const msg = client.Denominations.issueToken(fromAddress, fromAddress, "TEST", "tst", "TST", "21000000", "21000000000", true)
+  const res = await client.sendTx(msg, fromAddress)
+  console.log(res.result)
+  expect(res.status).toBe(200)
+})
+
+it("mint native denom", async () => {
+  const client = await getClient(true)
+  const fromAddress = "xar13slrtrkn4hmhu88nlzhnk5s36t54wsugkvttg5"
+
+  const msg = client.Denominations.mintCoins(fromAddress, "tst", "100000000")
+  const res = await client.sendTx(msg, fromAddress)
+  console.log(res.result)
+  expect(res.status).toBe(200)
+})
+
+it("burn native denom", async () => {
+  const client = await getClient(true)
+  const fromAddress = "xar13slrtrkn4hmhu88nlzhnk5s36t54wsugkvttg5"
+
+  const msg = client.Denominations.burnCoins(fromAddress, "tst", "100000000")
+  const res = await client.sendTx(msg, fromAddress)
+  console.log(res.result)
+  expect(res.status).toBe(200)
+})
+
+it("freeze native denom", async () => {
+  const client = await getClient(true)
+  const fromAddress = "xar13slrtrkn4hmhu88nlzhnk5s36t54wsugkvttg5"
+
+  const msg = client.Denominations.freezeCoins(fromAddress, "tst", "100000000", fromAddress)
+  const res = await client.sendTx(msg, fromAddress)
+  console.log(res.result)
+  expect(res.status).toBe(200)
+})
+
+it("unfreeze native denom", async () => {
+  const client = await getClient(true)
+  const fromAddress = "xar13slrtrkn4hmhu88nlzhnk5s36t54wsugkvttg5"
+
+  const msg = client.Denominations.unfreezeCoins(fromAddress, "tst", "100000000", fromAddress)
+  const res = await client.sendTx(msg, fromAddress)
+  console.log(res.result)
+  expect(res.status).toBe(200)
+})
+
+it("get tokens", async () => {
+  const client = await getClient(true)
+  const res = await client.getTokens()
+  try {
+    console.log(JSON.stringify(res))
+  } catch (err) {
+
+  }
+  expect(res.status).toBe(200)
+})
+
+it("get token", async () => {
+  const client = await getClient(true)
+  const res = await client.getToken("uftm")
+  try {
+    console.log(JSON.stringify(res))
+  } catch (err) {
+
+  }
+  expect(res.status).toBe(200)
+})
+
+
+it("get account", async () => {
+  const client = await getClient(true)
+  const res = await client.getAccount("xar14nh6rs0wyxl8t6rlv962dsv5sg644xj7d9h6jq")
+  try {
+    console.log(JSON.stringify(res))
+  } catch (err) {
+
+  }
+  expect(res.status).toBe(200)
 })
 
 it("get node info", async () => {
@@ -113,7 +197,7 @@ it("get csdt", async () => {
   expect(res.status).toBe(200)
 })
 
-/*it("csdt", async () => {
+it("csdt", async () => {
   const client = await getClient(true)
   const fromAddress = "xar13slrtrkn4hmhu88nlzhnk5s36t54wsugkvttg5"
   const collateralDenom = "uftm"
@@ -123,9 +207,9 @@ it("get csdt", async () => {
   const msg = client.CSDT.createOrModifyCSDT(fromAddress, collateralDenom, collateralChange, debtChange)
   const res = await client.sendTx(msg, fromAddress)
   expect(res.status).toBe(200)
-})*/
+})
 
-/*it("record immutable proof", async () => {
+it("record immutable proof", async () => {
   const client = await getClient(true)
   const fromAddress = "xar13slrtrkn4hmhu88nlzhnk5s36t54wsugkvttg5"
   const name = "123"
@@ -138,10 +222,10 @@ it("get csdt", async () => {
   const msg = client.Record.record(fromAddress, name, author, hash, recordNo, recordType, description)
   const res = await client.sendTx(msg, fromAddress)
   expect(res.status).toBe(200)
-})*/
+})
 
 
-/*it("mint tokens liquidity provider", async () => {
+it("mint tokens liquidity provider", async () => {
   const client = await getClient(true)
   const fromAddress = "xar13slrtrkn4hmhu88nlzhnk5s36t54wsugkvttg5"
   const amount = [{
@@ -165,9 +249,9 @@ it("burn tokens liquidity provider", async () => {
   const msg = client.LiquidityProvider.burnTokens(fromAddress, amount)
   const res = await client.sendTx(msg, fromAddress)
   expect(res.status).toBe(200)
-})*/
+})
 
-/*it("increase credit", async () => {
+it("increase credit", async () => {
   const client = await getClient(true)
   const fromAddress = "xar13slrtrkn4hmhu88nlzhnk5s36t54wsugkvttg5"
   const liquidityProvider = "xar13slrtrkn4hmhu88nlzhnk5s36t54wsugkvttg5"
@@ -204,9 +288,9 @@ it("revoke liquidity provider", async () => {
   const msg = client.Issuer.revokeLiquidityProvider(fromAddress, liquidityProvider)
   const res = await client.sendTx(msg, fromAddress)
   expect(res.status).toBe(200)
-})*/
+})
 
-/*it("create issuer", async () => {
+it("create issuer", async () => {
   const client = await getClient(true)
   const fromAddress = "xar13slrtrkn4hmhu88nlzhnk5s36t54wsugkvttg5"
   const issuer = "xar13slrtrkn4hmhu88nlzhnk5s36t54wsugkvttg5"
@@ -246,9 +330,9 @@ it("create market", async () => {
   const msg = client.Authority.createMarket(fromAddress, baseAsset, quoteAsset)
   const res = await client.sendTx(msg, fromAddress)
   expect(res.status).toBe(200)
-})*/
+})
 
-/*it("ensures that the number is positive", async () => {
+it("ensures that the number is positive", async () => {
   expect(() => checkNumber(-100, "-100")).toThrowError("-100 should be a positive number")
 })
 
