@@ -47,7 +47,100 @@ beforeEach(() => {
   jest.setTimeout(50000)
 })
 
-/*it("issue native denom", async () => {
+
+it("get oracle assets", async () => {
+  const client = await getClient(true)
+  const res = await client.getOracleAssets()
+  try {
+    console.log(JSON.stringify(res))
+  } catch (err) {
+
+  }
+  expect(res.status).toBe(200)
+})
+
+it("add collateral", async () => {
+  const client = await getClient(true)
+  const fromAddress = "xar13slrtrkn4hmhu88nlzhnk5s36t54wsugkvttg5"
+
+  const msg = client.CSDT.depositCollateral(fromAddress, "tst", "1000000")
+  const res = await client.sendTx(msg, fromAddress)
+  expect(res.status).toBe(200)
+})
+
+it("withdraw collateral", async () => {
+  const client = await getClient(true)
+  const fromAddress = "xar13slrtrkn4hmhu88nlzhnk5s36t54wsugkvttg5"
+
+  const msg = client.CSDT.withdrawCollateral(fromAddress, "tst", "1000000")
+  const res = await client.sendTx(msg, fromAddress)
+  expect(res.status).toBe(200)
+})
+
+it("settle debt", async () => {
+  const client = await getClient(true)
+  const fromAddress = "xar13slrtrkn4hmhu88nlzhnk5s36t54wsugkvttg5"
+
+  const msg = client.CSDT.settleDebt(fromAddress, "tst", "csdt", "1000000")
+  const res = await client.sendTx(msg, fromAddress)
+  expect(res.status).toBe(200)
+})
+
+it("withdraw debt", async () => {
+  const client = await getClient(true)
+  const fromAddress = "xar13slrtrkn4hmhu88nlzhnk5s36t54wsugkvttg5"
+
+  const msg = client.CSDT.withdrawDebt(fromAddress, "tst", "csdt", "1000000")
+  const res = await client.sendTx(msg, fromAddress)
+  expect(res.status).toBe(200)
+})
+
+/*it("post price", async () => {
+  const client = await getClient(true)
+  const fromAddress = "xar13slrtrkn4hmhu88nlzhnk5s36t54wsugkvttg5"
+
+  const msg = client.Oracle.postPrice(fromAddress, "tst", "0.1", "10000")
+  const res = await client.sendTx(msg, fromAddress)
+  expect(res.status).toBe(200)
+})
+
+it("add oracle", async () => {
+  const client = await getClient(true)
+  const fromAddress = "xar13slrtrkn4hmhu88nlzhnk5s36t54wsugkvttg5"
+
+  const msg = client.Oracle.addOracle(fromAddress, fromAddress, "tst")
+  const res = await client.sendTx(msg, fromAddress)
+  expect(res.status).toBe(200)
+})
+
+it("set oracles", async () => {
+  const client = await getClient(true)
+  const fromAddress = "xar13slrtrkn4hmhu88nlzhnk5s36t54wsugkvttg5"
+
+  const msg = client.Oracle.setOracles(fromAddress, [{address:fromAddress}], "tst")
+  const res = await client.sendTx(msg, fromAddress)
+  expect(res.status).toBe(200)
+})
+
+it("set asset for oracle", async () => {
+  const client = await getClient(true)
+  const fromAddress = "xar13slrtrkn4hmhu88nlzhnk5s36t54wsugkvttg5"
+
+  const msg = client.Oracle.setAsset(fromAddress, "tst", "tst", "tst", "zar", [{address:fromAddress}], true)
+  const res = await client.sendTx(msg, fromAddress)
+  expect(res.status).toBe(200)
+})
+
+it("add asset to oracle", async () => {
+  const client = await getClient(true)
+  const fromAddress = "xar13slrtrkn4hmhu88nlzhnk5s36t54wsugkvttg5"
+
+  const msg = client.Oracle.addAsset(fromAddress, "tst", "tst", "tst", "zar", [{address:fromAddress}], true)
+  const res = await client.sendTx(msg, fromAddress)
+  expect(res.status).toBe(200)
+})
+
+it("issue native denom", async () => {
   const client = await getClient(true)
   const fromAddress = "xar13slrtrkn4hmhu88nlzhnk5s36t54wsugkvttg5"
 
