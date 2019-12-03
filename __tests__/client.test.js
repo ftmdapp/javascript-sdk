@@ -47,8 +47,13 @@ beforeEach(() => {
   jest.setTimeout(50000)
 })
 
+it("get csdt parameters", async () => {
+  const client = await getClient(true)
+  const res = await client.getCSDTParameters()
+  expect(res.status).toBe(200)
+})
 
-it("get oracle assets", async () => {
+/*it("get oracle assets", async () => {
   const client = await getClient(true)
   const res = await client.getOracleAssets()
   try {
@@ -95,7 +100,7 @@ it("withdraw debt", async () => {
   expect(res.status).toBe(200)
 })
 
-/*it("post price", async () => {
+it("post price", async () => {
   const client = await getClient(true)
   const fromAddress = "xar13slrtrkn4hmhu88nlzhnk5s36t54wsugkvttg5"
 
