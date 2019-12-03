@@ -5,6 +5,10 @@ import { UVarInt } from "../encoder/varint"
 export const txType = {
   MsgPlaceBid: "auction/MsgPlaceBid",
   MsgCreateOrModifyCSDT: "csdt/MsgCreateOrModifyCSDT",
+  MsgDepositCollateral: "csdt/MsgDepositCollateral",
+  MsgWithdrawCollateral: "csdt/MsgWithdrawCollateral",
+  MsgSettleDebt: "csdt/MsgSettleDebt",
+  MsgWithdrawDebt: "csdt/MsgWithdrawDebt",
   MsgTransferCSDT: "csdt/MsgTransferCSDT",
   MsgIssue: "issue/MsgIssue",
   MsgIssueTransferOwnership: "issue/MsgIssueTransferOwnership",

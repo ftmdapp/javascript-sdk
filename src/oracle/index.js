@@ -31,10 +31,10 @@ class Oracle {
     }
 
     const value = {
-      from: from,
       asset_code: assetCode,
-      price: price,
       expiry: expiry,
+      from: from,
+      price: price,
     }
 
     const msg = {
