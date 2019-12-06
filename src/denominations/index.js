@@ -20,7 +20,7 @@ class Denominations {
    * @param {String} - maxSupply
    * @param {String} - mintable
    */
-  issueToken(sourceAddress, owner, name, symbol, originalSymbol, totalSupply, maxSupply, mintable) {
+  issueToken(sourceAddress, owner, name, symbol, originalSymbol, maxSupply, mintable) {
     if (!sourceAddress) {
       throw new Error("sender address cannot be empty")
     }
@@ -36,9 +36,6 @@ class Denominations {
     if (!originalSymbol) {
       throw new Error("originalSymbol cannot be empty")
     }
-    if (!totalSupply) {
-      throw new Error("totalSupply cannot be empty")
-    }
     if (!maxSupply) {
       throw new Error("maxSupply cannot be empty")
     }
@@ -49,7 +46,6 @@ class Denominations {
       name: name,
       symbol: symbol,
       original_symbol: originalSymbol,
-      total_supply: totalSupply,
       max_supply: maxSupply,
       mintable: mintable,
     }

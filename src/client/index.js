@@ -45,6 +45,7 @@ export const api = {
   getSupply: "/supply/total",
   getTx: "/txs",
   getCurrentPrice: "/oracle/currentprice",
+  getStakingPool: "/staking/pool",
   getOracleAssets: "/oracle/assets",
   getCSDT: "/csdts",
   getCSDTParameters: "/csdts/params",
@@ -611,6 +612,19 @@ export class XarClient {
   async getSupply() {
     try {
       const data = await this._httpClient.request("get", `${api.getSupply}`)
+      return data
+    } catch (err) {
+      return err
+    }
+  }
+
+  /**
+   * get staking pool
+   * @return {Promise} resolves with http response
+   */
+  async getStakingPool() {
+    try {
+      const data = await this._httpClient.request("get", `${api.getStakingPool}`)
       return data
     } catch (err) {
       return err
