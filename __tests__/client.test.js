@@ -19,7 +19,7 @@ const keystores = {
 const targetAddress = "xar13slrtrkn4hmhu88nlzhnk5s36t54wsugkvttg5"
 
 const getClient = async (useAwaitSetPrivateKey = true, doNotSetPrivateKey = false) => {
-  const client = new XarClient("http://54.229.172.186:1317/")
+  const client = new XarClient("https://node.xar.network/")
   await client.initChain()
   const privateKey = crypto.getPrivateKeyFromMnemonic(mnemonic)
   if (!doNotSetPrivateKey) {
@@ -47,13 +47,87 @@ beforeEach(() => {
   jest.setTimeout(50000)
 })
 
-it("get csdt parameters", async () => {
+it("create validator", async () => {
+  const client = await getClient(true)
+  const fromAddress = "xar13slrtrkn4hmhu88nlzhnk5s36t54wsugkvttg5"
+  const validatorAddress = "xva1x3zca7yvrrnycqy4vc895m4t8djud0lru6qwfy"
+
+  const msg = client.Staking.createValidator(
+    "moniker",
+    "identity",
+    "website",
+    "security_contact",
+    "details",
+    "0.10",
+    "0.20",
+    "0.01",
+    "1",
+    fromAddress,
+    validatorAddress,
+    "pub_key",
+    "ucsdt",
+    "1000000"
+  )
+  const res = await client.sendTx(msg, fromAddress)
+  expect(res.status).toBe(200)
+})
+
+it("edit validator", async () => {
+  const client = await getClient(true)
+  const fromAddress = "xar13slrtrkn4hmhu88nlzhnk5s36t54wsugkvttg5"
+  const validatorAddress = "xva1x3zca7yvrrnycqy4vc895m4t8djud0lru6qwfy"
+
+  const msg = client.Staking.editValidator(
+    "moniker",
+    "identity",
+    "website",
+    "security_contact",
+    "details",
+    validatorAddress,
+    "0.10",
+    "1000000"
+  )
+  const res = await client.sendTx(msg, fromAddress)
+  expect(res.status).toBe(200)
+})
+
+it("delegate", async () => {
+  const client = await getClient(true)
+  const fromAddress = "xar13slrtrkn4hmhu88nlzhnk5s36t54wsugkvttg5"
+  const validatorAddress = "xva1x3zca7yvrrnycqy4vc895m4t8djud0lru6qwfy"
+
+  const msg = client.Staking.delegate(
+    fromAddress,
+    validatorAddress,
+    "ucsdt",
+    "1000000"
+  )
+  const res = await client.sendTx(msg, fromAddress)
+  expect(res.status).toBe(200)
+})
+
+it("undelegate", async () => {
+  const client = await getClient(true)
+  const fromAddress = "xar13slrtrkn4hmhu88nlzhnk5s36t54wsugkvttg5"
+  const validatorAddress = "xva1x3zca7yvrrnycqy4vc895m4t8djud0lru6qwfy"
+
+  const msg = client.Staking.undelegate(
+    fromAddress,
+    validatorAddress,
+    "ucsdt",
+    "1000000"
+  )
+  const res = await client.sendTx(msg, fromAddress)
+  expect(res.status).toBe(200)
+})
+
+/*it("get csdt parameters", async () => {
   const client = await getClient(true)
   const res = await client.getCSDTParameters()
   expect(res.status).toBe(200)
 })
 
-/*it("get oracle assets", async () => {
+it("get oracle assets", async () => {
   const client = await getClient(true)
   const res = await client.getOracleAssets()
   try {

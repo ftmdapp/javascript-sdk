@@ -8,6 +8,7 @@ import Record from "../record"
 import Denominations from "../denominations"
 import Oracle from "../oracle"
 import CSDT from "../csdt"
+import Staking from "../staking"
 import HttpRequest from "../utils/request"
 import { checkNumber } from "../utils/validateHelper"
 import { txType } from '../tx/'
@@ -163,6 +164,7 @@ export class XarClient {
     this.Denominations = new Denominations()
     this.Record = new Record()
     this.Oracle = new Oracle()
+    this.Staking = new Staking()
     this.CSDT = new CSDT()
     this._useAsyncBroadcast = useAsyncBroadcast
     this._source = source
