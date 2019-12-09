@@ -57,6 +57,10 @@ export const api = {
   getAssets: "/issue/list",
   getTokens: "/denominations/tokens",
   getToken: "/denominations/tokens",
+  getAllDelegations: "/staking/delegators",
+  getAllUnbondingDelegations: "/staking/delegators",
+  getAllBondedValidators: "/staking/delegators",
+  getAllValidators: "/staking/validators",
 }
 
 const NETWORK_PREFIX_MAPPING = {
@@ -557,6 +561,19 @@ export class XarClient {
   }
 
   /**
+   * get all validators
+   * @return {Promise} resolves with http response
+   */
+  async getAllValidators() {
+    try {
+      const data = await this._httpClient.request("get", `${api.getAllValidators}`)
+      return data
+    } catch (err) {
+      return err
+    }
+  }
+
+  /**
    * get specific token
    * @param {String} token denom
    * @return {Promise} resolves with http response
@@ -572,6 +589,58 @@ export class XarClient {
       return err
     }
   }
+
+  /**
+   * get all bonded validators for delegator
+   * @param {String} delegator
+   * @return {Promise} resolves with http response
+   */
+  async getAllBondedValidators(delegator) {
+    if (!delegator) {
+      throw new Error("delegator should not be empty")
+    }
+    try {
+      const data = await this._httpClient.request("get", `${api.getAllBondedValidators}/${delegator}/validators`)
+      return data
+    } catch (err) {
+      return err
+    }
+  }
+
+  /**
+   * get all bonded validators for delegator
+   * @param {String} delegator
+   * @return {Promise} resolves with http response
+   */
+  async getAllUnbondingDelegations(delegator) {
+    if (!delegator) {
+      throw new Error("delegator should not be empty")
+    }
+    try {
+      const data = await this._httpClient.request("get", `${api.getAllUnbondingDelegations}/${delegator}/unbonding_delegations`)
+      return data
+    } catch (err) {
+      return err
+    }
+  }
+
+  /**
+   * get all delegations
+   * @param {String} delegator
+   * @return {Promise} resolves with http response
+   */
+  async getAllDelegations(delegator) {
+    if (!delegator) {
+      throw new Error("delegator should not be empty")
+    }
+    try {
+      const data = await this._httpClient.request("get", `${api.getAllDelegations}/${delegator}/delegations`)
+      return data
+    } catch (err) {
+      return err
+    }
+  }
+
   //dts?collateralDenom=uftm&owner=xar1n4avxelsujq8chr7jh2qgf4gcttuxkxdv40rdj&underCollateralizedAt=400
 
   /**
