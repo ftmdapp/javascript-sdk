@@ -141,7 +141,7 @@ class Staking {
     }
 
     if (!delegator_address) {
-      throw new Error("moniker cannot be empty")
+      throw new Error("delegator address cannot be empty")
     }
 
     const value = {
@@ -173,7 +173,7 @@ class Staking {
     }
 
     if (!delegator_address) {
-      throw new Error("moniker cannot be empty")
+      throw new Error("delegator address cannot be empty")
     }
 
     const value = {
@@ -187,6 +187,41 @@ class Staking {
 
     const msg = {
       type: txType.MsgUndelegate,
+      value: value
+    }
+
+    return msg
+  }
+  /**
+   * undelegate from a validator
+   * @param {String} - delegator_address
+   * @param {String} - validator_address
+   * @param {String} - amount_denom
+   * @param {String} - amount_amount
+   */
+  redelegate(delegator_address, validator_src_address, validator_dst_address, amount_denom, amount_amount) {
+    if (!validator_src_address) {
+      throw new Error("source validator address cannot be empty")
+    }
+    if (!validator_dst_address) {
+      throw new Error("destination validator address cannot be empty")
+    }
+    if (!delegator_address) {
+      throw new Error("delegator address cannot be empty")
+    }
+
+    const value = {
+      delegator_address: delegator_address,
+      validator_src_address: validator_src_address,
+      validator_dst_address: validator_dst_address,
+      amount: {
+        denom: amount_denom,
+        amount: amount_amount
+      }
+    }
+
+    const msg = {
+      type: txType.MsgBeginRedelegate,
       value: value
     }
 
