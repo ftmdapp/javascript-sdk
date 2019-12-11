@@ -69,6 +69,9 @@ export const txType = {
   MsgSetOracles: "oracle/MsgSetOracles",
   MsgAddAsset: "oracle/MsgAddAsset",
   MsgSetAsset: "oracle/MsgSetAsset",
+  MsgWithdrawDelegationReward: "cosmos-sdk/MsgWithdrawDelegationReward",
+  MsgWithdrawValidatorCommission: "cosmos-sdk/MsgWithdrawValidatorCommission",
+  MsgModifyWithdrawAddress: "cosmos-sdk/MsgModifyWithdrawAddress",
 }
 
 /**

@@ -6,6 +6,7 @@ import Transaction from "../tx"
 import Issue from "../issue"
 import Record from "../record"
 import Denominations from "../denominations"
+import Distribution from "../distribution"
 import Oracle from "../oracle"
 import CSDT from "../csdt"
 import Staking from "../staking"
@@ -61,6 +62,7 @@ export const api = {
   getAllUnbondingDelegations: "/staking/delegators",
   getAllBondedValidators: "/staking/delegators",
   getAllValidators: "/staking/validators",
+  getDelegatorRewards: "/distribution/delegators",
 }
 
 const NETWORK_PREFIX_MAPPING = {
@@ -166,6 +168,7 @@ export class XarClient {
     this._broadcastDelegate = DefaultBroadcastDelegate
     this.Issue = new Issue()
     this.Denominations = new Denominations()
+    this.Distribution = new Distribution()
     this.Record = new Record()
     this.Oracle = new Oracle()
     this.Staking = new Staking()
@@ -607,6 +610,21 @@ export class XarClient {
     }
   }
 
+  /**
+   * get all outstanding delegator rewards
+   * @param {String} delegator
+   */
+  async getDelegatorRewards(delegator) {
+    if (!delegator) {
+      throw new Error("delegator should not be empty")
+    }
+    try {
+      const data = await this._httpClient.request("get", `${api.getDelegatorRewards}/${delegator}/rewards`)
+      return data
+    } catch (err) {
+      return err
+    }
+  }
   /**
    * get all bonded validators for delegator
    * @param {String} delegator

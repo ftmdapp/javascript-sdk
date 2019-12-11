@@ -47,7 +47,28 @@ beforeEach(() => {
   jest.setTimeout(50000)
 })
 
-it("get all delegations", async () => {
+
+
+it("get all delegator rewards", async () => {
+  const client = await getClient(true)
+  const res = await client.getDelegatorRewards("xar1yxd5lulpylvnzq3mkxs4jgpre3zp3eym2ptpcw")
+  expect(res.status).toBe(200)
+})
+
+it("withdraw rewards", async () => {
+  const client = await getClient(true)
+  const fromAddress = "xar13slrtrkn4hmhu88nlzhnk5s36t54wsugkvttg5"
+  const validatorAddress = "xva1x3zca7yvrrnycqy4vc895m4t8djud0lru6qwfy"
+
+  const msg = client.Distribution.withdrawDelegatorRewards(
+    fromAddress,
+    validatorAddress,
+  )
+  const res = await client.sendTx(msg, fromAddress)
+  expect(res.status).toBe(200)
+})
+
+/*it("get all delegations", async () => {
   const client = await getClient(true)
   const res = await client.getAllDelegations("xar1yxd5lulpylvnzq3mkxs4jgpre3zp3eym2ptpcw")
   expect(res.status).toBe(200)
@@ -70,7 +91,8 @@ it("get all validators", async () => {
   const res = await client.getAllValidators()
   expect(res.status).toBe(200)
 })
-/*it("create validator", async () => {
+
+it("create validator", async () => {
   const client = await getClient(true)
   const fromAddress = "xar13slrtrkn4hmhu88nlzhnk5s36t54wsugkvttg5"
   const validatorAddress = "xva1x3zca7yvrrnycqy4vc895m4t8djud0lru6qwfy"
