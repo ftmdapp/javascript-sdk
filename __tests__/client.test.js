@@ -48,8 +48,29 @@ beforeEach(() => {
 })
 
 
+it("get all proposals", async () => {
+  const client = await getClient(true)
+  const res = await client.getAllProposals()
+  expect(res.status).toBe(200)
+})
 
-it("get all delegator rewards", async () => {
+it("get specific proposals", async () => {
+  const client = await getClient(true)
+  const res = await client.getProposal("1")
+  expect(res.status).toBe(200)
+})
+
+it("gov vote", async () => {
+  const client = await getClient(true)
+  const fromAddress = "xar13slrtrkn4hmhu88nlzhnk5s36t54wsugkvttg5"
+
+  const msg = client.Gov.vote("1","Yes","xar13slrtrkn4hmhu88nlzhnk5s36t54wsugkvttg5")
+  const res = await client.sendTx(msg, fromAddress)
+  expect(res.status).toBe(200)
+})
+
+
+/*it("get all delegator rewards", async () => {
   const client = await getClient(true)
   const res = await client.getDelegatorRewards("xar1yxd5lulpylvnzq3mkxs4jgpre3zp3eym2ptpcw")
   expect(res.status).toBe(200)
@@ -68,7 +89,7 @@ it("withdraw rewards", async () => {
   expect(res.status).toBe(200)
 })
 
-/*it("get all delegations", async () => {
+it("get all delegations", async () => {
   const client = await getClient(true)
   const res = await client.getAllDelegations("xar1yxd5lulpylvnzq3mkxs4jgpre3zp3eym2ptpcw")
   expect(res.status).toBe(200)

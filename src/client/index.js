@@ -8,6 +8,7 @@ import Record from "../record"
 import Denominations from "../denominations"
 import Distribution from "../distribution"
 import Oracle from "../oracle"
+import Gov from "../gov"
 import CSDT from "../csdt"
 import Staking from "../staking"
 import HttpRequest from "../utils/request"
@@ -63,6 +64,8 @@ export const api = {
   getAllBondedValidators: "/staking/delegators",
   getAllValidators: "/staking/validators",
   getDelegatorRewards: "/distribution/delegators",
+  getAllProposals: "/gov/proposals",
+  getProposal: "/gov/proposals",
 }
 
 const NETWORK_PREFIX_MAPPING = {
@@ -173,6 +176,7 @@ export class XarClient {
     this.Oracle = new Oracle()
     this.Staking = new Staking()
     this.CSDT = new CSDT()
+    this.Gov = new Gov()
     this._useAsyncBroadcast = useAsyncBroadcast
     this._source = source
   }
@@ -587,6 +591,36 @@ export class XarClient {
     }
     try {
       const data = await this._httpClient.request("get", `${api.getToken}/${denom}`)
+      return data
+    } catch (err) {
+      return err
+    }
+  }
+
+  /**
+   * get all proposals
+   * @return {Promise} resolves with http response
+   */
+  async getAllProposals() {
+    try {
+      const data = await this._httpClient.request("get", `${api.getAllProposals}`)
+      return data
+    } catch (err) {
+      return err
+    }
+  }
+
+  /**
+   * get specific proposal
+   * @param {String} proposal id
+   * @return {Promise} resolves with http response
+   */
+  async getProposal(proposalID) {
+    if (!proposalID) {
+      throw new Error("proposalID should not be empty")
+    }
+    try {
+      const data = await this._httpClient.request("get", `${api.getProposal}/${proposalID}`)
       return data
     } catch (err) {
       return err
